@@ -3,10 +3,10 @@
   "name": "a66666666666666666666",
   "position": {
     "x": 640,
-    "y": 220,
+    "y": 224,
     "z": 1000,
     "height": 400,
-    "width": 580,
+    "width": 624,
     "tabOrder": 1500
   },
   "visual": {
@@ -70,6 +70,20 @@
               },
               "queryRef": "Ventas_Plano.Incremento YoY % Plano",
               "nativeQueryRef": "Incremento YoY % Plano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Venta Total Plano LY  (fix)"
+                }
+              },
+              "queryRef": "Ventas_Plano.Venta Total Plano LY  (fix)",
+              "nativeQueryRef": "Venta Total Plano LY  (fix)"
             }
           ]
         }

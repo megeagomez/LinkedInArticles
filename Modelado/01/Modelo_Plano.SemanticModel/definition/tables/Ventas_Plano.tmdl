@@ -22,7 +22,7 @@ table Ventas_Plano
 				)
 			
 			```
-		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
 		lineageTag: bbb5775a-71c1-4d80-8563-09faefcf8c1c
 
 		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
@@ -62,6 +62,23 @@ table Ventas_Plano
 	measure 'Ticket medio' = DIVIDE([Venta Total Plano], [Pedidos])
 		formatString: #,##0.00
 		lineageTag: a91f7ba0-ff97-4dbb-9344-0715740c2413
+
+	measure 'Venta Total Plano LY  (fix)' = ```
+			
+			 VAR anioActual=year( max(Ventas_Plano[OrderDate]))
+			
+			 VAR FechasAnteriores = CALENDAR(date(anioActual-1,1,1),date(anioActual-1,12,31))
+			RETURN
+				CALCULATE(
+					[Venta Total Plano],
+					REMOVEFILTERS(Ventas_Plano[OrderDate], Ventas_Plano[Año], Ventas_Plano[Mes], Ventas_Plano[NombreMes]),
+					TREATAS(FechasAnteriores, Ventas_Plano[OrderDate])
+				)
+			```
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		lineageTag: 47f53d6c-4d4b-4422-a6a2-8b1855e5708d
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
 
 	column SalesOrderNumber
 		dataType: string
