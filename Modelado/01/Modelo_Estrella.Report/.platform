@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Modelo Estrella"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d9f5f1b1-2a5e-4c1d-8f6a-3e7c2b9d4102"
+  }
+}

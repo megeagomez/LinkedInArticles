@@ -1,0 +1,48 @@
+table Dim_Fecha
+	lineageTag: 329e8f12-3561-46cc-9698-d32840972f7d
+	dataCategory: Time
+
+	column FechaKey
+		dataType: int64
+		isHidden
+		lineageTag: fbd866de-3e05-4fb7-91a7-7ab1df34b4fa
+		summarizeBy: none
+		sourceColumn: FechaKey
+
+	column Fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4b3d14f2-8636-45cd-b120-8994fde70112
+		summarizeBy: none
+		sourceColumn: Fecha
+
+	column Anio
+		dataType: int64
+		lineageTag: f9517f04-e928-42d8-ad6e-e464e26a670c
+		summarizeBy: none
+		sourceColumn: Anio
+
+	column Trimestre
+		dataType: int64
+		lineageTag: 73b5fb46-fe28-4a2a-99f3-31a6a327a57d
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+	column Mes
+		dataType: int64
+		lineageTag: 940d4443-6cf5-46b0-8cd1-0915e723b63c
+		summarizeBy: none
+		sourceColumn: Mes
+
+	column NombreMes
+		dataType: string
+		lineageTag: 16dd1721-65e7-499c-947a-56ed43f1880e
+		summarizeBy: none
+		sourceColumn: NombreMes
+		sortByColumn: Mes
+
+		changedProperty = SortByColumn
+
+	partition Dim_Fecha = m
+		mode: import
+		source = Sql.Database("a01p0717", "Demo_Modelo_Plano_Estrella"){[Schema="dbo",Item="Dim_Fecha"]}[Data]

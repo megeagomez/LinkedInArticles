@@ -1,0 +1,64 @@
+table Dim_Vendedor_Historial
+	lineageTag: d93de551-6cb0-441b-b453-585be4934db6
+
+	column VendedorKey
+		dataType: int64
+		isHidden
+		lineageTag: 814d7c11-2528-4ec3-a90c-0bd0dd85a855
+		summarizeBy: none
+		sourceColumn: VendedorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreVendedor
+		dataType: string
+		lineageTag: 9d9aff14-9698-4b56-ad26-8f114e86b39a
+		summarizeBy: none
+		sourceColumn: NombreVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerritorioKey
+		dataType: int64
+		lineageTag: 4c929ba1-7e10-4577-8748-614bcd89be94
+		summarizeBy: count
+		sourceColumn: TerritorioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Desde
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f387d29c-325d-47a0-8e45-9e8537fdefa0
+		summarizeBy: none
+		sourceColumn: Desde
+
+		variation Variación
+			isDefault
+			relationship: c0b5fe93-46cb-406f-98f7-682f5c0f99de
+			defaultHierarchy: LocalDateTable_de4ca967-f240-4adf-a23b-ac045487bf21.'Jerarquía de fechas'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hasta
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b2a1b4ab-9efd-42a4-8a80-5341b9d4542a
+		summarizeBy: none
+		sourceColumn: Hasta
+
+		variation Variación
+			isDefault
+			relationship: db9a887b-5be3-447d-a437-d68099e89d44
+			defaultHierarchy: LocalDateTable_65642e1a-2978-4f8c-91cd-0204f2058443.'Jerarquía de fechas'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Vendedor_Historial = m
+		mode: import
+		source = Sql.Database("a01p0717", "Demo_Modelo_Plano_Estrella"){[Schema="dbo",Item="Dim_Vendedor_Historial"]}[Data]
+

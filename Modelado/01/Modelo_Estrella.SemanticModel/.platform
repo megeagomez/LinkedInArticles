@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Modelo Estrella"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f1a7c3e9-6b24-48d0-8e5f-2c9a7d4b6104"
+  }
+}

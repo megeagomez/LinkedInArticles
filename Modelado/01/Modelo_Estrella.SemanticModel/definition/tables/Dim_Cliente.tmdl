@@ -1,0 +1,18 @@
+table Dim_Cliente
+	lineageTag: 6b86420a-3172-4a61-8644-460540d5b636
+
+	column ClienteKey
+		dataType: int64
+		isHidden
+		lineageTag: 6a9cadfe-54fa-447d-9438-e9dfae485ba8
+		sourceColumn: ClienteKey
+
+	column NombreCliente
+		dataType: string
+		lineageTag: 9faba7ee-2f7d-45bf-8981-cd9b9d16c50d
+		sourceColumn: NombreCliente
+
+	partition Dim_Cliente = m
+		mode: import
+		source = Sql.Database("a01p0717", "Demo_Modelo_Plano_Estrella"){[Schema="dbo",Item="Dim_Cliente"]}[Data]
+

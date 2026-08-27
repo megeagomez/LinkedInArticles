@@ -1,0 +1,43 @@
+table Dim_Producto
+	lineageTag: 4f863ab0-5940-4d6b-8be9-1cafe6c1206b
+
+	column ProductoKey
+		dataType: int64
+		isHidden
+		lineageTag: a5d19146-8903-4953-bf13-6db328fb255c
+		sourceColumn: ProductoKey
+
+	column Producto
+		dataType: string
+		lineageTag: 30a220c0-0bde-4221-bc82-ba77cdccd45c
+		sourceColumn: Producto
+
+	column Color
+		dataType: string
+		lineageTag: 562e76bb-9538-42c8-836b-ff5b96237c86
+		sourceColumn: Color
+
+	column StandardCost
+		dataType: decimal
+		lineageTag: 92cb59d4-76d3-4dc2-934b-6689f7bd3ac6
+		sourceColumn: StandardCost
+
+	column ListPrice
+		dataType: decimal
+		lineageTag: e15baad8-2485-4e8d-aea4-0efae745dc44
+		sourceColumn: ListPrice
+
+	column Subcategoria
+		dataType: string
+		lineageTag: 0d9e2459-22c8-4440-999c-45ff0ce07127
+		sourceColumn: Subcategoria
+
+	column Categoria
+		dataType: string
+		lineageTag: b4baef8b-e8d7-492c-9baf-0c972f9b837b
+		sourceColumn: Categoria
+
+	partition Dim_Producto = m
+		mode: import
+		source = Sql.Database("a01p0717", "Demo_Modelo_Plano_Estrella"){[Schema="dbo",Item="Dim_Producto"]}[Data]
+

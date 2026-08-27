@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Modelo Plano"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a4c2d0e7-4d38-46d9-9a1f-6b8e5c3f2103"
+  }
+}

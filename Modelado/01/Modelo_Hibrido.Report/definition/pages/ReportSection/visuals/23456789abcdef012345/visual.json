@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "23456789abcdef012345",
+  "position": { "x": 64, "y": 40, "z": 1000, "height": 64, "width": 760, "tabOrder": 1000 },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [{
+        "properties": {
+          "paragraphs": [{
+            "textRuns": [{ "value": "MODELO COMPARATIVO", "textStyle": { "fontFamily": "Aptos Display", "fontSize": "30px", "fontWeight": "bold", "color": "#172033" } }],
+            "horizontalTextAlignment": "left"
+          }]
+        }
+      }]
+    },
+    "visualContainerObjects": {
+      "background": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }],
+      "border": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }]
+    }
+  }
+}

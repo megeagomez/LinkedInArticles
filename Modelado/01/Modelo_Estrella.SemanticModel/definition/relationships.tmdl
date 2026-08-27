@@ -1,0 +1,34 @@
+relationship 'Fact Ventas Fecha'
+	fromColumn: Fact_Ventas.FechaKey
+	toColumn: Dim_Fecha.FechaKey
+
+relationship 'Fact Ventas Producto'
+	fromColumn: Fact_Ventas.ProductoKey
+	toColumn: Dim_Producto.ProductoKey
+
+relationship 'Fact Ventas Cliente'
+	fromColumn: Fact_Ventas.ClienteKey
+	toColumn: Dim_Cliente.ClienteKey
+
+relationship 'Fact Ventas Territorio'
+	fromColumn: Fact_Ventas.TerritorioKey
+	toColumn: Dim_Territorio.TerritorioKey
+
+relationship 'Fact Ventas Vendedor'
+	fromColumn: Fact_Ventas.VendedorKey
+	toColumn: Dim_Vendedor.VendedorKey
+
+relationship 'Historial Vendedor'
+	fromColumn: Dim_Vendedor_Historial.VendedorKey
+	toColumn: Dim_Vendedor.VendedorKey
+
+relationship c0b5fe93-46cb-406f-98f7-682f5c0f99de
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Vendedor_Historial.Desde
+	toColumn: LocalDateTable_de4ca967-f240-4adf-a23b-ac045487bf21.Date
+
+relationship db9a887b-5be3-447d-a437-d68099e89d44
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Vendedor_Historial.Hasta
+	toColumn: LocalDateTable_65642e1a-2978-4f8c-91cd-0204f2058443.Date
+

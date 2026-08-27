@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "b22222222222222222222",
+  "position": {
+    "x": 640,
+    "y": 40,
+    "z": 1000,
+    "height": 150,
+    "width": 570,
+    "tabOrder": 1100
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Fecha"
+                    }
+                  },
+                  "Property": "Anio"
+                }
+              },
+              "queryRef": "Dim_Fecha.Anio",
+              "nativeQueryRef": "Anio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Fecha"
+                    }
+                  },
+                  "Property": "NombreMes"
+                }
+              },
+              "queryRef": "Dim_Fecha.NombreMes",
+              "nativeQueryRef": "NombreMes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Ventas"
+                    }
+                  },
+                  "Property": "Venta Total Plano"
+                }
+              },
+              "queryRef": "Fact_Ventas.Venta Total Plano",
+              "nativeQueryRef": "Venta Total Plano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Ventas"
+                    }
+                  },
+                  "Property": "Periodo Paralelo Plano"
+                }
+              },
+              "queryRef": "Fact_Ventas.Periodo Paralelo Plano",
+              "nativeQueryRef": "Periodo Paralelo Plano"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e22e8399134efb81f218",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Fecha"
+              }
+            },
+            "Property": "Anio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4be4457f1fc96660707d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Fecha"
+              }
+            },
+            "Property": "NombreMes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2f0393f50570fda0ded7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Ventas"
+              }
+            },
+            "Property": "Venta Total Plano"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4ab3c74c641de1a69095",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Ventas"
+              }
+            },
+            "Property": "Periodo Paralelo Plano"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

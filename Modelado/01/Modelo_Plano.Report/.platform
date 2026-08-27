@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Modelo Plano"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7b5e7b56-0a6e-4d8a-9f8f-2f5c14e4a101"
+  }
+}

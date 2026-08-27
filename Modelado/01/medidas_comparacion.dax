@@ -1,0 +1,116 @@
+// ============================================================
+// MEDIDAS DE COMPARACIÓN — cargar Ventas_Plano y (Fact_Ventas +
+// Dim_Producto + Dim_Cliente + Dim_Territorio + Dim_Vendedor + Dim_Fecha)
+// como proyectos separados. Modelo_Plano es plano puro; Modelo_Hibrido
+// conserva la variante con Dim_Fecha.
+// ============================================================
+
+// ---- Sobre Ventas_Plano ----
+
+Venta Total Plano =
+SUM ( Ventas_Plano[LineTotal] )
+
+Clientes Unicos Plano =
+DISTINCTCOUNT ( Ventas_Plano[CustomerID] )
+// Correcto aquí porque el grano sigue siendo línea de pedido.
+// Deja de serlo en cuanto alguien añade al modelo plano una tabla
+// "uno a muchos" (ver 03_la_trampa.sql): entonces este DISTINCTCOUNT
+// y el SUM de arriba empiezan a mentir sin que cambie ni una línea de DAX.
+
+// ---- Modelo plano puro: inteligencia temporal manual ----
+// No hay inteligencia temporal automática ni Dim_Fecha. Las columnas Año,
+// Mes y NombreMes viven dentro de Ventas_Plano y las medidas desplazan el
+// conjunto de fechas visible sobre la propia columna OrderDate.
+
+Venta Total Plano LY =
+VAR FechasActuales = VALUES ( Ventas_Plano[OrderDate] )
+VAR FechasAnteriores =
+	SELECTCOLUMNS (
+		FechasActuales,
+		"OrderDate", DATE ( YEAR ( [OrderDate] ) - 1, MONTH ( [OrderDate] ), DAY ( [OrderDate] ) )
+	)
+RETURN
+	CALCULATE (
+		[Venta Total Plano],
+		REMOVEFILTERS ( Ventas_Plano[OrderDate], Ventas_Plano[Año], Ventas_Plano[Mes], Ventas_Plano[NombreMes] ),
+		TREATAS ( FechasAnteriores, Ventas_Plano[OrderDate] )
+	)
+
+Incremento YoY Plano =
+[Venta Total Plano] - [Venta Total Plano LY]
+
+Incremento YoY % Plano =
+DIVIDE ( [Incremento YoY Plano], [Venta Total Plano LY] )
+
+Periodo Paralelo Plano =
+[Venta Total Plano LY]
+
+// ---- Sobre el modelo en estrella ----
+
+Venta Total Estrella =
+SUM ( Fact_Ventas[LineTotal] )
+
+Clientes Unicos Estrella =
+DISTINCTCOUNT ( Fact_Ventas[ClienteKey] )
+
+Lineas de venta =
+COUNTROWS ( Fact_Ventas )
+
+Productos Unicos =
+DISTINCTCOUNT ( Fact_Ventas[ProductoKey] )
+
+Territorios Unicos =
+DISTINCTCOUNT ( Fact_Ventas[TerritorioKey] )
+
+Combinaciones Producto Territorio =
+COUNTROWS (
+	SUMMARIZE (
+		Fact_Ventas,
+		Fact_Ventas[ProductoKey],
+		Fact_Ventas[TerritorioKey]
+	)
+)
+
+// El histórico de territorio del vendedor se cuelga de Dim_Vendedor,
+// nunca de Fact_Ventas. Esta medida no cambia si mañana añades esa tabla:
+Venta Total Estrella (con historico de territorio añadido) =
+SUM ( Fact_Ventas[LineTotal] )
+// literalmente la misma fórmula, porque el histórico vive fuera del hecho.
+
+// ============================================================
+// QUÉ MEDIR EN LA DEMO (VertiPaq Analyzer / DAX Studio)
+// ============================================================
+// 1. Tamaño del modelo en Power BI (Archivo > Información > tamaño del
+//    modelo, o VertiPaq Analyzer): Ventas_Plano vs las 6 tablas de la
+//    estrella juntas. Anota MB de cada uno.
+//
+// 2. Columnas de mayor cardinalidad y peor ratio de compresión en
+//    VertiPaq Analyzer: en Ventas_Plano, columnas como NombreCliente,
+//    Producto, Territorio se repiten miles de veces -> compresión pobre.
+//    En la estrella, esas mismas columnas viven una sola vez por fila
+//    de dimensión -> compresión mucho mejor. Captura el "Column Size"
+//    de NombreCliente en ambos modelos y compáralo.
+//
+// 3. Server Timings (DAX Studio) al ejecutar "Venta Total" filtrado
+//    por un cliente: compara storage engine queries y filas escaneadas.
+//    Es normal que el total simple empate en este dataset.
+//
+// 4. Cambia la forma de la pregunta y mide una agrupación y una lista:
+//
+//    EVALUATE
+//    SUMMARIZECOLUMNS (
+//        Dim_Territorio[Grupo],
+//        Dim_Producto[Categoria],
+//        "Venta", [Venta Total Estrella]
+//    )
+//
+//    EVALUATE VALUES ( Dim_Cliente[NombreCliente] )
+//
+//    Estas consultas se parecen más a las que generan los visuales que una
+//    tarjeta con un SUM desnudo. SQLBI explica además cómo auto-exist reduce
+//    o cambia el conjunto filtrado cuando varias columnas viven en la misma
+//    tabla: https://www.sqlbi.com/articles/understanding-dax-auto-exist/
+//
+// 5. El número que sorprende: ejecuta 03_la_trampa.sql y trae ambos
+//    resultados (A y B) a la pieza. Esa es la escena central del vídeo.
+// ============================================================

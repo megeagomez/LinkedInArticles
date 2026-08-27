@@ -1,0 +1,24 @@
+table Dim_Vendedor
+	lineageTag: b4cdeafe-c1e3-4505-96d5-58125eea0a05
+
+	column VendedorKey
+		dataType: int64
+		isHidden
+		lineageTag: 8e204d9f-c8fd-463f-b223-e96ed485d245
+		sourceColumn: VendedorKey
+
+	column NombreVendedor
+		dataType: string
+		lineageTag: ca148e6e-b0db-4bbc-9577-789140cfb921
+		sourceColumn: NombreVendedor
+
+	column TerritorioKey
+		dataType: int64
+		isHidden
+		lineageTag: 8eb24be7-34b3-48f5-b028-8fd465017b8c
+		sourceColumn: TerritorioKey
+
+	partition Dim_Vendedor = m
+		mode: import
+		source = Sql.Database("a01p0717", "Demo_Modelo_Plano_Estrella"){[Schema="dbo",Item="Dim_Vendedor"]}[Data]
+
