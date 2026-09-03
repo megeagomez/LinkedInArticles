@@ -18,7 +18,7 @@ table Fact_Ventas
 		formatString: #,##0
 		lineageTag: cb25e8ec-5584-447e-958f-6eab62fa082b
 
-	measure 'Dias sin compra' = DATEDIFF(MIN(Dim_Fecha[Fecha]), MAX(Dim_Fecha[Fecha]), DAY) + 1 - [Dias con compra]
+	measure 'Dias sin compra' = DATEDIFF(MIN(Fecha[Date]), MAX(Fecha[Date]), DAY) + 1 - [Dias con compra]
 		formatString: #,##0
 		lineageTag: 29cd9e3b-9d93-4908-a4ab-98440377c3b1
 
@@ -46,7 +46,7 @@ table Fact_Ventas
 		formatString: #,##0
 		lineageTag: 1a3d8b02-6e9f-4c47-ab21-d7f502c9e384
 
-	measure 'Venta Total Plano LY' = CALCULATE([Venta Total Plano], SAMEPERIODLASTYEAR(Dim_Fecha[Fecha]))
+	measure 'Venta Total Plano LY' = CALCULATE([Venta Total Plano], SAMEPERIODLASTYEAR(Fecha[Date]))
 		formatString: #,##0.00
 		lineageTag: 2b4e9c13-7f0a-5d58-bc32-e80613daf495
 

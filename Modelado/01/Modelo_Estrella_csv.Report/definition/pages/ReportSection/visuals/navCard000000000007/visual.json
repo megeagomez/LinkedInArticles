@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "navCard000000000007",
+  "position": {
+    "x": 365,
+    "y": 250,
+    "z": 100,
+    "height": 130,
+    "width": 260,
+    "tabOrder": 101
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Ventas"
+                    }
+                  },
+                  "Property": "Clientes Unicos Plano"
+                }
+              },
+              "queryRef": "Fact_Ventas.Clientes Unicos Plano",
+              "nativeQueryRef": "Clientes Unicos Plano"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_Ventas.Clientes Unicos Plano"
+          }
+        }
+      ],
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_Ventas.Clientes Unicos Plano"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -5,44 +5,78 @@ Serie: *El modelo importa*
 
 ## Supuesto de partida
 
-La demo usa **AdventureWorksDW2022** como fuente y reconstruye dos modelos con
-el mismo grano: una tabla ancha y una estrella. No pretende demostrar que una
-suma desnuda siempre sea más lenta en el plano. Con 543.591 filas, el tiempo
-local puede ser indistinguible; la comparación útil está en el tamaño,
-cardinalidad, forma de los filtros y riesgo de duplicar hechos.
+La demo usa **AdventureWorksDW2022** como fuente y reconstruye el mismo grano
+de venta (una fila por línea de pedido) en dos formas distintas: una tabla
+ancha y una estrella. El argumento de esta demo **no es la velocidad** —con
+543.591 filas ambos motores resuelven una suma en milisegundos y esa
+diferencia no es lo que hay que enseñar aquí. El argumento es la
+**mantenibilidad**: cuántos sitios hay que tocar cuando cambia un dato de
+negocio, y qué tan fácil es introducir un error sin darte cuenta.
 
 ## Qué hay en esta carpeta
 
 ```
-articulo-01-modelo-plano-vs-estrella/
+demo/
 ├── README.md
-├── sql/
-│   ├── 01_modelo_plano.sql      Crea Ventas_Plano: una tabla ancha,
-│   │                             una fila por línea de pedido, todo
-│   │                             el contexto (cliente, producto,
-│   │                             territorio, vendedor) repetido en
-│   │                             cada fila.
-│   ├── 02_modelo_estrella.sql   Crea Fact_Ventas + Dim_Fecha,
-│   │                             Dim_Producto, Dim_Cliente,
-│   │                             Dim_Territorio, Dim_Vendedor.
-│   │                             Mismo grano que Ventas_Plano.
-│   └── 03_la_trampa.sql         El escenario que produce el número
-│                                 que sorprende: añadir el histórico
-│                                 de territorio del vendedor al
-│                                 modelo plano duplica la venta total.
-├── dax/
-│   └── medidas_comparacion.dax  Medidas para los dos modelos ya en
-│                                 Power BI, más qué mirar en VertiPaq
-│                                 Analyzer / DAX Studio.
-└── guion/
-    └── guion_video.md           Guión del vídeo de 3-5 min con
-                                  timings, qué mostrar en pantalla y
-                                  dónde rellenar los números reales.
+├── 01_modelo_plano.sql           Crea Ventas_Plano contra AdventureWorks
+│                                   OLTP: una tabla ancha, una fila por línea
+│                                   de pedido, todo el contexto (cliente,
+│                                   producto, territorio, vendedor) repetido
+│                                   en cada fila.
+├── 02_modelo_estrella.sql        Crea Fact_Ventas + Dim_Fecha, Dim_Producto,
+│                                   Dim_Cliente, Dim_Territorio, Dim_Vendedor.
+│                                   Mismo grano que Ventas_Plano.
+├── 03_la_trampa.sql              El escenario que produce el número que
+│                                   sorprende: añadir el histórico de
+│                                   territorio del vendedor al modelo plano
+│                                   duplica la venta total. No es un bug de
+│                                   rendimiento, es un bug de mantenibilidad:
+│                                   nadie decidió duplicar la venta, ocurrió
+│                                   solo por cómo está construida la tabla.
+├── 04_crear_demo_dw.sql          Script que prepara la base de datos local
+│                                   de demo a partir de AdventureWorksDW2022
+│                                   (la instancia de referencia no tiene el
+│                                   OLTP), con un histórico didáctico de dos
+│                                   periodos por vendedor.
+├── medidas_comparacion.dax       Medidas para los modelos ya en Power BI:
+│                                   ventas, año anterior y periodo paralelo,
+│                                   en su versión plana y en su versión
+│                                   estrella.
+├── guion_video.md                Guión del vídeo de 3-5 min con timings,
+│                                   qué mostrar en pantalla y dónde rellenar
+│                                   los números reales.
+├── csv/Ventas_Plano.csv          Muestra de datos sintética (297 filas) con
+│                                   el mismo esquema que dbo.Ventas_Plano,
+│                                   para poder abrir los proyectos *_csv sin
+│                                   depender de una instancia de SQL Server.
+├── Modelo_Plano.pbip             Modelo plano puro contra SQL Server: solo
+│                                   Ventas_Plano, sin Dim_Fecha ni
+│                                   inteligencia temporal automática. El
+│                                   informe resuelve YoY y periodo paralelo
+│                                   con DAX manual sobre OrderDate.
+├── Modelo_Hibrido.pbip           Variante con Ventas_Plano y Dim_Fecha,
+│                                   contra SQL Server: útil para mostrar que
+│                                   al añadir un calendario el modelo plano
+│                                   deja de ser estrictamente plano y pasa a
+│                                   ser una miniestrella híbrida.
+├── Modelo_Estrella.pbip          Modelo estrella independiente contra SQL
+│                                   Server, con Fact_Ventas, las cinco
+│                                   dimensiones y la página didáctica del
+│                                   histórico.
+├── Modelo_Plano_csv.pbip         Misma estructura que Modelo_Plano.pbip,
+│                                   pero leyendo de csv/Ventas_Plano.csv en
+│                                   vez de SQL Server. Sin dependencias.
+├── Modelo_Hibrido_csv.pbip       Misma estructura que Modelo_Hibrido.pbip;
+│                                   Dim_Fecha pasa a ser una tabla calculada
+│                                   (CALENDAR) en vez de venir de SQL Server.
+└── Modelo_Estrella_csv.pbip      Misma estructura que Modelo_Estrella.pbip;
+                                    las cinco dimensiones se derivan del
+                                    mismo CSV vía Table.Distinct.
 ```
 
 ## Cómo usarlo
 
-### Demo local preparada
+### Opción A — Contra SQL Server (datos reales)
 
 La instancia `a01p0717` no tiene AdventureWorks OLTP, sino `AdventureWorksDW2022`.
 El script `04_crear_demo_dw.sql` crea la base `Demo_Modelo_Plano_Estrella`, conserva
@@ -53,30 +87,36 @@ Ejecuta:
 sqlcmd -S a01p0717 -E -b -i .\04_crear_demo_dw.sql
 ```
 
-Después abre uno de estos proyectos en Power BI Desktop y actualiza las
-consultas:
+Después abre `Modelo_Plano.pbip`, `Modelo_Hibrido.pbip` o `Modelo_Estrella.pbip`
+en Power BI Desktop y actualiza las consultas.
 
-- `Modelo_Plano.pbip`: modelo plano puro, solo `Ventas_Plano`, sin `Dim_Fecha` ni
-   inteligencia temporal automática. El informe resuelve YoY y periodo paralelo
-   con DAX manual sobre `OrderDate`.
-- `Modelo_Hibrido.pbip`: variante con `Ventas_Plano` y `Dim_Fecha`, útil para
-   mostrar que al añadir un calendario el modelo plano deja de ser estrictamente
-   plano y pasa a ser una miniestrella híbrida.
-- `Modelo_Estrella.pbip`: modelo estrella independiente, con `Fact_Ventas`,
-   dimensiones y la página didáctica del histórico.
+### Opción B — Contra el CSV de ejemplo (sin dependencias)
 
-El antiguo `Modelo_Plano_Estrella.pbip` se conserva como referencia de la primera
-versión combinada, pero no es el proyecto recomendado para la demo.
+Abre `Modelo_Plano_csv.pbip`, `Modelo_Hibrido_csv.pbip` o `Modelo_Estrella_csv.pbip`.
+Cada uno lee `csv/Ventas_Plano.csv` a través del parámetro de Power Query
+`RutaCarpetaDatos`. Si has clonado el repositorio en otra ruta:
 
-Lecciones de compatibilidad PBIP aprendidas:
+1. Inicio > Transformar datos > Editar parámetros.
+2. Cambia `RutaCarpetaDatos` a la carpeta local donde tengas `csv\` (con la
+   barra invertida final).
+3. Actualizar.
+
+Esta variante es la que conviene enlazar en redes o para que cualquiera la
+abra sin tener que levantar una base de datos.
+
+Lecciones de compatibilidad PBIP aprendidas (aplican a ambas opciones):
 
 - Cada carpeta `.Report` y `.SemanticModel` debe llevar su archivo `.platform`.
 - Un informe que valida con el CLI puede seguir sin abrir en Desktop si falta esa
-   metadata nativa.
+   metadata nativa (falta típica: `definition/version.json`).
 - Los IDs físicos de páginas y visuales deben coincidir con sus nombres internos;
    no conviene usar nombres descriptivos como identificadores PBIR.
-- Los comentarios `///` en relaciones TMDL pueden interpretarse como metadata;
-   `relationships.tmdl` debe mantenerse limpio, sin comentarios entre relaciones.
+- Los comentarios `///` solo son válidos sobre `table`, `column` o `measure`; sobre
+   una `annotation` se interpretan como una propiedad `description` que el
+   parser rechaza.
+- En una tabla calculada, el `sourceColumn` de una columna se referencia entre
+   corchetes (`sourceColumn: [Date]`), no como texto plano — si no, la relación
+   que use esa columna falla con un "Id. de columna no válido".
 - Los filtros TopN deben revisarse por ámbito de `From` antes de atribuir el fallo
    al renderer o al modelo.
 
@@ -84,51 +124,63 @@ Resultados verificados en SQL:
 
 - Modelo plano: 543.591 filas, venta total `264.228.103,9863`.
 - Modelo estrella: 543.591 filas en el hecho, misma venta total.
-- JOIN del histórico: 1.087.182 filas, venta total `528.456.207,9726`.
-- Tamaño SQL de referencia: plano `184336 KB`; estrella completa `59272 KB` reservados repartidos entre las tablas. El tamaño final de VertiPaq debe medirse en Power BI.
+- JOIN del histórico (el escenario de `03_la_trampa.sql`): 1.087.182 filas,
+  venta total `528.456.207,9726` — el doble, sin que nadie haya cambiado un
+  solo pedido real.
 
 ## Qué demuestra y qué no demuestra
 
 - **Sí demuestra:** mismo total con ambos modelos, pero distinta distribución
-   de responsabilidades; el histórico mal unido duplica filas y dinero; las
-   dimensiones permiten agrupar y filtrar sin repetir atributos en el hecho.
-- **No demuestra por sí solo:** que `SUM ( LineTotal )` tarde siempre más en la
-   tabla plana. El motor columnar puede resolver esa consulta muy deprisa en
-   ambos casos y el resultado depende de escala, cardinalidad, memoria y forma
-   de la consulta.
-- **La comprobación correcta:** medir con DAX Studio el total simple, una
-   consulta `SUMMARIZECOLUMNS` con varios filtros, una lista `VALUES()` y el
-   tamaño de diccionarios/columnas en VertiPaq Analyzer.
+  de responsabilidades. En el modelo plano, un atributo de producto (color,
+  categoría, coste) vive repetido en cada línea de venta; corregirlo o
+  ampliarlo significa tocar (o tener la certeza de haber tocado) todas las
+  filas donde aparece. En el modelo estrella vive una vez, en la fila de la
+  dimensión, y se corrige en un sitio.
+- **Sí demuestra:** el histórico mal unido duplica filas y dinero. No es un
+  fallo de sintaxis SQL ni de rendimiento: es lo que pasa cuando una tabla
+  ancha intenta representar una relación que cambia en el tiempo (el
+  territorio de un vendedor) sin un mecanismo explícito para versionarla. La
+  estrella obliga a decidir esa relación una vez, en la dimensión; el modelo
+  plano deja la decisión abierta a que alguien la vuelva a tomar mal en el
+  futuro.
+- **Sí demuestra:** las dimensiones permiten agrupar y filtrar sin acoplar el
+  informe a cómo está escrita la tabla de hechos. Cambiar el nombre de un
+  territorio, fusionar dos categorías de producto o corregir un vendedor mal
+  asignado es una operación acotada y auditable en la dimensión, en vez de
+  un `UPDATE` masivo (o una medida DAX que intenta compensar el problema).
+- **No demuestra por sí solo:** que un modelo sea más rápido que otro. A esta
+  escala esa comparación no es la que importa, y no es el objetivo de la
+  demo.
 
-La documentación de SQLBI es una buena referencia para no exagerar el mensaje:
-[Optimizing High Cardinality Columns in VertiPaq](https://www.sqlbi.com/articles/optimizing-high-cardinality-columns-in-vertipaq/)
-explica el coste de los diccionarios de alta cardinalidad, mientras que
+La documentación de SQLBI sobre
 [Understanding DAX Auto-Exist](https://www.sqlbi.com/articles/understanding-dax-auto-exist/)
-explica que los filtros sobre dimensiones distintas cambian el comportamiento
-de `SUMMARIZECOLUMNS`. Son argumentos de escala y forma de consulta, no una
-promesa de milisegundos para este dataset local.
+es una buena referencia complementaria: explica por qué filtrar sobre
+dimensiones distintas se comporta de forma diferente a filtrar sobre columnas
+repetidas dentro de una misma tabla ancha — otro síntoma de por qué la forma
+del modelo no es un detalle estético.
 
-1. Ejecuta `sql/01_modelo_plano.sql` y `sql/02_modelo_estrella.sql` contra tu
-   AdventureWorks. Cada uno termina con un `SELECT` de números (filas,
-   cardinalidad) y un `sp_spaceused` — anótalos, son la materia prima de la
-   demo.
-2. Ejecuta `sql/03_la_trampa.sql` y anota los dos resultados (A y B): esa
+## Cómo comprobarlo tú mismo
+
+1. Ejecuta `01_modelo_plano.sql` y `02_modelo_estrella.sql` (o `04_crear_demo_dw.sql`
+   si partes de AdventureWorksDW2022) y anota filas y total de venta de cada uno.
+2. Ejecuta `03_la_trampa.sql` y anota los dos resultados (A y B): esa
    diferencia es la escena central del vídeo.
-3. Importa `Ventas_Plano` a un PBIX y `Fact_Ventas` + las 5 dimensiones a
-   otro (o al mismo modelo con nombres claros). Aplica las medidas de
-   `dax/medidas_comparacion.dax`.
-4. Abre VertiPaq Analyzer sobre ambos y captura el tamaño del modelo y el
-   tamaño de una columna repetitiva (`NombreCliente` o `Producto`) en cada
-   uno.
-5. Rellena esos números en `guion/guion_video.md` (están marcados como X, Y,
-   A, B) y graba.
-6. El PBIX resultante y los tres `.sql` son el activo descargable del post:
-   van al repo, enlazados en el primer comentario, no en el cuerpo.
+3. En Power BI, prueba a añadir un atributo nuevo de producto (por ejemplo, un
+   descuento por categoría) en ambos modelos y cuenta cuántos objetos hay que
+   tocar en cada uno: en el plano, revisar cada medida que ya intenta
+   compensar la repetición; en la estrella, una columna nueva en `Dim_Producto`.
+4. Cambia el nombre de un territorio en ambos modelos y compara: un `UPDATE`
+   de una fila en `Dim_Territorio` frente a localizar y corregir todas las
+   filas de la tabla ancha que lo mencionan.
+5. Rellena esos números en `guion_video.md` (están marcados como X, Y, A, B)
+   y graba.
+6. El PBIP resultante y los `.sql` son el activo descargable del post: van al
+   repo, enlazados en el primer comentario, no en el cuerpo.
 
 ## Conexión con el artículo
 
-El texto del artículo (plantilla en `Plan_editorial_52_semanas.md`, sección 6)
-usa exactamente esta demo en su bloque "La demo". La regla que se lleva el
-lector es la del guión: separar hechos de dimensiones no es estilo, es lo
-que te obliga a decidir el grano una vez en vez de accidentalmente cada vez
-que alguien pide una columna más.
+El texto del artículo usa exactamente esta demo en su bloque "La demo". La
+regla que se lleva el lector es la del guión: separar hechos de dimensiones
+no es estilo, es lo que te obliga a decidir el grano una vez en vez de
+accidentalmente cada vez que alguien pide una columna más o corrige un dato
+mal escrito.

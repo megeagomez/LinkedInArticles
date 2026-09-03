@@ -1,0 +1,536 @@
+table Fecha
+	lineageTag: 5019fa23-a328-4f7a-bbb7-78bf47fed051
+	dataCategory: Time
+
+	measure Fecha_selection =
+			VAR _min = MIN('Fecha'[Date])
+			VAR _max = MAX('Fecha'[Date])
+			VAR _todos = SUMMARIZE('Fecha','Fecha'[Date],'Fecha'[DayOffset],"sig",'Fecha'[DayOffset]+1,"ant",'Fecha'[DayOffset]-1)
+			VAR _txt1 = CONCATENATEX(_todos,'Fecha'[Date] & " | " & 'Fecha'[DayOffset] & " | " & [sig] & " | " & [ant],",")
+			VAR _enri = ADDCOLUMNS(_todos,"tieneAnterior",COUNTX(VAR _an=[ant] RETURN FILTER(_todos,'Fecha'[DayOffset]=_an),1),"tienesiguiente",COUNTX(VAR _an=[sig] RETURN FILTER(_todos,'Fecha'[DayOffset]=_an),1))
+			VAR _enri2 = ADDCOLUMNS(_enri,"concatenar",IF(ISBLANK([tieneanterior]) && NOT ISBLANK([tienesiguiente]),"-",IF(ISBLANK([tienesiguiente]),",")))
+			VAR _devolver = CONCATENATEX(FILTER(_enri2,NOT ISBLANK([concatenar])),'Fecha'[Date] & [concatenar],"",'Fecha'[Date])
+			VAR _txt2 = CONCATENATEX(_enri2,'Fecha'[Date] & " | " & [concatenar],",",'Fecha'[Date])
+			RETURN
+			    _devolver
+		lineageTag: fac34780-75dc-47c5-83e7-9f926bf26ace
+
+	column Date
+		dataType: dateTime
+		isHidden
+		isKey
+		formatString: General Date
+		lineageTag: 7401ccef-dd33-43d7-bcdf-5ba2059d0685
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalDate
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: Atributos descriptivos
+		lineageTag: 8a284dd9-d0f6-4866-b4a3-175c39354fd9
+		summarizeBy: none
+		sourceColumn: FiscalDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		displayFolder: Atributos descriptivos
+		lineageTag: c84550f4-a5b6-4d2f-8290-a88ca72ef390
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: 45157cd6-2835-481d-837e-fdb7a963fb9c
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		displayFolder: Atributos descriptivos
+		lineageTag: 09d106be-855d-4ea0-818f-c2452a772cb1
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthKey
+		dataType: int64
+		displayFolder: Claves
+		lineageTag: 968db824-4b93-4a86-9163-5ec1bc84907d
+		summarizeBy: none
+		sourceColumn: MonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Short'
+		dataType: string
+		displayFolder: Atributos descriptivos
+		lineageTag: e885317d-0bcd-41f2-9508-c7cd6b78ebc8
+		summarizeBy: none
+		sourceColumn: Month Name Short
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Complete'
+		dataType: string
+		displayFolder: Atributos descriptivos
+		lineageTag: 096af831-2c92-4afe-a2a4-2b2027844fd7
+		summarizeBy: none
+		sourceColumn: Month Name Complete
+		sortByColumn: MonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Short Complete'
+		dataType: string
+		displayFolder: Atributos descriptivos
+		lineageTag: 0f62f828-0af5-4d69-9ffe-124295d2bcb7
+		summarizeBy: none
+		sourceColumn: Month Name Short Complete
+		sortByColumn: MonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: e62eaabb-e1d8-49b7-ac39-3f52d798e42f
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterCode
+		dataType: int64
+		displayFolder: Claves
+		lineageTag: 7e705145-e3c5-4176-97f2-4102e61cbc21
+		summarizeBy: none
+		sourceColumn: QuarterCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: 048df017-b621-448b-a836-bd5cd8a5b557
+		summarizeBy: none
+		sourceColumn: Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: dc93a296-a653-430e-aac6-92b1e3140f4d
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: 32c7bc6b-7171-49ca-92dd-e8cbdd48a558
+		summarizeBy: none
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Year'
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: f9380fee-cb74-4fc6-bcd9-28387e7b61a4
+		summarizeBy: none
+		sourceColumn: Day of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		displayFolder: Atributos descriptivos
+		lineageTag: 7186a6c9-eba5-4970-811d-0041a064464b
+		summarizeBy: none
+		sourceColumn: Day Name
+		sortByColumn: 'Day of Week'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Week of Year'
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: da76466b-8c63-49d1-91fd-797da86f54c8
+		summarizeBy: none
+		sourceColumn: Fiscal Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear
+		dataType: int64
+		displayFolder: Atributos descriptivos
+		lineageTag: fc39791d-0440-477c-968f-3b2cbffd8fce
+		summarizeBy: none
+		sourceColumn: FiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalQuarter
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: 80ea2ba1-2f94-4d6a-8ed6-4efbf4d9da80
+		summarizeBy: none
+		sourceColumn: FiscalQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalQuarterCode
+		dataType: int64
+		displayFolder: Claves
+		lineageTag: 377814b8-1c3d-4284-bd49-218f720ec37e
+		summarizeBy: none
+		sourceColumn: FiscalQuarterCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: 56b4350a-7bdf-40ee-94e0-249adcddfd6d
+		summarizeBy: none
+		sourceColumn: Current Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Month'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: 27c43993-bcd3-4ba3-be31-aee82f22ed24
+		summarizeBy: none
+		sourceColumn: Current Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Week'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: 351a9e2c-2db5-4249-9651-c01f474cbd1a
+		summarizeBy: none
+		sourceColumn: Current Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Day'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: 34b8413d-896e-497d-89c0-db91a3cd5f44
+		summarizeBy: none
+		sourceColumn: Current Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Fiscal Year'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: 260766d6-782b-41b9-a658-34f61c9c29ed
+		summarizeBy: none
+		sourceColumn: Current Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Fiscal Month'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: cfd2b741-3fb0-42ab-bfe6-646cb22be88e
+		summarizeBy: none
+		sourceColumn: Current Fiscal Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Fiscal Week'
+		dataType: string
+		displayFolder: Posiciones relativas\Estado
+		lineageTag: d0f486b1-8ed9-4ec7-a48f-d57868f4643c
+		summarizeBy: none
+		sourceColumn: Current Fiscal Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsoYear
+		dataType: int64
+		displayFolder: Atributos descriptivos
+		lineageTag: 202575e5-30c2-4d9c-b5e4-df1a5ede77b7
+		summarizeBy: none
+		sourceColumn: IsoYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsoWeek
+		dataType: int64
+		displayFolder: Ordinales
+		lineageTag: 1d866fba-633b-404f-bd8a-61d82df922d9
+		summarizeBy: none
+		sourceColumn: IsoWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOffset
+		dataType: int64
+		displayFolder: Posiciones relativas\Offsets
+		lineageTag: c90f0097-15c8-4de1-a34e-e301ef309f48
+		summarizeBy: none
+		sourceColumn: DayOffset
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthOffset
+		dataType: int64
+		displayFolder: Posiciones relativas\Offsets
+		lineageTag: d8aff922-ba5e-41f1-abe4-32c5e348ef9e
+		summarizeBy: none
+		sourceColumn: MonthOffset
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearOffset
+		dataType: int64
+		displayFolder: Posiciones relativas\Offsets
+		lineageTag: 2174598a-47b4-4747-8708-0d418f6c132e
+		summarizeBy: none
+		sourceColumn: YearOffset
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterOffset
+		dataType: int64
+		displayFolder: Posiciones relativas\Offsets
+		lineageTag: 6549313d-4643-48bd-90ff-c73ab0c8a831
+		summarizeBy: none
+		sourceColumn: QuarterOffset
+
+		annotation SummarizationSetBy = Automatic
+
+	column idFecha
+		dataType: int64
+		displayFolder: Claves
+		lineageTag: cb579c26-11bf-4721-89cf-d06163de5f85
+		summarizeBy: none
+		sourceColumn: idFecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWorkingDay
+		dataType: boolean
+		displayFolder: Días laborables
+		lineageTag: aef51104-f282-4c6c-93e3-b1d3f54133d8
+		summarizeBy: none
+		sourceColumn: IsWorkingDay
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkingDayNumber
+		dataType: int64
+		displayFolder: Días laborables
+		lineageTag: 48a68df4-2146-4dc8-883d-06505edd9d98
+		summarizeBy: none
+		sourceColumn: WorkingDayNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy ' Calendar'
+		lineageTag: 4e1e70e8-4e47-444c-8069-9281ac10bae2
+
+		level Year
+			lineageTag: 0951dff7-a9c4-4771-84fd-ab276f594186
+			column: Year
+
+		level Month
+			lineageTag: cdcdc022-de97-43da-9e67-05e0389232d3
+			column: 'Month Name'
+
+		level Date
+			lineageTag: 06872d21-c27e-4137-a274-80554dc1d211
+			column: Date
+
+	hierarchy ' Fiscal'
+		lineageTag: 6c159a45-0cab-4333-9fe8-fa36dbb9c804
+
+		level Year
+			lineageTag: 9a0bb025-6601-4524-86c4-7fc0054c5624
+			column: FiscalYear
+
+		level Month
+			lineageTag: 5a1ab9e0-c676-4a71-9ab4-9861ba1cf613
+			column: 'Month Name'
+
+		level Date
+			lineageTag: 050046b5-a0f8-42a1-94a3-e45ec9d25bee
+			column: Date
+
+	hierarchy ' Calendar Week'
+		lineageTag: 418a261f-b0e2-4530-8cd3-7125aa0242da
+
+		level Year
+			lineageTag: aafe9c2f-f31c-4057-89c2-eaee2b253cf3
+			column: Year
+
+		level 'Week of Year'
+			lineageTag: 8d77c76d-4d13-4be8-b08e-d78738bdfa21
+			column: 'Week of Year'
+
+		level Date
+			lineageTag: c1a1108e-4d9f-46c9-9a4a-fffd83a16112
+			column: Date
+
+	hierarchy ' Fiscal Week'
+		lineageTag: e085c9ca-f96a-493f-8e68-b63c751e7e01
+
+		level 'Fiscal Year'
+			lineageTag: 52b77410-f7a7-49c9-9afa-166f9d46283b
+			column: FiscalYear
+
+		level 'Fiscal Week of Year'
+			lineageTag: e8f2cf59-7465-40ab-8590-ddcad0fabd9c
+			column: 'Fiscal Week of Year'
+
+		level Date
+			lineageTag: aa2630b1-187e-45f8-83bc-585b66c1b9f3
+			column: Date
+
+	hierarchy ' Iso Week'
+		lineageTag: 092f13ff-f750-4074-b8a5-0bf1045d9a1d
+
+		level 'Iso Year'
+			lineageTag: 66603418-fa50-4175-a970-f114927d4071
+			column: IsoYear
+
+		level IsoWeek
+			lineageTag: df95a377-ff49-4b73-b26d-84b07c4cf985
+			column: IsoWeek
+
+		level Date
+			lineageTag: 536f2828-44f3-49bf-9e07-035b820f8051
+			column: Date
+
+	partition Fecha = m
+		mode: import
+		source =
+				let
+				    Source = List.Dates(#date(_StartYear,1,1), Duration.Days(#date(_EndYear+1,1,1) - #date(_StartYear,1,1)), #duration(1,0,0,0)),
+				    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"Column1", type datetime}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Column1", Order.Ascending}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Sorted Rows",{{"Column1", "Date"}}),
+				    #"Inserted Year" = Table.AddColumn(#"Renamed Columns", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Inserted Month Name Short" = Table.AddColumn(#"Inserted Month Name", "Month Name Short", each Text.Start([Month Name],3)),
+				    #"Inserted Mont Name Complete" = Table.AddColumn(#"Inserted Month Name Short", "Month Name Complete", each [Month Name] & " " & Text.From([Year])),
+				    #"Inserted Month Name Short Complete" = Table.AddColumn(#"Inserted Mont Name Complete", "Month Name Short Complete", each [Month Name Short] & " " & Text.End(Text.From([Year]),2)),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Inserted Month Name Short Complete",{{"Month Name Short", type text},{"Month Name Complete", type text},{"Month Name Short Complete", type text}}),
+				    #"Inserted Days in Month" = Table.AddColumn(#"Changed Type6", "Days in Month", each Date.DaysInMonth([Date]), Int64.Type),
+				    #"Removed Columns" = Table.RemoveColumns(#"Inserted Days in Month",{"Days in Month"}),
+				    #"Inserted Quarter" = Table.AddColumn(#"Removed Columns", "Quarter", each Date.QuarterOfYear([Date]), Int64.Type),
+				    #"Inserted Week of Year" = Table.AddColumn(#"Inserted Quarter", "Week of Year", each Date.WeekOfYear([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Week of Year", "Day", each Date.Day([Date]), Int64.Type),
+				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Day", "Day of Week", each Date.DayOfWeek([Date]), Int64.Type),
+				    #"Fecha key" = Table.AddColumn(#"Inserted Day of Week", "idFecha", each [Year]*10000+[Month]*100+[Day]),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Fecha key",{{"idFecha", Int64.Type}}),
+				    #"Added Custom4" = Table.AddColumn(#"Changed Type3", "MonthKey", each [Year]*100+[Month]),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Custom4",{{"MonthKey", Int64.Type}}),
+				    #"Added Custom5" = Table.AddColumn(#"Changed Type4", "QuarterCode", each [Year]*100 + (if [Month] <=3 then 1 else if [Month]<=6 then 2 else if [Month]<=9 then 3 else 4)),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom5",{{"QuarterCode", Int64.Type}}),
+				    #"Inserted Day of Year" = Table.AddColumn(#"Changed Type5", "Day of Year", each Date.DayOfYear([Date]), Int64.Type),
+				    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Year", "Day Name", each Date.DayOfWeekName([Date]), type text),
+				    #"Added Custom" = Table.AddColumn(#"Inserted Day Name", "FiscalDate", each Date.AddMonths([Date],-1*_FiscalStartMonth)),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"FiscalDate", type datetime}}),
+				    #"Fiscal week of Year" = Table.AddColumn(#"Changed Type1", "Fiscal Week of Year", each Date.WeekOfYear([FiscalDate]), Int64.Type),
+				
+				    #"FiscalYearStart" = Table.AddColumn(#"Fiscal week of Year", "FiscalYearStart", each if [Month] >= _FiscalStartMonth then [Year] else [Year] - 1, Int64.Type),
+				    #"FiscalYear" = Table.AddColumn(#"FiscalYearStart", "FiscalYear", each if _FiscalYearBasis = "End" then [FiscalYearStart] + 1 else [FiscalYearStart], Int64.Type),
+				    #"FiscalQuarter" = Table.AddColumn(#"FiscalYear", "FiscalQuarter", each Number.IntegerDivide(Number.Mod([Month] - _FiscalStartMonth, 12), 3) + 1, Int64.Type),
+				    #"FiscalQuarterCode" = Table.AddColumn(#"FiscalQuarter", "FiscalQuarterCode", each [FiscalYear]*100 + [FiscalQuarter], Int64.Type),
+				    #"RemovedFiscalYearStart" = Table.RemoveColumns(#"FiscalQuarterCode", {"FiscalYearStart"}),
+				
+				    #"CurrentYear" = Table.AddColumn(#"RemovedFiscalYearStart", "Current Year", each if [Year]=Date.Year(DateTime.LocalNow()) then "Current" else if [Year]>Date.Year(DateTime.LocalNow()) then "Future Year" else "Past Year"),
+				    #"CurrentMonth" = Table.AddColumn(CurrentYear, "Current Month", each if [Year]*100+[Month] = Date.Year(DateTime.LocalNow()) *100+ Date.Month(DateTime.LocalNow())   then "Current" else if  [Year]*100+[Month] > Date.Year(DateTime.LocalNow()) *100+ Date.Month(DateTime.LocalNow())  then "Future Month" else "Past Month"),
+				    #"CurrentWeek" = Table.AddColumn(CurrentMonth, "Current Week", each if [Year]*100+[Week of Year] = Date.Year(DateTime.LocalNow()) *100+ Date.WeekOfYear(DateTime.LocalNow())   then "Current" else if  [Year]*100+[Week of Year] > Date.Year(DateTime.LocalNow()) *100+ Date.WeekOfYear(DateTime.LocalNow())  then "Future Week" else "Past Week"),
+				    #"CurrentDay" = Table.AddColumn(CurrentWeek, "Current Day", each if Date.From([Date])=Date.From(DateTime.LocalNow()) then "Current" else if Date.From([Date])>=Date.From(DateTime.LocalNow()) then "Future Day" else "Past Day"),
+				
+				    #"CurrentFiscalYear" = Table.AddColumn(CurrentDay, "Current Fiscal Year", each
+				        let
+				            todayMonth = Date.Month(DateTime.LocalNow()),
+				            todayYear = Date.Year(DateTime.LocalNow()),
+				            todayFiscalYearStart = if todayMonth >= _FiscalStartMonth then todayYear else todayYear - 1,
+				            todayFiscalYear = if _FiscalYearBasis = "End" then todayFiscalYearStart + 1 else todayFiscalYearStart
+				        in
+				            if [FiscalYear] = todayFiscalYear then "Current"
+				            else if [FiscalYear] > todayFiscalYear then "Future Year"
+				            else "Past Year"
+				    ),
+				    #"CurrentFiscalMonth" = Table.AddColumn(CurrentFiscalYear, "Current Fiscal Month", each [Current Month]),
+				    #"CurrentFiscalWeek" = Table.AddColumn(CurrentFiscalMonth, "Current Fiscal Week", each [Current Week]),
+				       ObtenIsoWeek= (Fecha as date) => let
+				                    #"Removed Other Columns" = Table.FromRows({{Fecha}},{"FullDateAlternateKey"}),
+				                    #"Added Custom" = Table.AddColumn(#"Removed Other Columns", "PrimerDiaAño", each Date.AddDays( #date(Date.Year([FullDateAlternateKey]),1,4) ,-1* Date.DayOfWeek(  #date(Date.Year([FullDateAlternateKey]),1,4),Day.Monday))),
+				                    #"Added Custom1" = Table.AddColumn(#"Added Custom", "PrimerDiaAnioAA", each Date.AddDays( #date(Date.Year([FullDateAlternateKey])-1,1,4) ,-1* Date.DayOfWeek(  #date(Date.Year([FullDateAlternateKey])-1,1,4),Day.Monday))),
+				                    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "PrimerDiaAnioSig", each Date.AddDays( #date(1+Date.Year([FullDateAlternateKey]),1,4) ,-1* Date.DayOfWeek(  #date(1+Date.Year([FullDateAlternateKey]),1,4),Day.Monday))),
+				                    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom2",{{"PrimerDiaAño", type date}, {"PrimerDiaAnioAA", type date}, {"PrimerDiaAnioSig", type date}}),
+				                    #"Added Custom3" = Table.AddColumn(#"Changed Type", "AnioNatural", each Date.Year([FullDateAlternateKey])),
+				                    #"Added Conditional Column" = Table.AddColumn(#"Added Custom3", "Custom", each if [FullDateAlternateKey] >= [PrimerDiaAnioSig] then [AnioNatural] +1 else if [FullDateAlternateKey] >= [PrimerDiaAño] then [AnioNatural]  else [AnioNatural] -1 ),
+				                    #"Sorted Rows" = Table.Sort(#"Added Conditional Column",{{"FullDateAlternateKey", Order.Descending}}),
+				                    #"Renamed Columns" = Table.RenameColumns(#"Sorted Rows",{{"Custom", "IsoYear"}}),
+				                    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"IsoYear", Int64.Type}}),
+				                    #"Added Custom4" = Table.AddColumn(#"Changed Type1", "IsoWeek", each if [FullDateAlternateKey] >= [PrimerDiaAnioSig] then 1 else if [FullDateAlternateKey] >= [PrimerDiaAño] then 1+Number.RoundDown ( Duration.Days ([FullDateAlternateKey]-[PrimerDiaAño])/7 )  else 1+ Number.RoundDown ( Duration.Days ([FullDateAlternateKey]-Date.AddDays( #date(Date.Year([FullDateAlternateKey])-1,1,4) ,-1* Date.DayOfWeek(  #date(Date.Year([FullDateAlternateKey])-1,1,4),Day.Monday)))/7 )),
+				                        #"Removed Other Columns1" = Table.SelectColumns(#"Added Custom4",{"FullDateAlternateKey", "IsoYear", "IsoWeek"})
+				
+				                    in
+				                        #"Removed Other Columns1" ,
+				    #"AniadirIsoWeek"=Table.AddColumn( #"CurrentFiscalWeek","DatosIso",each ObtenIsoWeek( Date.From( [Date]))),
+				    #"Expanded DatosIso" = Table.ExpandTableColumn(AniadirIsoWeek, "DatosIso", {"IsoYear", "IsoWeek"}, {"IsoYear", "IsoWeek"}),
+				   #"Added Custom1" = Table.AddColumn(#"Expanded DatosIso", "DayOffset", each Duration.Days(Date.From([Date])-Date.From(DateTime.LocalNow()))),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "YearOffset", each [Year]- Date.Year(DateTime.LocalNow())),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "MonthOffset", each -1* (  (12 - [Month]) + (-[YearOffset]-1)*12 + Date.Month(DateTime.LocalNow()) )),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom3", "QuarterOffset", each -1* (  (4 - [Quarter]) + (-[YearOffset]-1)*4 + Date.QuarterOfYear(DateTime.LocalNow()) )),
+				
+				    #"Added IsWorkingDay" = Table.AddColumn(#"Added Custom6", "IsWorkingDay", each [Day of Week] <> 0 and [Day of Week] <> 6),
+				
+				    #"Added WorkingDayNumber" =
+				        let
+				            grouped = Table.Group(#"Added IsWorkingDay", {"Year"}, {{"Rows", each
+				                let
+				                    sorted = Table.Sort(_, {{"Date", Order.Ascending}}),
+				                    n = Table.RowCount(sorted),
+				                    flags = Table.Column(sorted, "IsWorkingDay"),
+				                    running = List.Generate(
+				                        () => [i = 0, acc = 0],
+				                        each [i] < n,
+				                        each [i = [i] + 1, acc = [acc] + (if flags{[i]} then 1 else 0)],
+				                        each [acc] + (if flags{[i]} then 1 else 0)
+				                    )
+				                in
+				                    Table.FromColumns(Table.ToColumns(sorted) & {running}, Table.ColumnNames(sorted) & {"WorkingDayNumber"})
+				            , type table}}),
+				            combined = Table.Sort(Table.Combine(grouped[Rows]), {{"Date", Order.Ascending}})
+				        in
+				            combined,
+				
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added WorkingDayNumber",{{"DayOffset", Int64.Type}, {"IsoWeek", Int64.Type}, {"IsoYear", Int64.Type}, {"YearOffset", Int64.Type},{"QuarterOffset", Int64.Type},  {"MonthOffset", Int64.Type}, {"Current Year", type text}, {"Current Month", type text}, {"Current Week", type text}, {"Current Day", type text}, {"Current Fiscal Year", type text}, {"Current Fiscal Month", type text}, {"Current Fiscal Week", type text}, {"IsWorkingDay", type logical}, {"WorkingDayNumber", Int64.Type}})
+				
+				in
+				   #"Changed Type2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

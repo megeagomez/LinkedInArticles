@@ -1,0 +1,4 @@
+relationship 'Ventas Plano Fecha'
+	fromColumn: Ventas_Plano.OrderDate
+	toColumn: Dim_Fecha.Fecha
+

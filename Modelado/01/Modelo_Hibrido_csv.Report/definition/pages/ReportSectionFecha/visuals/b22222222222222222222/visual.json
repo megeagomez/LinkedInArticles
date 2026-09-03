@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "b22222222222222222222",
+  "position": { "x": 640, "y": 40, "z": 1000, "height": 150, "width": 570, "tabOrder": 1100 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": { "queryState": { "Values": { "projections": [
+      { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Dim_Fecha" } }, "Property": "Anio" } }, "queryRef": "Dim_Fecha.Anio", "nativeQueryRef": "Anio" },
+      { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Dim_Fecha" } }, "Property": "NombreMes" } }, "queryRef": "Dim_Fecha.NombreMes", "nativeQueryRef": "NombreMes" },
+      { "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas_Plano" } }, "Property": "Venta Total Plano" } }, "queryRef": "Ventas_Plano.Venta Total Plano", "nativeQueryRef": "Venta Total Plano" },
+      { "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas_Plano" } }, "Property": "Periodo Paralelo Plano" } }, "queryRef": "Ventas_Plano.Periodo Paralelo Plano", "nativeQueryRef": "Periodo Paralelo Plano" }
+    ] } } }
+  }
+}

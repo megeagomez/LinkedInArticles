@@ -1,0 +1,5 @@
+expression RutaCarpetaDatos = "d:\Presentaciones\26-27\Linked-in\01_Tu-modelo-no-es-lento-es-plano\demo\csv\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text

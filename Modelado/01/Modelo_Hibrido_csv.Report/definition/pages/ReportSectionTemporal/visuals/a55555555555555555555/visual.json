@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a55555555555555555555",
+  "position": { "x": 40, "y": 220, "z": 1000, "height": 400, "width": 580, "tabOrder": 1400 },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": { "queryState": {
+      "Category": { "projections": [{ "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Dim_Fecha" } }, "Property": "Anio" } }, "queryRef": "Dim_Fecha.Anio", "nativeQueryRef": "Anio" }] },
+      "Y": { "projections": [
+        { "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas_Plano" } }, "Property": "Venta Total Plano" } }, "queryRef": "Ventas_Plano.Venta Total Plano", "nativeQueryRef": "Venta Total Plano" },
+        { "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas_Plano" } }, "Property": "Venta Total Plano LY" } }, "queryRef": "Ventas_Plano.Venta Total Plano LY", "nativeQueryRef": "Venta Total Plano LY" }
+      ] }
+    } }
+  }
+}

@@ -1,0 +1,263 @@
+table Ventas_Plano
+	lineageTag: cc9442a9-4e26-45b5-8bb4-1906a1a53910
+
+	/// Tabla ancha, una fila por linea de pedido; el contexto se repite en cada linea.
+	measure 'Venta Total Plano' = SUM(Ventas_Plano[LineTotal])
+		formatString: #,##0.00
+		lineageTag: cf2a2b6b-0ae9-4910-a7aa-e204873d567f
+
+	measure 'Clientes Unicos Plano' = DISTINCTCOUNT(Ventas_Plano[ClienteID])
+		formatString: #,##0
+		lineageTag: 856d5548-4676-413a-882c-1678b380bd57
+
+	measure 'Dias con compra' = DISTINCTCOUNT(Ventas_Plano[OrderDate])
+		formatString: #,##0
+
+	measure 'Dias sin compra' = DATEDIFF(MIN(Ventas_Plano[OrderDate]), MAX(Ventas_Plano[OrderDate]), DAY) + 1 - [Dias con compra]
+		formatString: #,##0
+
+	measure 'Pedidos' = DISTINCTCOUNT(Ventas_Plano[SalesOrderNumber])
+		formatString: #,##0
+
+	measure 'Productos' = DISTINCTCOUNT(Ventas_Plano[ProductoID])
+		formatString: #,##0
+
+	measure 'Territorios' = DISTINCTCOUNT(Ventas_Plano[TerritorioID])
+		formatString: #,##0
+
+	measure 'Ticket medio' = DIVIDE([Venta Total Plano], [Pedidos])
+		formatString: #,##0.00
+
+	measure 'Venta Total Plano LY' = CALCULATE([Venta Total Plano], DATEADD(Dim_Fecha[Fecha], -1, YEAR))
+		formatString: #,##0.00
+		lineageTag: 9a1f7c2e-6b44-4d88-a3e1-0f5c2b7d9e61
+
+	measure 'Incremento YoY Plano' = [Venta Total Plano] - [Venta Total Plano LY]
+		formatString: #,##0.00
+		lineageTag: a2e8d4f1-7c53-4b96-9e20-1d6a5f8c3b72
+
+	measure 'Incremento YoY % Plano' = DIVIDE([Incremento YoY Plano], [Venta Total Plano LY])
+		formatString: 0.0%;-0.0%;-
+		lineageTag: b3f9e5a2-8d64-4ca7-af31-2e7b6a9d4c83
+
+	measure 'Periodo Paralelo Plano' = CALCULATE([Venta Total Plano], DATEADD(Dim_Fecha[Fecha], -1, YEAR))
+		formatString: #,##0.00
+		lineageTag: c4a6f8b3-9e75-4db8-b042-3f8c7b0e5d94
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: c0851096-cc4d-40c9-ac77-acf7f67b0162
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderLineNumber
+		dataType: int64
+		isHidden
+		lineageTag: 84e70882-f660-47ec-8e27-eeb6e2390f0b
+		summarizeBy: sum
+		sourceColumn: SalesOrderLineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		lineageTag: 18805e08-84f8-4eea-87e9-153b7c117844
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClienteID
+		dataType: int64
+		isHidden
+		lineageTag: 4a5b70a7-57f1-4ed0-a004-11e4c4613bec
+		summarizeBy: count
+		sourceColumn: ClienteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreCliente
+		dataType: string
+		lineageTag: 7ca30a05-e460-4b1c-b744-684b02afdcea
+		summarizeBy: none
+		sourceColumn: NombreCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerritorioID
+		dataType: int64
+		isHidden
+		lineageTag: 4159e2ca-6c44-4e6e-b87b-a19c1d625c83
+		summarizeBy: count
+		sourceColumn: TerritorioID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Territorio
+		dataType: string
+		lineageTag: 75ca8247-732d-48aa-b52f-9924f569a587
+		summarizeBy: none
+		sourceColumn: Territorio
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductoID
+		dataType: int64
+		isHidden
+		lineageTag: b9d3dd6e-b0a6-4176-8c3a-fc7e653fd317
+		summarizeBy: count
+		sourceColumn: ProductoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Producto
+		dataType: string
+		lineageTag: 8e43d0e2-2fcc-4271-becd-ec6c2135cac0
+		summarizeBy: none
+		sourceColumn: Producto
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendedorID
+		dataType: int64
+		isHidden
+		lineageTag: 1214f2f0-a531-4e1f-9e94-39c611848495
+		summarizeBy: count
+		sourceColumn: VendedorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreVendedor
+		dataType: string
+		lineageTag: b44ea6dd-0b35-418e-a3ca-67855e62d069
+		summarizeBy: none
+		sourceColumn: NombreVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQty
+		dataType: int64
+		lineageTag: c9c4928b-255c-4478-aaf1-1de25552c836
+		summarizeBy: sum
+		sourceColumn: OrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		lineageTag: 791a64a2-16c7-4cbc-80da-fd807f644408
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotal
+		dataType: decimal
+		isHidden
+		lineageTag: e5de03a1-e02a-4128-b151-a6b76446c9c2
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: edfd20fc-ef8b-4bff-a74f-3daf35ac4f7e
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 51fb6dc0-c219-4a17-b49b-05ff58544fce
+		summarizeBy: none
+		sourceColumn: ShipDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pais
+		dataType: string
+		lineageTag: a1d8a3e3-acf6-494a-a9d7-8f3fe8b367b5
+		summarizeBy: none
+		sourceColumn: Pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: afddfe6c-334e-4444-a785-8bdab25fd726
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardCost
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: eb093d2e-2188-4610-96ec-5b7a2aa36acb
+		summarizeBy: sum
+		sourceColumn: StandardCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column ListPrice
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 3f077764-8364-4d0b-b273-0db582f6fde2
+		summarizeBy: sum
+		sourceColumn: ListPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column Subcategoria
+		dataType: string
+		lineageTag: aec1dff5-f1b3-4915-9a6d-6bc7e105a13b
+		summarizeBy: none
+		sourceColumn: Subcategoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		lineageTag: 5e6d02d7-cdfd-4e37-9d0e-3a7b04610c4f
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPriceDiscount
+		dataType: double
+		lineageTag: 541903f5-3d32-425f-a3f1-9513d2c4a35e
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Ventas_Plano = m
+		mode: import
+		source =
+			let
+				Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				TipoCambiado = Table.TransformColumnTypes(EncabezadosPromovidos,{
+					{"SalesOrderNumber", type text}, {"SalesOrderLineNumber", Int64.Type}, {"OrderDate", type datetime},
+					{"DueDate", type datetime}, {"ShipDate", type datetime}, {"ClienteID", Int64.Type}, {"NombreCliente", type text},
+					{"TerritorioID", Int64.Type}, {"Territorio", type text}, {"Pais", type text}, {"ProductoID", Int64.Type},
+					{"Producto", type text}, {"Color", type text}, {"StandardCost", type number}, {"ListPrice", type number},
+					{"Subcategoria", type text}, {"Categoria", type text}, {"VendedorID", Int64.Type}, {"NombreVendedor", type text},
+					{"OrderQty", Int64.Type}, {"UnitPrice", type number}, {"UnitPriceDiscount", type number}, {"LineTotal", type number}
+				})
+			in
+				TipoCambiado
+

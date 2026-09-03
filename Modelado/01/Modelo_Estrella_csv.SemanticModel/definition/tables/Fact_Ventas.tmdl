@@ -1,0 +1,168 @@
+table Fact_Ventas
+	lineageTag: 9938bc42-7e39-447a-ab52-a7f1b02c2586
+
+	/// Hecho con el mismo grano que Ventas_Plano: una fila por linea de pedido.
+	measure 'Venta Total Estrella' = SUM(Fact_Ventas[LineTotal])
+		formatString: #,##0.00
+		lineageTag: c2696c6c-23ee-40df-8f15-382576e6271d
+
+	measure 'Clientes Unicos Estrella' = DISTINCTCOUNT(Fact_Ventas[ClienteKey])
+		formatString: #,##0
+		lineageTag: 160ea6eb-c544-40c7-97eb-09c1d9a119b0
+
+	measure 'Venta Total Estrella (con historico)' = SUM(Fact_Ventas[LineTotal])
+		formatString: #,##0.00
+		lineageTag: 1b09b5be-7e5d-4957-b7ec-ded239ae166a
+
+	measure 'Dias con compra' = DISTINCTCOUNT(Fact_Ventas[FechaKey])
+		formatString: #,##0
+		lineageTag: cb25e8ec-5584-447e-958f-6eab62fa082b
+
+	measure 'Dias sin compra' = DATEDIFF(MIN(Fecha[Date]), MAX(Fecha[Date]), DAY) + 1 - [Dias con compra]
+		formatString: #,##0
+		lineageTag: 29cd9e3b-9d93-4908-a4ab-98440377c3b1
+
+	measure Pedidos = DISTINCTCOUNT(Fact_Ventas[SalesOrderNumber])
+		formatString: #,##0
+		lineageTag: f1bb12d5-d61c-494d-9b68-9bdbdbf58eba
+
+	measure Productos = DISTINCTCOUNT(Fact_Ventas[ProductoKey])
+		formatString: #,##0
+		lineageTag: 895003f5-3432-4b2c-a4fa-2886c61c85c9
+
+	measure Territorios = DISTINCTCOUNT(Fact_Ventas[TerritorioKey])
+		formatString: #,##0
+		lineageTag: 819a1992-465b-4736-ae10-79383f315c06
+
+	measure 'Ticket medio' = DIVIDE([Venta Total Estrella], [Pedidos])
+		formatString: #,##0.00
+		lineageTag: 3bd34963-37b8-46d4-94f1-57f3b9f6db09
+
+	measure 'Venta Total Plano' = SUM(Fact_Ventas[LineTotal])
+		formatString: #,##0.00
+		lineageTag: 0f2c7a91-5d8e-4b36-9a10-c6e4f1b8d273
+
+	measure 'Clientes Unicos Plano' = DISTINCTCOUNT(Fact_Ventas[ClienteKey])
+		formatString: #,##0
+		lineageTag: 1a3d8b02-6e9f-4c47-ab21-d7f502c9e384
+
+	measure 'Venta Total Plano LY' = CALCULATE([Venta Total Plano], SAMEPERIODLASTYEAR(Fecha[Date]))
+		formatString: #,##0.00
+		lineageTag: 2b4e9c13-7f0a-5d58-bc32-e80613daf495
+
+	measure 'Incremento YoY Plano' = [Venta Total Plano] - [Venta Total Plano LY]
+		formatString: #,##0.00
+		lineageTag: 3c5f0d24-8a1b-6e69-cd43-f91724ebf506
+
+	measure 'Incremento YoY % Plano' = DIVIDE([Incremento YoY Plano], [Venta Total Plano LY])
+		formatString: 0.0%;-0.0%;-
+		lineageTag: 4d601e35-9b2c-7f7a-de54-a02835fc0617
+
+	measure 'Periodo Paralelo Plano' = [Venta Total Plano LY]
+		formatString: #,##0.00
+		lineageTag: 5e712f46-ac3d-808b-ef65-b13946ad1728
+
+	measure 'Lineas de venta' = COUNTROWS(Fact_Ventas)
+		formatString: #,##0
+		lineageTag: 5a1e5c12-0b48-4b53-96cb-4e6a87c5b2d1
+
+	measure 'Productos Unicos' = DISTINCTCOUNT(Fact_Ventas[ProductoKey])
+		formatString: #,##0
+		lineageTag: 6b2f6d23-1c59-4c64-a7dc-5f7b98d6c3e2
+
+	measure 'Territorios Unicos' = DISTINCTCOUNT(Fact_Ventas[TerritorioKey])
+		formatString: #,##0
+		lineageTag: 7c3a7e34-2d6a-4d75-b8ed-6a8c09e7d4f3
+
+	measure 'Combinaciones Producto Territorio' = COUNTROWS(SUMMARIZE(Fact_Ventas, Fact_Ventas[ProductoKey], Fact_Ventas[TerritorioKey]))
+		formatString: #,##0
+		lineageTag: 8d4b8f45-3e7b-4e86-c9fe-7a9d10f8e5b4
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: 6124c9c2-9c88-4829-ae3b-cda471215926
+		sourceColumn: SalesOrderNumber
+
+	column SalesOrderLineNumber
+		dataType: int64
+		isHidden
+		lineageTag: 300d7ccf-d2d5-4755-87b6-a0ecf89812e9
+		sourceColumn: SalesOrderLineNumber
+
+	column FechaKey
+		dataType: int64
+		isHidden
+		lineageTag: 52a77ffa-7539-4946-b711-43de3fae2cf5
+		sourceColumn: FechaKey
+
+	column ClienteKey
+		dataType: int64
+		isHidden
+		lineageTag: 6e0e3e9f-2892-4431-bdc8-1bf822106d64
+		sourceColumn: ClienteKey
+
+	column ProductoKey
+		dataType: int64
+		isHidden
+		lineageTag: 31037fd0-c92b-46ee-b322-fb32586f1e99
+		sourceColumn: ProductoKey
+
+	column TerritorioKey
+		dataType: int64
+		isHidden
+		lineageTag: b9c44fea-c1a5-46b0-b2be-022d62cc4ed5
+		sourceColumn: TerritorioKey
+
+	column VendedorKey
+		dataType: int64
+		isHidden
+		lineageTag: 645ce150-7fc3-4b81-acac-dfd926b47fac
+		sourceColumn: VendedorKey
+
+	column OrderQty
+		dataType: int64
+		lineageTag: 098b43ea-61be-4a85-be17-debbf71fe5f5
+		sourceColumn: OrderQty
+
+	column UnitPrice
+		dataType: decimal
+		lineageTag: f659c0ac-5806-4bb5-ab27-e0dad699835a
+		sourceColumn: UnitPrice
+
+	column LineTotal
+		dataType: decimal
+		isHidden
+		lineageTag: 8d39d21b-2908-4794-ae0e-f947d927e5bc
+		sourceColumn: LineTotal
+
+	column UnitPriceDiscount
+		dataType: double
+		lineageTag: 331839dd-5b16-4c3c-970d-7924f02436c2
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_Ventas = m
+		mode: import
+		source =
+			let
+				Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				TipoCambiado = Table.TransformColumnTypes(EncabezadosPromovidos,{
+					{"SalesOrderNumber", type text}, {"SalesOrderLineNumber", Int64.Type}, {"OrderDate", type datetime},
+					{"DueDate", type datetime}, {"ShipDate", type datetime}, {"ClienteID", Int64.Type}, {"NombreCliente", type text},
+					{"TerritorioID", Int64.Type}, {"Territorio", type text}, {"Pais", type text}, {"ProductoID", Int64.Type},
+					{"Producto", type text}, {"Color", type text}, {"StandardCost", type number}, {"ListPrice", type number},
+					{"Subcategoria", type text}, {"Categoria", type text}, {"VendedorID", Int64.Type}, {"NombreVendedor", type text},
+					{"OrderQty", Int64.Type}, {"UnitPrice", type number}, {"UnitPriceDiscount", type number}, {"LineTotal", type number}
+				}),
+				ColumnasSeleccionadas = Table.SelectColumns(TipoCambiado, {"SalesOrderNumber","SalesOrderLineNumber","OrderDate","ClienteID","TerritorioID","ProductoID","VendedorID","OrderQty","UnitPrice","UnitPriceDiscount","LineTotal"}),
+				ClavesRenombradas = Table.RenameColumns(ColumnasSeleccionadas, {{"ClienteID","ClienteKey"},{"TerritorioID","TerritorioKey"},{"ProductoID","ProductoKey"},{"VendedorID","VendedorKey"}}),
+				ClaveFechaAgregada = Table.AddColumn(ClavesRenombradas, "FechaKey", each Date.Year([OrderDate])*10000 + Date.Month([OrderDate])*100 + Date.Day([OrderDate]), Int64.Type),
+				FechaEliminada = Table.RemoveColumns(ClaveFechaAgregada, {"OrderDate"})
+			in
+				FechaEliminada
+

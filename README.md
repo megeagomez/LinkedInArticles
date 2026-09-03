@@ -20,8 +20,15 @@ largo de ese año, no con una carpeta nueva cada semana.
 
 📂 [Modelado/01](Modelado/01) — **"Tu modelo no es lento: es plano"** (25 ago 2026)
 Demo de comparación entre un modelo plano y un modelo en estrella sobre
-AdventureWorksDW, con scripts SQL, medidas DAX y los tres proyectos Power BI
-(`Modelo_Plano`, `Modelo_Hibrido`, `Modelo_Estrella`).
+AdventureWorksDW, con scripts SQL, medidas DAX y dos formas de abrir los
+proyectos Power BI:
+
+- **Contra SQL Server** — `Modelo_Plano`, `Modelo_Hibrido`, `Modelo_Estrella`:
+  requieren la base de datos de demo (`04_crear_demo_dw.sql`).
+- **Contra CSV** — `Modelo_Plano_csv`, `Modelo_Hibrido_csv`, `Modelo_Estrella_csv`:
+  mismos modelos, leyendo de `csv/Ventas_Plano.csv` (datos de ejemplo
+  sintéticos), sin dependencias externas. Es la forma recomendada de abrir
+  la demo si solo quieres explorarla.
 
 ## Estructura
 

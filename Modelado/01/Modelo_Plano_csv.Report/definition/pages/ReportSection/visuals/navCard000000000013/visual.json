@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "navCard000000000013",
+  "position": {
+    "x": 935,
+    "y": 410,
+    "z": 100,
+    "height": 130,
+    "width": 260,
+    "tabOrder": 107
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Ticket medio"
+                }
+              },
+              "queryRef": "Ventas_Plano.Ticket medio",
+              "nativeQueryRef": "Ticket medio"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+expression _StartYear = 2010 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: 0eac3d8a-9c75-49da-a15a-a92b6b1d0a82
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Number
+
+expression _EndYear = 2028 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: 54c6418a-e3df-4830-9cbb-59b5ff31c083
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Number
+
+expression _FiscalStartMonth = 6 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: 70d6f4aa-4a39-4e87-af90-36a770e1a8c0
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Number
+
+expression _FiscalYearBasis = "End" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d5b74083-3f37-4912-96ee-db78f87324f6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

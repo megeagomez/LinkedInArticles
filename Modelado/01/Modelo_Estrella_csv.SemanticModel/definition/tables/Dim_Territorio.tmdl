@@ -1,0 +1,32 @@
+table Dim_Territorio
+	lineageTag: 3745b392-1548-4049-b9ae-f08c7a0f9457
+
+	column TerritorioKey
+		dataType: int64
+		isHidden
+		lineageTag: 69c38ad5-1fd1-4e68-9f47-7496c161066f
+		sourceColumn: TerritorioKey
+
+	column Territorio
+		dataType: string
+		lineageTag: 00229040-7eac-43c8-a79d-775b650e1b11
+		sourceColumn: Territorio
+
+	column Pais
+		dataType: string
+		lineageTag: 04d9d808-df12-4ed3-9b87-a39701da3b65
+		sourceColumn: Pais
+
+	partition Dim_Territorio = m
+		mode: import
+		source =
+			let
+				Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				ColumnasSeleccionadas = Table.SelectColumns(EncabezadosPromovidos, {"TerritorioID","Territorio","Pais"}),
+				SinDuplicados = Table.Distinct(ColumnasSeleccionadas),
+				TipoCambiado = Table.TransformColumnTypes(SinDuplicados, {{"TerritorioID", Int64.Type}, {"Territorio", type text}, {"Pais", type text}}),
+				TerritorioRenombrado = Table.RenameColumns(TipoCambiado, {{"TerritorioID","TerritorioKey"}})
+			in
+				TerritorioRenombrado
+

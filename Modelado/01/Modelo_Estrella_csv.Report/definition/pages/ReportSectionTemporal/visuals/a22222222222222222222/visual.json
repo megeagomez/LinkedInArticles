@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a22222222222222222222",
+  "position": {
+    "x": 340,
+    "y": 40,
+    "z": 1000,
+    "height": 150,
+    "width": 280,
+    "tabOrder": 1100
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Ventas"
+                    }
+                  },
+                  "Property": "Venta Total Plano LY"
+                }
+              },
+              "queryRef": "Fact_Ventas.Venta Total Plano LY",
+              "nativeQueryRef": "Venta Total Plano LY"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

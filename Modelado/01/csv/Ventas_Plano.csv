@@ -1,0 +1,298 @@
+SalesOrderNumber,SalesOrderLineNumber,OrderDate,DueDate,ShipDate,ClienteID,NombreCliente,TerritorioID,Territorio,Pais,ProductoID,Producto,Color,StandardCost,ListPrice,Subcategoria,Categoria,VendedorID,NombreVendedor,OrderQty,UnitPrice,UnitPriceDiscount,LineTotal
+SO71001,1,2023-06-04,2023-06-25,2023-06-06,10004,Sergio Fernandez,9,Australia,Australia,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,1,Jose Antonio Lopez,2,1270.3337,0,2540.6674
+SO71002,1,2025-04-12,2025-05-03,2025-04-19,10014,Paula Ruiz,7,France,France,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,7,Andres Moya,1,1447.8925,0.02,1418.9346
+SO71002,2,2025-04-12,2025-05-03,2025-04-19,10014,Paula Ruiz,7,France,France,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,7,Andres Moya,4,1202.9252,0,4811.7008
+SO71003,1,2025-05-16,2025-06-06,2025-05-19,10013,Ruben Ruiz,5,Southeast,United States,38,Rear Brakes,Multi,707.7344,1301.3068,Brakes,Components,5,Francisco Jimenez,6,1301.3068,0.05,7417.4488
+SO71004,1,2023-05-05,2023-05-19,2023-05-07,10004,Sergio Fernandez,10,United Kingdom,United Kingdom,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,8,Teresa Vidal,5,183.307,0,916.535
+SO71004,2,2023-05-05,2023-05-19,2023-05-07,10004,Sergio Fernandez,10,United Kingdom,United Kingdom,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,8,Teresa Vidal,2,523.5266,0,1047.0532
+SO71005,1,2026-05-03,2026-05-10,2026-05-06,10026,Sergio Fernandez,2,Northeast,United States,40,LL Mountain Front Wheel,Red,618.7887,838.1775,Wheels,Components,2,Marta Ruiz Soto,1,838.1775,0.02,821.4139
+SO71006,1,2026-04-10,2026-04-24,2026-04-15,10014,Paula Ruiz,6,Canada,Canada,26,Touring-1000 42,Blue,99.612,167.4465,Touring Bikes,Bikes,6,Silvia Castro,2,167.4465,0.1,301.4037
+SO71006,2,2026-04-10,2026-04-24,2026-04-15,10014,Paula Ruiz,6,Canada,Canada,42,ML Mountain Front Wheel,Red,953.614,1481.2448,Wheels,Components,6,Silvia Castro,3,1481.2448,0.02,4354.8597
+SO71006,3,2026-04-10,2026-04-24,2026-04-15,10014,Paula Ruiz,6,Canada,Canada,21,Road-350 46,Yellow,1182.4875,2144.0753,Road Bikes,Bikes,6,Silvia Castro,1,2144.0753,0,2144.0753
+SO71007,1,2025-07-27,2025-08-03,2025-07-29,10035,David Ruiz,4,Southwest,United States,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,4,Carmen Ortega,3,1270.3337,0,3811.0011
+SO71007,2,2025-07-27,2025-08-03,2025-07-29,10035,David Ruiz,4,Southwest,United States,57,Cable Lock,Blue,298.751,431.5527,Locks,Accessories,4,Carmen Ortega,2,431.5527,0,863.1054
+SO71008,1,2024-08-06,2024-08-16,2024-08-13,10035,David Ruiz,5,Southeast,United States,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,5,Francisco Jimenez,6,1270.3337,0,7622.0022
+SO71008,2,2024-08-06,2024-08-16,2024-08-13,10035,David Ruiz,5,Southeast,United States,57,Cable Lock,Blue,298.751,431.5527,Locks,Accessories,5,Francisco Jimenez,2,431.5527,0,863.1054
+SO71008,3,2024-08-06,2024-08-16,2024-08-13,10035,David Ruiz,5,Southeast,United States,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,5,Francisco Jimenez,1,803.8026,0.1,723.4223
+SO71009,1,2026-02-07,2026-02-17,2026-02-12,10019,Laura Dominguez,10,United Kingdom,United Kingdom,14,Road-150 42,Black,422.5875,616.4337,Road Bikes,Bikes,4,Carmen Ortega,6,616.4337,0.1,3328.742
+SO71009,2,2026-02-07,2026-02-17,2026-02-12,10019,Laura Dominguez,10,United Kingdom,United Kingdom,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,4,Carmen Ortega,3,523.5266,0.05,1492.0508
+SO71009,3,2026-02-07,2026-02-17,2026-02-12,10019,Laura Dominguez,10,United Kingdom,United Kingdom,32,Touring-3000 42,,968.9793,1492.9053,Touring Bikes,Bikes,4,Carmen Ortega,3,1492.9053,0,4478.7159
+SO71010,1,2023-07-09,2023-07-30,2023-07-14,10003,Cristina Gil,1,Northwest,United States,41,LL Road Front Wheel,Black,1035.4069,1440.9807,Wheels,Components,1,Jose Antonio Lopez,3,1440.9807,0,4322.9421
+SO71010,2,2023-07-09,2023-07-30,2023-07-14,10003,Cristina Gil,1,Northwest,United States,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,1,Jose Antonio Lopez,4,833.5936,0.05,3167.6557
+SO71011,1,2025-05-25,2025-06-01,2025-05-27,10005,Ruben Fernandez,3,Central,United States,38,Rear Brakes,Multi,707.7344,1301.3068,Brakes,Components,3,Alberto Fernandez,5,1301.3068,0,6506.534
+SO71011,2,2025-05-25,2025-06-01,2025-05-27,10005,Ruben Fernandez,3,Central,United States,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,3,Alberto Fernandez,2,879.9231,0,1759.8462
+SO71011,3,2025-05-25,2025-06-01,2025-05-27,10005,Ruben Fernandez,3,Central,United States,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,3,Alberto Fernandez,3,1408.5981,0,4225.7943
+SO71012,1,2025-01-02,2025-01-12,2025-01-05,10007,Marta Romero,6,Canada,Canada,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,6,Silvia Castro,2,1270.3337,0,2540.6674
+SO71012,2,2025-01-02,2025-01-12,2025-01-05,10007,Marta Romero,6,Canada,Canada,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,6,Silvia Castro,2,875.1415,0.02,1715.2773
+SO71013,1,2023-02-20,2023-03-02,2023-02-25,10027,David Sanchez,4,Southwest,United States,51,Full-Finger Gloves,Black,1046.5645,1547.9389,Gloves,Clothing,4,Carmen Ortega,6,1547.9389,0,9287.6334
+SO71013,2,2023-02-20,2023-03-02,2023-02-25,10027,David Sanchez,4,Southwest,United States,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,4,Carmen Ortega,1,1447.8925,0.02,1418.9346
+SO71014,1,2024-03-31,2024-04-10,2024-04-07,10023,Ana Ramos,5,Southeast,United States,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,5,Francisco Jimenez,6,422.3078,0,2533.8468
+SO71014,2,2024-03-31,2024-04-10,2024-04-07,10023,Ana Ramos,5,Southeast,United States,26,Touring-1000 42,Blue,99.612,167.4465,Touring Bikes,Bikes,5,Francisco Jimenez,3,167.4465,0,502.3395
+SO71015,1,2023-05-23,2023-06-06,2023-05-28,10033,Carlos Alonso,7,France,France,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,7,Andres Moya,3,803.8026,0,2411.4078
+SO71016,1,2026-04-04,2026-04-18,2026-04-06,10007,Marta Romero,10,United Kingdom,United Kingdom,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,7,Andres Moya,3,1392.4849,0.02,4093.9056
+SO71016,2,2026-04-04,2026-04-18,2026-04-06,10007,Marta Romero,10,United Kingdom,United Kingdom,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,7,Andres Moya,5,842.8227,0,4214.1135
+SO71016,3,2026-04-04,2026-04-18,2026-04-06,10007,Marta Romero,10,United Kingdom,United Kingdom,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,7,Andres Moya,5,1447.8925,0,7239.4625
+SO71017,1,2024-06-05,2024-06-12,2024-06-12,10001,Alvaro Vazquez,9,Australia,Australia,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,4,Carmen Ortega,1,879.9231,0.1,791.9308
+SO71017,2,2024-06-05,2024-06-12,2024-06-12,10001,Alvaro Vazquez,9,Australia,Australia,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,4,Carmen Ortega,3,1852.8051,0.05,5280.4945
+SO71017,3,2024-06-05,2024-06-12,2024-06-12,10001,Alvaro Vazquez,9,Australia,Australia,21,Road-350 46,Yellow,1182.4875,2144.0753,Road Bikes,Bikes,4,Carmen Ortega,6,2144.0753,0,12864.4518
+SO71018,1,2024-09-07,2024-09-21,2024-09-14,10021,Victor Torres,7,France,France,13,Road-150 38,Black,465.2139,704.9794,Road Bikes,Bikes,7,Andres Moya,4,704.9794,0.1,2537.9258
+SO71018,2,2024-09-07,2024-09-21,2024-09-14,10021,Victor Torres,7,France,France,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,7,Andres Moya,6,1447.8925,0.1,7818.6195
+SO71019,1,2023-12-23,2024-01-06,2023-12-30,10036,Sofia Fernandez,1,Northwest,United States,14,Road-150 42,Black,422.5875,616.4337,Road Bikes,Bikes,1,Jose Antonio Lopez,4,616.4337,0.05,2342.4481
+SO71019,2,2023-12-23,2024-01-06,2023-12-30,10036,Sofia Fernandez,1,Northwest,United States,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,1,Jose Antonio Lopez,6,842.8227,0,5056.9362
+SO71019,3,2023-12-23,2024-01-06,2023-12-30,10036,Sofia Fernandez,1,Northwest,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,1,Jose Antonio Lopez,4,1492.0012,0.02,5848.6447
+SO71020,1,2024-03-13,2024-04-03,2024-03-16,10006,Rosa Moreno,5,Southeast,United States,53,Sport-100 Helmet,Blue,918.5753,1491.424,Helmets,Accessories,5,Francisco Jimenez,2,1491.424,0.1,2684.5632
+SO71021,1,2024-09-27,2024-10-07,2024-09-30,10010,Pablo Ruiz,1,Northwest,United States,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,1,Jose Antonio Lopez,5,145.7533,0,728.7665
+SO71021,2,2024-09-27,2024-10-07,2024-09-30,10010,Pablo Ruiz,1,Northwest,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,1,Jose Antonio Lopez,4,1492.0012,0.1,5371.2043
+SO71022,1,2026-03-24,2026-04-03,2026-03-31,10032,Victor Sanchez,7,France,France,42,ML Mountain Front Wheel,Red,953.614,1481.2448,Wheels,Components,7,Andres Moya,6,1481.2448,0,8887.4688
+SO71022,2,2026-03-24,2026-04-03,2026-03-31,10032,Victor Sanchez,7,France,France,58,Chain Lock,Yellow,1137.1351,1536.7154,Locks,Accessories,7,Andres Moya,1,1536.7154,0.02,1505.9811
+SO71023,1,2024-03-24,2024-04-03,2024-03-31,10004,Sergio Fernandez,9,Australia,Australia,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,4,Carmen Ortega,2,1492.0012,0.02,2924.3224
+SO71024,1,2025-12-23,2026-01-06,2025-12-30,10040,Isabel Ruiz,9,Australia,Australia,58,Chain Lock,Yellow,1137.1351,1536.7154,Locks,Accessories,7,Andres Moya,2,1536.7154,0.1,2766.0877
+SO71024,2,2025-12-23,2026-01-06,2025-12-30,10040,Isabel Ruiz,9,Australia,Australia,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,7,Andres Moya,4,1900.2567,0.02,7449.0063
+SO71024,3,2025-12-23,2026-01-06,2025-12-30,10040,Isabel Ruiz,9,Australia,Australia,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,7,Andres Moya,2,1202.9252,0.1,2165.2654
+SO71024,4,2025-12-23,2026-01-06,2025-12-30,10040,Isabel Ruiz,9,Australia,Australia,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,7,Andres Moya,5,1359.0358,0.02,6659.2754
+SO71025,1,2026-07-07,2026-07-17,2026-07-12,10029,Diego Gutierrez,2,Northeast,United States,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,2,Marta Ruiz Soto,3,1359.0358,0,4077.1074
+SO71025,2,2026-07-07,2026-07-17,2026-07-12,10029,Diego Gutierrez,2,Northeast,United States,58,Chain Lock,Yellow,1137.1351,1536.7154,Locks,Accessories,2,Marta Ruiz Soto,5,1536.7154,0,7683.577
+SO71026,1,2023-10-11,2023-10-21,2023-10-14,10025,Pablo Torres,3,Central,United States,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,3,Alberto Fernandez,4,937.5185,0,3750.074
+SO71027,1,2026-01-16,2026-02-06,2026-01-23,10004,Sergio Fernandez,4,Southwest,United States,58,Chain Lock,Yellow,1137.1351,1536.7154,Locks,Accessories,4,Carmen Ortega,5,1536.7154,0.1,6915.2193
+SO71027,2,2026-01-16,2026-02-06,2026-01-23,10004,Sergio Fernandez,4,Southwest,United States,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,4,Carmen Ortega,5,422.3078,0.02,2069.3082
+SO71027,3,2026-01-16,2026-02-06,2026-01-23,10004,Sergio Fernandez,4,Southwest,United States,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,4,Carmen Ortega,1,145.7533,0,145.7533
+SO71027,4,2026-01-16,2026-02-06,2026-01-23,10004,Sergio Fernandez,4,Southwest,United States,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,4,Carmen Ortega,4,1408.5981,0.02,5521.7046
+SO71028,1,2026-01-07,2026-01-17,2026-01-14,10015,Maria Lopez,5,Southeast,United States,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,5,Francisco Jimenez,4,422.3078,0,1689.2312
+SO71028,2,2026-01-07,2026-01-17,2026-01-14,10015,Maria Lopez,5,Southeast,United States,43,ML Mountain Pedal,Black,470.9493,780.614,Pedals,Components,5,Francisco Jimenez,6,780.614,0.02,4590.0103
+SO71028,3,2026-01-07,2026-01-17,2026-01-14,10015,Maria Lopez,5,Southeast,United States,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,5,Francisco Jimenez,2,1392.4849,0.02,2729.2704
+SO71028,4,2026-01-07,2026-01-17,2026-01-14,10015,Maria Lopez,5,Southeast,United States,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,5,Francisco Jimenez,2,1852.8051,0.05,3520.3297
+SO71029,1,2025-12-29,2026-01-05,2026-01-05,10038,Ana Gutierrez,10,United Kingdom,United Kingdom,42,ML Mountain Front Wheel,Red,953.614,1481.2448,Wheels,Components,1,Jose Antonio Lopez,4,1481.2448,0,5924.9792
+SO71030,1,2025-08-03,2025-08-13,2025-08-05,10017,Pablo Lopez,7,France,France,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,7,Andres Moya,3,1492.0012,0,4476.0036
+SO71030,2,2025-08-03,2025-08-13,2025-08-05,10017,Pablo Lopez,7,France,France,49,Women's Mountain Shorts,Multi,1052.8857,1535.1425,Shorts,Clothing,7,Andres Moya,4,1535.1425,0,6140.57
+SO71031,1,2025-05-13,2025-05-27,2025-05-15,10031,Ivan Martinez,1,Northwest,United States,15,Road-150 46,Black,66.4888,104.7634,Road Bikes,Bikes,1,Jose Antonio Lopez,6,104.7634,0,628.5804
+SO71031,2,2025-05-13,2025-05-27,2025-05-15,10031,Ivan Martinez,1,Northwest,United States,50,Half-Finger Gloves,Yellow,917.9252,1472.911,Gloves,Clothing,1,Jose Antonio Lopez,6,1472.911,0,8837.466
+SO71031,3,2025-05-13,2025-05-27,2025-05-15,10031,Ivan Martinez,1,Northwest,United States,49,Women's Mountain Shorts,Multi,1052.8857,1535.1425,Shorts,Clothing,1,Jose Antonio Lopez,1,1535.1425,0,1535.1425
+SO71032,1,2024-02-13,2024-02-20,2024-02-16,10016,Rosa Martinez,3,Central,United States,37,Front Brakes,Red,897.8119,1457.4956,Brakes,Components,3,Alberto Fernandez,2,1457.4956,0.02,2856.6914
+SO71033,1,2024-06-08,2024-06-22,2024-06-11,10039,Javier Diaz,10,United Kingdom,United Kingdom,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,2,Marta Ruiz Soto,1,1408.5981,0.05,1338.1682
+SO71033,2,2024-06-08,2024-06-22,2024-06-11,10039,Javier Diaz,10,United Kingdom,United Kingdom,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,2,Marta Ruiz Soto,3,422.3078,0.05,1203.5772
+SO71034,1,2025-02-07,2025-02-28,2025-02-10,10005,Ruben Fernandez,10,United Kingdom,United Kingdom,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,4,Carmen Ortega,3,1933.2737,0.1,5219.839
+SO71035,1,2026-05-14,2026-05-21,2026-05-16,10023,Ana Ramos,9,Australia,Australia,5,Mountain-200 42,Yellow,50.3097,72.0024,Mountain Bikes,Bikes,7,Andres Moya,5,72.0024,0.1,324.0108
+SO71035,2,2026-05-14,2026-05-21,2026-05-16,10023,Ana Ramos,9,Australia,Australia,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,7,Andres Moya,1,197.5563,0.02,193.6052
+SO71035,3,2026-05-14,2026-05-21,2026-05-16,10023,Ana Ramos,9,Australia,Australia,53,Sport-100 Helmet,Blue,918.5753,1491.424,Helmets,Accessories,7,Andres Moya,4,1491.424,0,5965.696
+SO71036,1,2025-06-06,2025-06-20,2025-06-13,10010,Pablo Ruiz,7,France,France,40,LL Mountain Front Wheel,Red,618.7887,838.1775,Wheels,Components,7,Andres Moya,5,838.1775,0.02,4107.0697
+SO71036,2,2025-06-06,2025-06-20,2025-06-13,10010,Pablo Ruiz,7,France,France,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,7,Andres Moya,4,1492.0012,0.1,5371.2043
+SO71036,3,2025-06-06,2025-06-20,2025-06-13,10010,Pablo Ruiz,7,France,France,38,Rear Brakes,Multi,707.7344,1301.3068,Brakes,Components,7,Andres Moya,3,1301.3068,0,3903.9204
+SO71037,1,2024-05-17,2024-05-24,2024-05-22,10029,Diego Gutierrez,4,Southwest,United States,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,4,Carmen Ortega,1,197.5563,0.02,193.6052
+SO71037,2,2024-05-17,2024-05-24,2024-05-22,10029,Diego Gutierrez,4,Southwest,United States,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,4,Carmen Ortega,3,523.5266,0,1570.5798
+SO71037,3,2024-05-17,2024-05-24,2024-05-22,10029,Diego Gutierrez,4,Southwest,United States,32,Touring-3000 42,,968.9793,1492.9053,Touring Bikes,Bikes,4,Carmen Ortega,2,1492.9053,0,2985.8106
+SO71037,4,2024-05-17,2024-05-24,2024-05-22,10029,Diego Gutierrez,4,Southwest,United States,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,4,Carmen Ortega,3,875.1415,0,2625.4245
+SO71038,1,2024-07-26,2024-08-09,2024-07-28,10034,Ivan Alvarez,4,Southwest,United States,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,4,Carmen Ortega,4,1392.4849,0.02,5458.5408
+SO71038,2,2024-07-26,2024-08-09,2024-07-28,10034,Ivan Alvarez,4,Southwest,United States,36,ML Road Handlebars,Multi,558.7394,815.1606,Handlebars,Components,4,Carmen Ortega,2,815.1606,0.1,1467.2891
+SO71039,1,2025-09-02,2025-09-23,2025-09-09,10002,Javier Diaz,2,Northeast,United States,26,Touring-1000 42,Blue,99.612,167.4465,Touring Bikes,Bikes,2,Marta Ruiz Soto,6,167.4465,0,1004.679
+SO71039,2,2025-09-02,2025-09-23,2025-09-09,10002,Javier Diaz,2,Northeast,United States,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,2,Marta Ruiz Soto,6,1408.5981,0.05,8029.0092
+SO71040,1,2025-01-25,2025-02-15,2025-01-30,10028,Victor Gutierrez,9,Australia,Australia,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,6,Silvia Castro,4,1933.2737,0,7733.0948
+SO71040,2,2025-01-25,2025-02-15,2025-01-30,10028,Victor Gutierrez,9,Australia,Australia,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,6,Silvia Castro,3,1408.5981,0,4225.7943
+SO71040,3,2025-01-25,2025-02-15,2025-01-30,10028,Victor Gutierrez,9,Australia,Australia,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,6,Silvia Castro,6,803.8026,0,4822.8156
+SO71041,1,2024-10-08,2024-10-15,2024-10-11,10013,Ruben Ruiz,4,Southwest,United States,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,4,Carmen Ortega,5,1392.4849,0.05,6614.3033
+SO71041,2,2024-10-08,2024-10-15,2024-10-11,10013,Ruben Ruiz,4,Southwest,United States,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,4,Carmen Ortega,3,842.8227,0,2528.4681
+SO71041,3,2024-10-08,2024-10-15,2024-10-11,10013,Ruben Ruiz,4,Southwest,United States,54,Aero Helmet,,1108.0844,2051.1707,Helmets,Accessories,4,Carmen Ortega,2,2051.1707,0,4102.3414
+SO71042,1,2024-04-10,2024-04-24,2024-04-13,10020,Pablo Diaz,1,Northwest,United States,3,Mountain-100 46,Multi,136.4568,238.0353,Mountain Bikes,Bikes,1,Jose Antonio Lopez,1,238.0353,0.05,226.1335
+SO71042,2,2024-04-10,2024-04-24,2024-04-13,10020,Pablo Diaz,1,Northwest,United States,19,Road-350 38,Yellow,242.862,325.856,Road Bikes,Bikes,1,Jose Antonio Lopez,6,325.856,0,1955.136
+SO71042,3,2024-04-10,2024-04-24,2024-04-13,10020,Pablo Diaz,1,Northwest,United States,41,LL Road Front Wheel,Black,1035.4069,1440.9807,Wheels,Components,1,Jose Antonio Lopez,4,1440.9807,0,5763.9228
+SO71043,1,2023-01-26,2023-02-09,2023-02-02,10031,Ivan Martinez,8,Germany,Germany,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,8,Teresa Vidal,3,183.307,0.02,538.9226
+SO71043,2,2023-01-26,2023-02-09,2023-02-02,10031,Ivan Martinez,8,Germany,Germany,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,8,Teresa Vidal,1,803.8026,0.02,787.7265
+SO71044,1,2025-10-04,2025-10-11,2025-10-06,10010,Pablo Ruiz,3,Central,United States,16,Road-250 38,Black,1168.1422,1783.894,Road Bikes,Bikes,3,Alberto Fernandez,1,1783.894,0.05,1694.6993
+SO71045,1,2025-05-02,2025-05-12,2025-05-09,10029,Diego Gutierrez,8,Germany,Germany,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,8,Teresa Vidal,5,1408.5981,0.05,6690.841
+SO71045,2,2025-05-02,2025-05-12,2025-05-09,10029,Diego Gutierrez,8,Germany,Germany,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,8,Teresa Vidal,5,183.307,0.1,824.8815
+SO71045,3,2025-05-02,2025-05-12,2025-05-09,10029,Diego Gutierrez,8,Germany,Germany,7,Mountain-300 38,Red,863.4832,1485.8776,Mountain Bikes,Bikes,8,Teresa Vidal,2,1485.8776,0.1,2674.5797
+SO71045,4,2025-05-02,2025-05-12,2025-05-09,10029,Diego Gutierrez,8,Germany,Germany,14,Road-150 42,Black,422.5875,616.4337,Road Bikes,Bikes,8,Teresa Vidal,3,616.4337,0.1,1664.371
+SO71046,1,2023-06-16,2023-06-26,2023-06-19,10012,Maria Ramos,9,Australia,Australia,1,Mountain-100 38,Multi,146.9273,256.3779,Mountain Bikes,Bikes,2,Marta Ruiz Soto,4,256.3779,0.02,1005.0014
+SO71046,2,2023-06-16,2023-06-26,2023-06-19,10012,Maria Ramos,9,Australia,Australia,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,2,Marta Ruiz Soto,5,1933.2737,0.02,9473.0411
+SO71047,1,2024-08-19,2024-08-26,2024-08-22,10019,Laura Dominguez,5,Southeast,United States,44,ML Road Pedal,Silver,642.0005,1208.6603,Pedals,Components,5,Francisco Jimenez,2,1208.6603,0,2417.3206
+SO71048,1,2026-07-04,2026-07-14,2026-07-11,10008,Isabel Dominguez,9,Australia,Australia,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,4,Carmen Ortega,3,1852.8051,0,5558.4153
+SO71048,2,2026-07-04,2026-07-14,2026-07-11,10008,Isabel Dominguez,9,Australia,Australia,5,Mountain-200 42,Yellow,50.3097,72.0024,Mountain Bikes,Bikes,4,Carmen Ortega,1,72.0024,0,72.0024
+SO71049,1,2024-09-21,2024-10-05,2024-09-28,10008,Isabel Dominguez,8,Germany,Germany,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,8,Teresa Vidal,5,1359.0358,0.05,6455.42
+SO71049,2,2024-09-21,2024-10-05,2024-09-28,10008,Isabel Dominguez,8,Germany,Germany,32,Touring-3000 42,,968.9793,1492.9053,Touring Bikes,Bikes,8,Teresa Vidal,4,1492.9053,0,5971.6212
+SO71049,3,2024-09-21,2024-10-05,2024-09-28,10008,Isabel Dominguez,8,Germany,Germany,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,8,Teresa Vidal,1,842.8227,0.02,825.9662
+SO71049,4,2024-09-21,2024-10-05,2024-09-28,10008,Isabel Dominguez,8,Germany,Germany,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,8,Teresa Vidal,3,833.5936,0.05,2375.7418
+SO71050,1,2024-05-27,2024-06-03,2024-05-29,10015,Maria Lopez,10,United Kingdom,United Kingdom,37,Front Brakes,Red,897.8119,1457.4956,Brakes,Components,1,Jose Antonio Lopez,1,1457.4956,0,1457.4956
+SO71050,2,2024-05-27,2024-06-03,2024-05-29,10015,Maria Lopez,10,United Kingdom,United Kingdom,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,1,Jose Antonio Lopez,5,145.7533,0.1,655.8899
+SO71050,3,2024-05-27,2024-06-03,2024-05-29,10015,Maria Lopez,10,United Kingdom,United Kingdom,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,1,Jose Antonio Lopez,3,1263.8665,0,3791.5995
+SO71051,1,2026-04-13,2026-05-04,2026-04-20,10006,Rosa Moreno,8,Germany,Germany,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,8,Teresa Vidal,3,197.5563,0.1,533.402
+SO71051,2,2026-04-13,2026-05-04,2026-04-20,10006,Rosa Moreno,8,Germany,Germany,7,Mountain-300 38,Red,863.4832,1485.8776,Mountain Bikes,Bikes,8,Teresa Vidal,2,1485.8776,0,2971.7552
+SO71051,3,2026-04-13,2026-05-04,2026-04-20,10006,Rosa Moreno,8,Germany,Germany,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,8,Teresa Vidal,6,937.5185,0.02,5512.6088
+SO71051,4,2026-04-13,2026-05-04,2026-04-20,10006,Rosa Moreno,8,Germany,Germany,19,Road-350 38,Yellow,242.862,325.856,Road Bikes,Bikes,8,Teresa Vidal,6,325.856,0.02,1916.0333
+SO71052,1,2026-01-31,2026-02-07,2026-02-07,10006,Rosa Moreno,6,Canada,Canada,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,6,Silvia Castro,4,803.8026,0.05,3054.4499
+SO71052,2,2026-01-31,2026-02-07,2026-02-07,10006,Rosa Moreno,6,Canada,Canada,53,Sport-100 Helmet,Blue,918.5753,1491.424,Helmets,Accessories,6,Silvia Castro,1,1491.424,0.1,1342.2816
+SO71052,3,2026-01-31,2026-02-07,2026-02-07,10006,Rosa Moreno,6,Canada,Canada,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,6,Silvia Castro,5,1900.2567,0.02,9311.2578
+SO71053,1,2025-04-26,2025-05-03,2025-04-29,10034,Ivan Alvarez,6,Canada,Canada,49,Women's Mountain Shorts,Multi,1052.8857,1535.1425,Shorts,Clothing,6,Silvia Castro,1,1535.1425,0,1535.1425
+SO71053,2,2025-04-26,2025-05-03,2025-04-29,10034,Ivan Alvarez,6,Canada,Canada,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,6,Silvia Castro,5,1359.0358,0,6795.179
+SO71053,3,2025-04-26,2025-05-03,2025-04-29,10034,Ivan Alvarez,6,Canada,Canada,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,6,Silvia Castro,3,1270.3337,0.02,3734.7811
+SO71053,4,2025-04-26,2025-05-03,2025-04-29,10034,Ivan Alvarez,6,Canada,Canada,57,Cable Lock,Blue,298.751,431.5527,Locks,Accessories,6,Silvia Castro,6,431.5527,0.02,2537.5299
+SO71054,1,2023-09-06,2023-09-13,2023-09-09,10011,Laura Alvarez,5,Southeast,United States,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,5,Francisco Jimenez,2,807.7732,0,1615.5464
+SO71054,2,2023-09-06,2023-09-13,2023-09-09,10011,Laura Alvarez,5,Southeast,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,5,Francisco Jimenez,1,1492.0012,0.1,1342.8011
+SO71054,3,2023-09-06,2023-09-13,2023-09-09,10011,Laura Alvarez,5,Southeast,United States,54,Aero Helmet,,1108.0844,2051.1707,Helmets,Accessories,5,Francisco Jimenez,2,2051.1707,0.02,4020.2946
+SO71054,4,2023-09-06,2023-09-13,2023-09-09,10011,Laura Alvarez,5,Southeast,United States,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,5,Francisco Jimenez,6,1270.3337,0,7622.0022
+SO71055,1,2025-11-08,2025-11-22,2025-11-15,10031,Ivan Martinez,8,Germany,Germany,36,ML Road Handlebars,Multi,558.7394,815.1606,Handlebars,Components,8,Teresa Vidal,2,815.1606,0.02,1597.7148
+SO71055,2,2025-11-08,2025-11-22,2025-11-15,10031,Ivan Martinez,8,Germany,Germany,13,Road-150 38,Black,465.2139,704.9794,Road Bikes,Bikes,8,Teresa Vidal,5,704.9794,0.05,3348.6522
+SO71055,3,2025-11-08,2025-11-22,2025-11-15,10031,Ivan Martinez,8,Germany,Germany,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,8,Teresa Vidal,2,833.5936,0,1667.1872
+SO71055,4,2025-11-08,2025-11-22,2025-11-15,10031,Ivan Martinez,8,Germany,Germany,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,8,Teresa Vidal,4,1359.0358,0,5436.1432
+SO71056,1,2025-11-05,2025-11-19,2025-11-07,10019,Laura Dominguez,5,Southeast,United States,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,5,Francisco Jimenez,5,1263.8665,0.02,6192.9459
+SO71056,2,2025-11-05,2025-11-19,2025-11-07,10019,Laura Dominguez,5,Southeast,United States,23,Road-550 42,,768.2861,1166.9492,Road Bikes,Bikes,5,Francisco Jimenez,3,1166.9492,0.05,3325.8052
+SO71057,1,2026-01-17,2026-02-07,2026-01-24,10021,Victor Torres,4,Southwest,United States,15,Road-150 46,Black,66.4888,104.7634,Road Bikes,Bikes,4,Carmen Ortega,4,104.7634,0,419.0536
+SO71057,2,2026-01-17,2026-02-07,2026-01-24,10021,Victor Torres,4,Southwest,United States,21,Road-350 46,Yellow,1182.4875,2144.0753,Road Bikes,Bikes,4,Carmen Ortega,6,2144.0753,0.02,12607.1628
+SO71057,3,2026-01-17,2026-02-07,2026-01-24,10021,Victor Torres,4,Southwest,United States,46,Long-Sleeve Logo Jersey,Black,822.8268,1334.775,Jerseys,Clothing,4,Carmen Ortega,4,1334.775,0.02,5232.318
+SO71057,4,2026-01-17,2026-02-07,2026-01-24,10021,Victor Torres,4,Southwest,United States,43,ML Mountain Pedal,Black,470.9493,780.614,Pedals,Components,4,Carmen Ortega,6,780.614,0,4683.684
+SO71058,1,2025-10-11,2025-10-18,2025-10-14,10033,Carlos Alonso,10,United Kingdom,United Kingdom,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,6,Silvia Castro,4,1900.2567,0,7601.0268
+SO71059,1,2025-12-13,2026-01-03,2025-12-15,10010,Pablo Ruiz,7,France,France,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,7,Andres Moya,3,145.7533,0,437.2599
+SO71060,1,2026-06-30,2026-07-21,2026-07-02,10022,Sofia Vazquez,9,Australia,Australia,41,LL Road Front Wheel,Black,1035.4069,1440.9807,Wheels,Components,7,Andres Moya,6,1440.9807,0.02,8472.9665
+SO71060,2,2026-06-30,2026-07-21,2026-07-02,10022,Sofia Vazquez,9,Australia,Australia,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,7,Andres Moya,5,1900.2567,0,9501.2835
+SO71060,3,2026-06-30,2026-07-21,2026-07-02,10022,Sofia Vazquez,9,Australia,Australia,40,LL Mountain Front Wheel,Red,618.7887,838.1775,Wheels,Components,7,Andres Moya,1,838.1775,0,838.1775
+SO71061,1,2026-07-16,2026-07-30,2026-07-19,10006,Rosa Moreno,7,France,France,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,7,Andres Moya,2,1263.8665,0.1,2274.9597
+SO71062,1,2024-09-05,2024-09-12,2024-09-07,10021,Victor Torres,1,Northwest,United States,24,Road-550 46,,453.6644,646.7912,Road Bikes,Bikes,1,Jose Antonio Lopez,4,646.7912,0,2587.1648
+SO71062,2,2024-09-05,2024-09-12,2024-09-07,10021,Victor Torres,1,Northwest,United States,16,Road-250 38,Black,1168.1422,1783.894,Road Bikes,Bikes,1,Jose Antonio Lopez,5,1783.894,0.02,8741.0806
+SO71062,3,2024-09-05,2024-09-12,2024-09-07,10021,Victor Torres,1,Northwest,United States,37,Front Brakes,Red,897.8119,1457.4956,Brakes,Components,1,Jose Antonio Lopez,6,1457.4956,0,8744.9736
+SO71063,1,2023-12-15,2023-12-25,2023-12-17,10040,Isabel Ruiz,7,France,France,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,7,Andres Moya,5,1852.8051,0,9264.0255
+SO71063,2,2023-12-15,2023-12-25,2023-12-17,10040,Isabel Ruiz,7,France,France,15,Road-150 46,Black,66.4888,104.7634,Road Bikes,Bikes,7,Andres Moya,4,104.7634,0.1,377.1482
+SO71063,3,2023-12-15,2023-12-25,2023-12-17,10040,Isabel Ruiz,7,France,France,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,7,Andres Moya,4,1202.9252,0,4811.7008
+SO71063,4,2023-12-15,2023-12-25,2023-12-17,10040,Isabel Ruiz,7,France,France,43,ML Mountain Pedal,Black,470.9493,780.614,Pedals,Components,7,Andres Moya,1,780.614,0.02,765.0017
+SO71064,1,2024-08-12,2024-08-22,2024-08-14,10029,Diego Gutierrez,6,Canada,Canada,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,6,Silvia Castro,3,1933.2737,0.02,5683.8247
+SO71064,2,2024-08-12,2024-08-22,2024-08-14,10029,Diego Gutierrez,6,Canada,Canada,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,6,Silvia Castro,3,523.5266,0,1570.5798
+SO71064,3,2024-08-12,2024-08-22,2024-08-14,10029,Diego Gutierrez,6,Canada,Canada,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,6,Silvia Castro,4,1447.8925,0,5791.57
+SO71064,4,2024-08-12,2024-08-22,2024-08-14,10029,Diego Gutierrez,6,Canada,Canada,16,Road-250 38,Black,1168.1422,1783.894,Road Bikes,Bikes,6,Silvia Castro,4,1783.894,0.05,6778.7972
+SO71065,1,2025-01-05,2025-01-19,2025-01-10,10002,Javier Diaz,7,France,France,37,Front Brakes,Red,897.8119,1457.4956,Brakes,Components,7,Andres Moya,6,1457.4956,0.1,7870.4762
+SO71066,1,2023-04-11,2023-05-02,2023-04-16,10015,Maria Lopez,10,United Kingdom,United Kingdom,41,LL Road Front Wheel,Black,1035.4069,1440.9807,Wheels,Components,6,Silvia Castro,2,1440.9807,0.05,2737.8633
+SO71066,2,2023-04-11,2023-05-02,2023-04-16,10015,Maria Lopez,10,United Kingdom,United Kingdom,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,6,Silvia Castro,6,1202.9252,0.1,6495.7961
+SO71067,1,2023-10-08,2023-10-15,2023-10-10,10020,Pablo Diaz,8,Germany,Germany,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,8,Teresa Vidal,2,1392.4849,0,2784.9698
+SO71067,2,2023-10-08,2023-10-15,2023-10-10,10020,Pablo Diaz,8,Germany,Germany,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,8,Teresa Vidal,3,1852.8051,0,5558.4153
+SO71067,3,2023-10-08,2023-10-15,2023-10-10,10020,Pablo Diaz,8,Germany,Germany,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,8,Teresa Vidal,4,833.5936,0,3334.3744
+SO71068,1,2024-02-16,2024-02-26,2024-02-21,10034,Ivan Alvarez,9,Australia,Australia,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,5,Francisco Jimenez,4,1202.9252,0,4811.7008
+SO71068,2,2024-02-16,2024-02-26,2024-02-21,10034,Ivan Alvarez,9,Australia,Australia,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,5,Francisco Jimenez,3,833.5936,0,2500.7808
+SO71069,1,2025-08-17,2025-08-24,2025-08-20,10015,Maria Lopez,7,France,France,51,Full-Finger Gloves,Black,1046.5645,1547.9389,Gloves,Clothing,7,Andres Moya,4,1547.9389,0,6191.7556
+SO71070,1,2024-06-25,2024-07-02,2024-07-02,10024,Paula Torres,5,Southeast,United States,7,Mountain-300 38,Red,863.4832,1485.8776,Mountain Bikes,Bikes,5,Francisco Jimenez,6,1485.8776,0,8915.2656
+SO71070,2,2024-06-25,2024-07-02,2024-07-02,10024,Paula Torres,5,Southeast,United States,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,5,Francisco Jimenez,1,145.7533,0.05,138.4656
+SO71070,3,2024-06-25,2024-07-02,2024-07-02,10024,Paula Torres,5,Southeast,United States,57,Cable Lock,Blue,298.751,431.5527,Locks,Accessories,5,Francisco Jimenez,5,431.5527,0,2157.7635
+SO71071,1,2026-06-03,2026-06-13,2026-06-05,10030,Sergio Navarro,5,Southeast,United States,9,Mountain-300 46,Red,344.656,627.8185,Mountain Bikes,Bikes,5,Francisco Jimenez,1,627.8185,0,627.8185
+SO71072,1,2024-09-15,2024-10-06,2024-09-17,10007,Marta Romero,4,Southwest,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,4,Carmen Ortega,3,1492.0012,0.1,4028.4032
+SO71072,2,2024-09-15,2024-10-06,2024-09-17,10007,Marta Romero,4,Southwest,United States,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,4,Carmen Ortega,6,833.5936,0.05,4751.4835
+SO71072,3,2024-09-15,2024-10-06,2024-09-17,10007,Marta Romero,4,Southwest,United States,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,4,Carmen Ortega,5,937.5185,0.1,4218.8332
+SO71072,4,2024-09-15,2024-10-06,2024-09-17,10007,Marta Romero,4,Southwest,United States,47,Short-Sleeve Classic Jersey,Blue,925.7895,1392.4849,Jerseys,Clothing,4,Carmen Ortega,2,1392.4849,0.02,2729.2704
+SO71073,1,2023-07-22,2023-08-12,2023-07-29,10018,Carlos Alvarez,1,Northwest,United States,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,1,Jose Antonio Lopez,4,1263.8665,0,5055.466
+SO71073,2,2023-07-22,2023-08-12,2023-07-29,10018,Carlos Alvarez,1,Northwest,United States,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,1,Jose Antonio Lopez,3,523.5266,0,1570.5798
+SO71074,1,2025-01-22,2025-02-05,2025-01-24,10026,Sergio Fernandez,5,Southeast,United States,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,5,Francisco Jimenez,4,523.5266,0,2094.1064
+SO71075,1,2024-03-10,2024-03-17,2024-03-12,10022,Sofia Vazquez,4,Southwest,United States,5,Mountain-200 42,Yellow,50.3097,72.0024,Mountain Bikes,Bikes,4,Carmen Ortega,5,72.0024,0,360.012
+SO71075,2,2024-03-10,2024-03-17,2024-03-12,10022,Sofia Vazquez,4,Southwest,United States,38,Rear Brakes,Multi,707.7344,1301.3068,Brakes,Components,4,Carmen Ortega,2,1301.3068,0,2602.6136
+SO71076,1,2024-11-03,2024-11-13,2024-11-05,10018,Carlos Alvarez,3,Central,United States,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,3,Alberto Fernandez,2,875.1415,0,1750.283
+SO71076,2,2024-11-03,2024-11-13,2024-11-05,10018,Carlos Alvarez,3,Central,United States,43,ML Mountain Pedal,Black,470.9493,780.614,Pedals,Components,3,Alberto Fernandez,1,780.614,0,780.614
+SO71076,3,2024-11-03,2024-11-13,2024-11-05,10018,Carlos Alvarez,3,Central,United States,1,Mountain-100 38,Multi,146.9273,256.3779,Mountain Bikes,Bikes,3,Alberto Fernandez,3,256.3779,0,769.1337
+SO71077,1,2026-04-20,2026-05-04,2026-04-22,10012,Maria Ramos,5,Southeast,United States,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,5,Francisco Jimenez,4,833.5936,0.05,3167.6557
+SO71077,2,2026-04-20,2026-05-04,2026-04-22,10012,Maria Ramos,5,Southeast,United States,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,5,Francisco Jimenez,6,803.8026,0,4822.8156
+SO71078,1,2025-09-02,2025-09-23,2025-09-07,10033,Carlos Alonso,10,United Kingdom,United Kingdom,33,Touring-3000 46,,93.4335,172.6541,Touring Bikes,Bikes,2,Marta Ruiz Soto,2,172.6541,0.05,328.0428
+SO71078,2,2025-09-02,2025-09-23,2025-09-07,10033,Carlos Alonso,10,United Kingdom,United Kingdom,3,Mountain-100 46,Multi,136.4568,238.0353,Mountain Bikes,Bikes,2,Marta Ruiz Soto,6,238.0353,0.1,1285.3906
+SO71078,3,2025-09-02,2025-09-23,2025-09-07,10033,Carlos Alonso,10,United Kingdom,United Kingdom,34,HL Mountain Handlebars,Yellow,1053.4956,1568.4513,Handlebars,Components,2,Marta Ruiz Soto,3,1568.4513,0.02,4611.2468
+SO71078,4,2025-09-02,2025-09-23,2025-09-07,10033,Carlos Alonso,10,United Kingdom,United Kingdom,42,ML Mountain Front Wheel,Red,953.614,1481.2448,Wheels,Components,2,Marta Ruiz Soto,1,1481.2448,0,1481.2448
+SO71079,1,2025-09-07,2025-09-28,2025-09-14,10007,Marta Romero,8,Germany,Germany,58,Chain Lock,Yellow,1137.1351,1536.7154,Locks,Accessories,8,Teresa Vidal,1,1536.7154,0,1536.7154
+SO71080,1,2026-05-30,2026-06-09,2026-06-01,10009,Isabel Sanchez,5,Southeast,United States,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,5,Francisco Jimenez,5,842.8227,0,4214.1135
+SO71080,2,2026-05-30,2026-06-09,2026-06-01,10009,Isabel Sanchez,5,Southeast,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,5,Francisco Jimenez,5,1492.0012,0.05,7087.0057
+SO71080,3,2026-05-30,2026-06-09,2026-06-01,10009,Isabel Sanchez,5,Southeast,United States,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,5,Francisco Jimenez,1,879.9231,0.1,791.9308
+SO71080,4,2026-05-30,2026-06-09,2026-06-01,10009,Isabel Sanchez,5,Southeast,United States,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,5,Francisco Jimenez,6,803.8026,0.1,4340.534
+SO71081,1,2026-02-03,2026-02-13,2026-02-10,10029,Diego Gutierrez,4,Southwest,United States,53,Sport-100 Helmet,Blue,918.5753,1491.424,Helmets,Accessories,4,Carmen Ortega,4,1491.424,0.02,5846.3821
+SO71081,2,2026-02-03,2026-02-13,2026-02-10,10029,Diego Gutierrez,4,Southwest,United States,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,4,Carmen Ortega,6,937.5185,0,5625.111
+SO71081,3,2026-02-03,2026-02-13,2026-02-10,10029,Diego Gutierrez,4,Southwest,United States,21,Road-350 46,Yellow,1182.4875,2144.0753,Road Bikes,Bikes,4,Carmen Ortega,4,2144.0753,0,8576.3012
+SO71082,1,2024-06-06,2024-06-20,2024-06-09,10031,Ivan Martinez,2,Northeast,United States,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,2,Marta Ruiz Soto,4,807.7732,0,3231.0928
+SO71083,1,2025-02-02,2025-02-12,2025-02-04,10038,Ana Gutierrez,9,Australia,Australia,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,6,Silvia Castro,3,937.5185,0.1,2531.3
+SO71084,1,2025-05-16,2025-05-23,2025-05-21,10039,Javier Diaz,5,Southeast,United States,37,Front Brakes,Red,897.8119,1457.4956,Brakes,Components,5,Francisco Jimenez,5,1457.4956,0,7287.478
+SO71085,1,2023-11-13,2023-12-04,2023-11-16,10007,Marta Romero,6,Canada,Canada,49,Women's Mountain Shorts,Multi,1052.8857,1535.1425,Shorts,Clothing,6,Silvia Castro,3,1535.1425,0.05,4375.1561
+SO71086,1,2024-04-08,2024-04-29,2024-04-10,10039,Javier Diaz,5,Southeast,United States,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,5,Francisco Jimenez,6,1359.0358,0,8154.2148
+SO71086,2,2024-04-08,2024-04-29,2024-04-10,10039,Javier Diaz,5,Southeast,United States,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,5,Francisco Jimenez,3,1852.8051,0,5558.4153
+SO71087,1,2023-01-13,2023-01-23,2023-01-16,10037,Ruben Navarro,7,France,France,48,Men's Bib-Shorts,Blue,530.1968,833.5936,Shorts,Clothing,7,Andres Moya,6,833.5936,0,5001.5616
+SO71087,2,2023-01-13,2023-01-23,2023-01-16,10037,Ruben Navarro,7,France,France,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,7,Andres Moya,6,807.7732,0.05,4604.3072
+SO71088,1,2024-03-16,2024-04-06,2024-03-23,10030,Sergio Navarro,6,Canada,Canada,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,6,Silvia Castro,6,1408.5981,0,8451.5886
+SO71088,2,2024-03-16,2024-04-06,2024-03-23,10030,Sergio Navarro,6,Canada,Canada,50,Half-Finger Gloves,Yellow,917.9252,1472.911,Gloves,Clothing,6,Silvia Castro,5,1472.911,0.05,6996.3273
+SO71088,3,2024-03-16,2024-04-06,2024-03-23,10030,Sergio Navarro,6,Canada,Canada,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,6,Silvia Castro,1,807.7732,0,807.7732
+SO71089,1,2023-11-19,2023-11-26,2023-11-21,10018,Carlos Alvarez,8,Germany,Germany,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,8,Teresa Vidal,4,842.8227,0.02,3303.865
+SO71089,2,2023-11-19,2023-11-26,2023-11-21,10018,Carlos Alvarez,8,Germany,Germany,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,8,Teresa Vidal,2,1359.0358,0.05,2582.168
+SO71089,3,2023-11-19,2023-11-26,2023-11-21,10018,Carlos Alvarez,8,Germany,Germany,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,8,Teresa Vidal,3,803.8026,0.02,2363.1796
+SO71089,4,2023-11-19,2023-11-26,2023-11-21,10018,Carlos Alvarez,8,Germany,Germany,8,Mountain-300 42,Red,512.131,803.8026,Mountain Bikes,Bikes,8,Teresa Vidal,3,803.8026,0.1,2170.267
+SO71090,1,2026-04-29,2026-05-20,2026-05-04,10003,Cristina Gil,4,Southwest,United States,1,Mountain-100 38,Multi,146.9273,256.3779,Mountain Bikes,Bikes,4,Carmen Ortega,2,256.3779,0,512.7558
+SO71091,1,2024-03-08,2024-03-18,2024-03-13,10019,Laura Dominguez,6,Canada,Canada,32,Touring-3000 42,,968.9793,1492.9053,Touring Bikes,Bikes,6,Silvia Castro,6,1492.9053,0.02,8778.2832
+SO71092,1,2023-12-26,2024-01-05,2024-01-02,10035,David Ruiz,4,Southwest,United States,26,Touring-1000 42,Blue,99.612,167.4465,Touring Bikes,Bikes,4,Carmen Ortega,6,167.4465,0,1004.679
+SO71093,1,2025-06-12,2025-06-19,2025-06-19,10005,Ruben Fernandez,6,Canada,Canada,46,Long-Sleeve Logo Jersey,Black,822.8268,1334.775,Jerseys,Clothing,6,Silvia Castro,6,1334.775,0.02,7848.477
+SO71093,2,2025-06-12,2025-06-19,2025-06-19,10005,Ruben Fernandez,6,Canada,Canada,19,Road-350 38,Yellow,242.862,325.856,Road Bikes,Bikes,6,Silvia Castro,1,325.856,0.02,319.3389
+SO71093,3,2025-06-12,2025-06-19,2025-06-19,10005,Ruben Fernandez,6,Canada,Canada,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,6,Silvia Castro,3,422.3078,0,1266.9234
+SO71093,4,2025-06-12,2025-06-19,2025-06-19,10005,Ruben Fernandez,6,Canada,Canada,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,6,Silvia Castro,5,875.1415,0.02,4288.1933
+SO71094,1,2025-01-11,2025-01-18,2025-01-18,10007,Marta Romero,4,Southwest,United States,34,HL Mountain Handlebars,Yellow,1053.4956,1568.4513,Handlebars,Components,4,Carmen Ortega,1,1568.4513,0.02,1537.0823
+SO71094,2,2025-01-11,2025-01-18,2025-01-18,10007,Marta Romero,4,Southwest,United States,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,4,Carmen Ortega,3,1900.2567,0.1,5130.6931
+SO71094,3,2025-01-11,2025-01-18,2025-01-18,10007,Marta Romero,4,Southwest,United States,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,4,Carmen Ortega,2,197.5563,0,395.1126
+SO71094,4,2025-01-11,2025-01-18,2025-01-18,10007,Marta Romero,4,Southwest,United States,50,Half-Finger Gloves,Yellow,917.9252,1472.911,Gloves,Clothing,4,Carmen Ortega,2,1472.911,0,2945.822
+SO71095,1,2025-11-11,2025-11-18,2025-11-14,10023,Ana Ramos,6,Canada,Canada,7,Mountain-300 38,Red,863.4832,1485.8776,Mountain Bikes,Bikes,6,Silvia Castro,2,1485.8776,0,2971.7552
+SO71095,2,2025-11-11,2025-11-18,2025-11-14,10023,Ana Ramos,6,Canada,Canada,13,Road-150 38,Black,465.2139,704.9794,Road Bikes,Bikes,6,Silvia Castro,2,704.9794,0.05,1339.4609
+SO71096,1,2023-11-10,2023-11-17,2023-11-13,10032,Victor Sanchez,8,Germany,Germany,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,8,Teresa Vidal,6,1900.2567,0,11401.5402
+SO71096,2,2023-11-10,2023-11-17,2023-11-13,10032,Victor Sanchez,8,Germany,Germany,10,Mountain-400 38,,969.8958,1667.138,Mountain Bikes,Bikes,8,Teresa Vidal,4,1667.138,0,6668.552
+SO71096,3,2023-11-10,2023-11-17,2023-11-13,10032,Victor Sanchez,8,Germany,Germany,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,8,Teresa Vidal,4,145.7533,0.1,524.7119
+SO71097,1,2024-09-12,2024-09-26,2024-09-14,10023,Ana Ramos,9,Australia,Australia,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,2,Marta Ruiz Soto,4,1492.0012,0,5968.0048
+SO71097,2,2024-09-12,2024-09-26,2024-09-14,10023,Ana Ramos,9,Australia,Australia,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,2,Marta Ruiz Soto,3,183.307,0,549.921
+SO71097,3,2024-09-12,2024-09-26,2024-09-14,10023,Ana Ramos,9,Australia,Australia,5,Mountain-200 42,Yellow,50.3097,72.0024,Mountain Bikes,Bikes,2,Marta Ruiz Soto,6,72.0024,0,432.0144
+SO71098,1,2026-06-13,2026-07-04,2026-06-20,10038,Ana Gutierrez,9,Australia,Australia,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,1,Jose Antonio Lopez,5,1852.8051,0.1,8337.623
+SO71098,2,2026-06-13,2026-07-04,2026-06-20,10038,Ana Gutierrez,9,Australia,Australia,13,Road-150 38,Black,465.2139,704.9794,Road Bikes,Bikes,1,Jose Antonio Lopez,3,704.9794,0.05,2009.1913
+SO71098,3,2026-06-13,2026-07-04,2026-06-20,10038,Ana Gutierrez,9,Australia,Australia,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,1,Jose Antonio Lopez,5,145.7533,0,728.7665
+SO71098,4,2026-06-13,2026-07-04,2026-06-20,10038,Ana Gutierrez,9,Australia,Australia,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,1,Jose Antonio Lopez,4,183.307,0,733.228
+SO71099,1,2024-12-04,2024-12-11,2024-12-07,10003,Cristina Gil,4,Southwest,United States,34,HL Mountain Handlebars,Yellow,1053.4956,1568.4513,Handlebars,Components,4,Carmen Ortega,5,1568.4513,0.05,7450.1437
+SO71099,2,2024-12-04,2024-12-11,2024-12-07,10003,Cristina Gil,4,Southwest,United States,11,Mountain-400 42,,418.1969,582.6686,Mountain Bikes,Bikes,4,Carmen Ortega,3,582.6686,0,1748.0058
+SO71099,3,2024-12-04,2024-12-11,2024-12-07,10003,Cristina Gil,4,Southwest,United States,59,Front Light,Silver,981.9876,1852.8051,Lights,Accessories,4,Carmen Ortega,3,1852.8051,0.02,5447.247
+SO71099,4,2024-12-04,2024-12-11,2024-12-07,10003,Cristina Gil,4,Southwest,United States,27,Touring-1000 46,Blue,647.9558,937.5185,Touring Bikes,Bikes,4,Carmen Ortega,3,937.5185,0.1,2531.3
+SO71100,1,2026-05-09,2026-05-16,2026-05-14,10005,Ruben Fernandez,6,Canada,Canada,19,Road-350 38,Yellow,242.862,325.856,Road Bikes,Bikes,6,Silvia Castro,3,325.856,0.1,879.8112
+SO71100,2,2026-05-09,2026-05-16,2026-05-14,10005,Ruben Fernandez,6,Canada,Canada,55,Water Bottle - 30 oz.,Yellow,399.1249,523.5266,Bottles and Cages,Accessories,6,Silvia Castro,6,523.5266,0.05,2984.1016
+SO71100,3,2026-05-09,2026-05-16,2026-05-14,10005,Ruben Fernandez,6,Canada,Canada,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,6,Silvia Castro,2,1900.2567,0,3800.5134
+SO71100,4,2026-05-09,2026-05-16,2026-05-14,10005,Ruben Fernandez,6,Canada,Canada,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,6,Silvia Castro,5,807.7732,0.1,3634.9794
+SO71101,1,2023-10-17,2023-10-31,2023-10-22,10026,Sergio Fernandez,3,Central,United States,36,ML Road Handlebars,Multi,558.7394,815.1606,Handlebars,Components,3,Alberto Fernandez,4,815.1606,0.1,2934.5782
+SO71101,2,2023-10-17,2023-10-31,2023-10-22,10026,Sergio Fernandez,3,Central,United States,51,Full-Finger Gloves,Black,1046.5645,1547.9389,Gloves,Clothing,3,Alberto Fernandez,3,1547.9389,0,4643.8167
+SO71101,3,2023-10-17,2023-10-31,2023-10-22,10026,Sergio Fernandez,3,Central,United States,43,ML Mountain Pedal,Black,470.9493,780.614,Pedals,Components,3,Alberto Fernandez,6,780.614,0.1,4215.3156
+SO71102,1,2025-12-14,2025-12-21,2025-12-21,10033,Carlos Alonso,6,Canada,Canada,20,Road-350 42,Yellow,798.597,1408.5981,Road Bikes,Bikes,6,Silvia Castro,2,1408.5981,0,2817.1962
+SO71102,2,2025-12-14,2025-12-21,2025-12-21,10033,Carlos Alonso,6,Canada,Canada,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,6,Silvia Castro,4,197.5563,0,790.2252
+SO71102,3,2025-12-14,2025-12-21,2025-12-21,10033,Carlos Alonso,6,Canada,Canada,15,Road-150 46,Black,66.4888,104.7634,Road Bikes,Bikes,6,Silvia Castro,2,104.7634,0,209.5268
+SO71103,1,2023-06-08,2023-06-22,2023-06-10,10033,Carlos Alonso,9,Australia,Australia,57,Cable Lock,Blue,298.751,431.5527,Locks,Accessories,1,Jose Antonio Lopez,5,431.5527,0,2157.7635
+SO71103,2,2023-06-08,2023-06-22,2023-06-10,10033,Carlos Alonso,9,Australia,Australia,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,1,Jose Antonio Lopez,4,842.8227,0,3371.2908
+SO71103,3,2023-06-08,2023-06-22,2023-06-10,10033,Carlos Alonso,9,Australia,Australia,11,Mountain-400 42,,418.1969,582.6686,Mountain Bikes,Bikes,1,Jose Antonio Lopez,2,582.6686,0.1,1048.8035
+SO71104,1,2026-07-03,2026-07-13,2026-07-10,10003,Cristina Gil,7,France,France,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,7,Andres Moya,5,1263.8665,0,6319.3325
+SO71104,2,2026-07-03,2026-07-13,2026-07-10,10003,Cristina Gil,7,France,France,49,Women's Mountain Shorts,Multi,1052.8857,1535.1425,Shorts,Clothing,7,Andres Moya,6,1535.1425,0.02,9026.6379
+SO71105,1,2024-04-24,2024-05-04,2024-04-29,10031,Ivan Martinez,4,Southwest,United States,30,Touring-2000 46,Silver,826.2679,1492.0012,Touring Bikes,Bikes,4,Carmen Ortega,3,1492.0012,0.02,4386.4835
+SO71105,2,2024-04-24,2024-05-04,2024-04-29,10031,Ivan Martinez,4,Southwest,United States,33,Touring-3000 46,,93.4335,172.6541,Touring Bikes,Bikes,4,Carmen Ortega,5,172.6541,0.02,846.0051
+SO71105,3,2024-04-24,2024-05-04,2024-04-29,10031,Ivan Martinez,4,Southwest,United States,11,Mountain-400 42,,418.1969,582.6686,Mountain Bikes,Bikes,4,Carmen Ortega,2,582.6686,0.05,1107.0703
+SO71105,4,2024-04-24,2024-05-04,2024-04-29,10031,Ivan Martinez,4,Southwest,United States,9,Mountain-300 46,Red,344.656,627.8185,Mountain Bikes,Bikes,4,Carmen Ortega,3,627.8185,0,1883.4555
+SO71106,1,2026-08-06,2026-08-27,2026-08-11,10036,Sofia Fernandez,2,Northeast,United States,6,Mountain-200 46,Yellow,613.846,807.7732,Mountain Bikes,Bikes,2,Marta Ruiz Soto,2,807.7732,0,1615.5464
+SO71106,2,2026-08-06,2026-08-27,2026-08-11,10036,Sofia Fernandez,2,Northeast,United States,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,2,Marta Ruiz Soto,5,1263.8665,0,6319.3325
+SO71106,3,2026-08-06,2026-08-27,2026-08-11,10036,Sofia Fernandez,2,Northeast,United States,54,Aero Helmet,,1108.0844,2051.1707,Helmets,Accessories,2,Marta Ruiz Soto,4,2051.1707,0,8204.6828
+SO71107,1,2024-03-30,2024-04-20,2024-04-04,10002,Javier Diaz,7,France,France,33,Touring-3000 46,,93.4335,172.6541,Touring Bikes,Bikes,7,Andres Moya,3,172.6541,0,517.9623
+SO71107,2,2024-03-30,2024-04-20,2024-04-04,10002,Javier Diaz,7,France,France,25,Touring-1000 38,Blue,846.6571,1447.8925,Touring Bikes,Bikes,7,Andres Moya,1,1447.8925,0,1447.8925
+SO71107,3,2024-03-30,2024-04-20,2024-04-04,10002,Javier Diaz,7,France,France,15,Road-150 46,Black,66.4888,104.7634,Road Bikes,Bikes,7,Andres Moya,1,104.7634,0,104.7634
+SO71107,4,2024-03-30,2024-04-20,2024-04-04,10002,Javier Diaz,7,France,France,60,Rear Light,Yellow,922.5138,1270.3337,Lights,Accessories,7,Andres Moya,1,1270.3337,0.1,1143.3003
+SO71108,1,2026-08-24,2026-09-07,2026-08-27,10009,Isabel Sanchez,1,Northwest,United States,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,1,Jose Antonio Lopez,2,1933.2737,0.1,3479.8927
+SO71108,2,2026-08-24,2026-09-07,2026-08-27,10009,Isabel Sanchez,1,Northwest,United States,31,Touring-3000 38,,81.2865,145.7533,Touring Bikes,Bikes,1,Jose Antonio Lopez,4,145.7533,0.05,553.8625
+SO71108,3,2026-08-24,2026-09-07,2026-08-27,10009,Isabel Sanchez,1,Northwest,United States,1,Mountain-100 38,Multi,146.9273,256.3779,Mountain Bikes,Bikes,1,Jose Antonio Lopez,1,256.3779,0,256.3779
+SO71108,4,2026-08-24,2026-09-07,2026-08-27,10009,Isabel Sanchez,1,Northwest,United States,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,1,Jose Antonio Lopez,2,1202.9252,0,2405.8504
+SO71109,1,2026-01-28,2026-02-18,2026-01-30,10019,Laura Dominguez,4,Southwest,United States,4,Mountain-200 38,Yellow,118.0225,183.307,Mountain Bikes,Bikes,4,Carmen Ortega,2,183.307,0.02,359.2817
+SO71110,1,2026-08-01,2026-08-22,2026-08-03,10008,Isabel Dominguez,8,Germany,Germany,46,Long-Sleeve Logo Jersey,Black,822.8268,1334.775,Jerseys,Clothing,8,Teresa Vidal,2,1334.775,0,2669.55
+SO71110,2,2026-08-01,2026-08-22,2026-08-03,10008,Isabel Dominguez,8,Germany,Germany,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,8,Teresa Vidal,1,879.9231,0.05,835.9269
+SO71111,1,2024-12-23,2025-01-02,2024-12-30,10012,Maria Ramos,2,Northeast,United States,34,HL Mountain Handlebars,Yellow,1053.4956,1568.4513,Handlebars,Components,2,Marta Ruiz Soto,5,1568.4513,0.05,7450.1437
+SO71112,1,2025-11-05,2025-11-12,2025-11-12,10031,Ivan Martinez,1,Northwest,United States,17,Road-250 42,Black,669.1681,1202.9252,Road Bikes,Bikes,1,Jose Antonio Lopez,6,1202.9252,0,7217.5512
+SO71112,2,2025-11-05,2025-11-12,2025-11-12,10031,Ivan Martinez,1,Northwest,United States,23,Road-550 42,,768.2861,1166.9492,Road Bikes,Bikes,1,Jose Antonio Lopez,1,1166.9492,0,1166.9492
+SO71112,3,2025-11-05,2025-11-12,2025-11-12,10031,Ivan Martinez,1,Northwest,United States,16,Road-250 38,Black,1168.1422,1783.894,Road Bikes,Bikes,1,Jose Antonio Lopez,6,1783.894,0.1,9633.0276
+SO71113,1,2026-07-10,2026-07-17,2026-07-15,10009,Isabel Sanchez,1,Northwest,United States,53,Sport-100 Helmet,Blue,918.5753,1491.424,Helmets,Accessories,1,Jose Antonio Lopez,6,1491.424,0,8948.544
+SO71113,2,2026-07-10,2026-07-17,2026-07-15,10009,Isabel Sanchez,1,Northwest,United States,54,Aero Helmet,,1108.0844,2051.1707,Helmets,Accessories,1,Jose Antonio Lopez,6,2051.1707,0.02,12060.8837
+SO71113,3,2026-07-10,2026-07-17,2026-07-15,10009,Isabel Sanchez,1,Northwest,United States,45,HL Road Pedal,,1131.7806,1933.2737,Pedals,Components,1,Jose Antonio Lopez,4,1933.2737,0.1,6959.7853
+SO71114,1,2024-01-09,2024-01-19,2024-01-11,10030,Sergio Navarro,1,Northwest,United States,3,Mountain-100 46,Multi,136.4568,238.0353,Mountain Bikes,Bikes,1,Jose Antonio Lopez,2,238.0353,0,476.0706
+SO71114,2,2024-01-09,2024-01-19,2024-01-11,10030,Sergio Navarro,1,Northwest,United States,21,Road-350 46,Yellow,1182.4875,2144.0753,Road Bikes,Bikes,1,Jose Antonio Lopez,3,2144.0753,0.05,6110.6146
+SO71115,1,2025-03-26,2025-04-16,2025-03-31,10003,Cristina Gil,4,Southwest,United States,56,Mountain Bottle Cage,Blue,1056.2854,1900.2567,Bottles and Cages,Accessories,4,Carmen Ortega,1,1900.2567,0.1,1710.231
+SO71115,2,2025-03-26,2025-04-16,2025-03-31,10003,Cristina Gil,4,Southwest,United States,22,Road-550 38,,134.6867,197.5563,Road Bikes,Bikes,4,Carmen Ortega,3,197.5563,0,592.6689
+SO71115,3,2025-03-26,2025-04-16,2025-03-31,10003,Cristina Gil,4,Southwest,United States,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,4,Carmen Ortega,3,875.1415,0.02,2572.916
+SO71116,1,2025-03-30,2025-04-20,2025-04-06,10022,Sofia Vazquez,3,Central,United States,24,Road-550 46,,453.6644,646.7912,Road Bikes,Bikes,3,Alberto Fernandez,5,646.7912,0,3233.956
+SO71116,2,2025-03-30,2025-04-20,2025-04-06,10022,Sofia Vazquez,3,Central,United States,52,Classic Cap,Multi,616.5805,875.1415,Caps,Clothing,3,Alberto Fernandez,1,875.1415,0.1,787.6273
+SO71116,3,2025-03-30,2025-04-20,2025-04-06,10022,Sofia Vazquez,3,Central,United States,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,3,Alberto Fernandez,1,879.9231,0.02,862.3246
+SO71116,4,2025-03-30,2025-04-20,2025-04-06,10022,Sofia Vazquez,3,Central,United States,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,3,Alberto Fernandez,2,842.8227,0.05,1601.3631
+SO71117,1,2024-08-24,2024-09-07,2024-08-26,10006,Rosa Moreno,6,Canada,Canada,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,6,Silvia Castro,5,1263.8665,0.1,5687.3993
+SO71117,2,2024-08-24,2024-09-07,2024-08-26,10006,Rosa Moreno,6,Canada,Canada,28,Touring-2000 38,Silver,464.6547,879.9231,Touring Bikes,Bikes,6,Silvia Castro,2,879.9231,0.1,1583.8616
+SO71117,3,2024-08-24,2024-09-07,2024-08-26,10006,Rosa Moreno,6,Canada,Canada,29,Touring-2000 42,Silver,773.3997,1263.8665,Touring Bikes,Bikes,6,Silvia Castro,3,1263.8665,0.02,3715.7675
+SO71118,1,2023-03-28,2023-04-11,2023-04-04,10018,Carlos Alvarez,1,Northwest,United States,24,Road-550 46,,453.6644,646.7912,Road Bikes,Bikes,1,Jose Antonio Lopez,5,646.7912,0.1,2910.5604
+SO71118,2,2023-03-28,2023-04-11,2023-04-04,10018,Carlos Alvarez,1,Northwest,United States,44,ML Road Pedal,Silver,642.0005,1208.6603,Pedals,Components,1,Jose Antonio Lopez,2,1208.6603,0,2417.3206
+SO71118,3,2023-03-28,2023-04-11,2023-04-04,10018,Carlos Alvarez,1,Northwest,United States,10,Mountain-400 38,,969.8958,1667.138,Mountain Bikes,Bikes,1,Jose Antonio Lopez,5,1667.138,0.1,7502.121
+SO71118,4,2023-03-28,2023-04-11,2023-04-04,10018,Carlos Alvarez,1,Northwest,United States,51,Full-Finger Gloves,Black,1046.5645,1547.9389,Gloves,Clothing,1,Jose Antonio Lopez,4,1547.9389,0,6191.7556
+SO71119,1,2023-09-16,2023-09-23,2023-09-19,10024,Paula Torres,6,Canada,Canada,39,Hydraulic Disc Brakes,Silver,443.9658,842.8227,Brakes,Components,6,Silvia Castro,2,842.8227,0.1,1517.0809
+SO71120,1,2025-07-10,2025-07-24,2025-07-15,10029,Diego Gutierrez,2,Northeast,United States,26,Touring-1000 42,Blue,99.612,167.4465,Touring Bikes,Bikes,2,Marta Ruiz Soto,3,167.4465,0.1,452.1055
+SO71120,2,2025-07-10,2025-07-24,2025-07-15,10029,Diego Gutierrez,2,Northeast,United States,18,Road-250 46,Black,747.9459,1359.0358,Road Bikes,Bikes,2,Marta Ruiz Soto,2,1359.0358,0,2718.0716
+SO71120,3,2025-07-10,2025-07-24,2025-07-15,10029,Diego Gutierrez,2,Northeast,United States,2,Mountain-100 42,Multi,305.1968,422.3078,Mountain Bikes,Bikes,2,Marta Ruiz Soto,6,422.3078,0,2533.8468

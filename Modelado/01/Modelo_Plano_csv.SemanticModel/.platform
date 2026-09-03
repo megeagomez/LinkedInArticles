@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Modelo Plano (CSV)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "aaf8fd4d-744a-4c45-9e67-892f92c9d517"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a44444444444444444444",
+  "position": {
+    "x": 940,
+    "y": 40,
+    "z": 1000,
+    "height": 150,
+    "width": 280,
+    "tabOrder": 1300
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Ventas"
+                    }
+                  },
+                  "Property": "Incremento YoY % Plano"
+                }
+              },
+              "queryRef": "Fact_Ventas.Incremento YoY % Plano",
+              "nativeQueryRef": "Incremento YoY % Plano"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

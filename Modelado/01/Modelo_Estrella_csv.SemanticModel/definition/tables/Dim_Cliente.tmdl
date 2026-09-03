@@ -1,0 +1,27 @@
+table Dim_Cliente
+	lineageTag: 6b86420a-3172-4a61-8644-460540d5b636
+
+	column ClienteKey
+		dataType: int64
+		isHidden
+		lineageTag: 6a9cadfe-54fa-447d-9438-e9dfae485ba8
+		sourceColumn: ClienteKey
+
+	column NombreCliente
+		dataType: string
+		lineageTag: 9faba7ee-2f7d-45bf-8981-cd9b9d16c50d
+		sourceColumn: NombreCliente
+
+	partition Dim_Cliente = m
+		mode: import
+		source =
+			let
+				Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				ColumnasSeleccionadas = Table.SelectColumns(EncabezadosPromovidos, {"ClienteID","NombreCliente"}),
+				SinDuplicados = Table.Distinct(ColumnasSeleccionadas),
+				TipoCambiado = Table.TransformColumnTypes(SinDuplicados, {{"ClienteID", Int64.Type}, {"NombreCliente", type text}}),
+				ClienteRenombrado = Table.RenameColumns(TipoCambiado, {{"ClienteID","ClienteKey"}})
+			in
+				ClienteRenombrado
+

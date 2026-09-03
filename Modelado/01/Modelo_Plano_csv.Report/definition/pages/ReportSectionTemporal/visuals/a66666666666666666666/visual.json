@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "a66666666666666666666",
+  "position": {
+    "x": 640,
+    "y": 224,
+    "z": 1000,
+    "height": 400,
+    "width": 624,
+    "tabOrder": 1500
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Año"
+                }
+              },
+              "queryRef": "Ventas_Plano.Año",
+              "nativeQueryRef": "Año"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Venta Total Plano"
+                }
+              },
+              "queryRef": "Ventas_Plano.Venta Total Plano",
+              "nativeQueryRef": "Venta Total Plano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Venta Total Plano LY"
+                }
+              },
+              "queryRef": "Ventas_Plano.Venta Total Plano LY",
+              "nativeQueryRef": "Venta Total Plano LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Incremento YoY % Plano"
+                }
+              },
+              "queryRef": "Ventas_Plano.Incremento YoY % Plano",
+              "nativeQueryRef": "Incremento YoY % Plano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ventas_Plano"
+                    }
+                  },
+                  "Property": "Venta Total Plano LY  (fix)"
+                }
+              },
+              "queryRef": "Ventas_Plano.Venta Total Plano LY  (fix)",
+              "nativeQueryRef": "Venta Total Plano LY  (fix)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Ventas_Plano"
+                  }
+                },
+                "Property": "Año"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    }
+  }
+}
