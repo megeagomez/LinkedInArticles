@@ -1,5 +1,7 @@
 expression RutaCarpetaDatos = "d:\Presentaciones\26-27\Linked-in\01_Tu-modelo-no-es-lento-es-plano\demo\csv\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: bc00e6a9-8c73-41bc-98d8-bed2b9c10aeb
 
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Text
+

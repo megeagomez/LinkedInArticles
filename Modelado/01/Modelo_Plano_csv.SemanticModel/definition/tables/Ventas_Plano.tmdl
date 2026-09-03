@@ -182,21 +182,25 @@ table Ventas_Plano
 		annotation SummarizationSetBy = Automatic
 
 	column UnitPrice
-		dataType: decimal
+		dataType: double
 		lineageTag: 791a64a2-16c7-4cbc-80da-fd807f644408
 		summarizeBy: sum
 		sourceColumn: UnitPrice
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column LineTotal
-		dataType: decimal
+		dataType: double
 		isHidden
 		lineageTag: e5de03a1-e02a-4128-b151-a6b76446c9c2
 		summarizeBy: sum
 		sourceColumn: LineTotal
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column DueDate
 		dataType: dateTime
@@ -233,7 +237,7 @@ table Ventas_Plano
 		annotation SummarizationSetBy = Automatic
 
 	column StandardCost
-		dataType: decimal
+		dataType: double
 		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
 		lineageTag: eb093d2e-2188-4610-96ec-5b7a2aa36acb
 		summarizeBy: sum
@@ -244,7 +248,7 @@ table Ventas_Plano
 		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
 
 	column ListPrice
-		dataType: decimal
+		dataType: double
 		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
 		lineageTag: 3f077764-8364-4d0b-b273-0db582f6fde2
 		summarizeBy: sum
@@ -301,17 +305,17 @@ table Ventas_Plano
 	partition Ventas_Plano = m
 		mode: import
 		source =
-			let
-				Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
-				EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
-				TipoCambiado = Table.TransformColumnTypes(EncabezadosPromovidos,{
-					{"SalesOrderNumber", type text}, {"SalesOrderLineNumber", Int64.Type}, {"OrderDate", type datetime},
-					{"DueDate", type datetime}, {"ShipDate", type datetime}, {"ClienteID", Int64.Type}, {"NombreCliente", type text},
-					{"TerritorioID", Int64.Type}, {"Territorio", type text}, {"Pais", type text}, {"ProductoID", Int64.Type},
-					{"Producto", type text}, {"Color", type text}, {"StandardCost", type number}, {"ListPrice", type number},
-					{"Subcategoria", type text}, {"Categoria", type text}, {"VendedorID", Int64.Type}, {"NombreVendedor", type text},
-					{"OrderQty", Int64.Type}, {"UnitPrice", type number}, {"UnitPriceDiscount", type number}, {"LineTotal", type number}
-				})
-			in
-				TipoCambiado
+				let
+					Origen = Csv.Document(File.Contents(RutaCarpetaDatos & "Ventas_Plano.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					EncabezadosPromovidos = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+					TipoCambiado = Table.TransformColumnTypes(EncabezadosPromovidos,{
+						{"SalesOrderNumber", type text}, {"SalesOrderLineNumber", Int64.Type}, {"OrderDate", type datetime},
+						{"DueDate", type datetime}, {"ShipDate", type datetime}, {"ClienteID", Int64.Type}, {"NombreCliente", type text},
+						{"TerritorioID", Int64.Type}, {"Territorio", type text}, {"Pais", type text}, {"ProductoID", Int64.Type},
+						{"Producto", type text}, {"Color", type text}, {"StandardCost", type number}, {"ListPrice", type number},
+						{"Subcategoria", type text}, {"Categoria", type text}, {"VendedorID", Int64.Type}, {"NombreVendedor", type text},
+						{"OrderQty", Int64.Type}, {"UnitPrice", type number}, {"UnitPriceDiscount", type number}, {"LineTotal", type number}
+					})
+				in
+					TipoCambiado
 

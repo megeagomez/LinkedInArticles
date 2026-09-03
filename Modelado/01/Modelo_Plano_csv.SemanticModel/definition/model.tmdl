@@ -7,7 +7,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["Ventas_Plano"]
+annotation PBI_QueryOrder = ["Ventas_Plano","RutaCarpetaDatos"]
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
