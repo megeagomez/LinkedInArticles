@@ -1,0 +1,9 @@
+createOrReplace
+{% for rel in relationships %}
+	relationship '{{ rel.name }}'
+{% if not rel.is_active %}		isActive: false
+{% endif %}		fromColumn: '{{ rel.from_table }}'.'{{ rel.from_column }}'
+		toColumn: '{{ rel.to_table }}'.'{{ rel.to_column }}'
+{% if not loop.last %}
+{% endif %}
+{% endfor %}

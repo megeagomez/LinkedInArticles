@@ -1,0 +1,23 @@
+{
+  "skill_name": "DimTiempoCasiPerfecta",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Necesito montar una tabla de fechas para un modelo de Power BI que estoy armando para un cliente de retail. En su convención de nombres se llama 'Calendario', no 'Fecha'. Que cubra de 2020 a 2026, y el año fiscal les arranca en enero (o sea, coincide con el natural). De momento solo enséñame el TMDL, no lo apliques a nada todavía, quiero revisarlo primero.",
+      "expected_output": "El skill debe llamar a scripts/render_dimension.py con table_name=Calendario, start_year=2020, end_year=2026, fiscal_start_month=1, y fiscal_year_basis confirmado o preguntado (con año fiscal=natural, Start o End dan igual pero el asistente debería notarlo o preguntarlo). Debe mostrar el TMDL completo en la respuesta (modo show), sin intentar aplicarlo contra ningún modelo real ni invocar semantic-model-authoring. No debe generar relaciones (el usuario no las pidió).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Tengo mi tabla de fechas ya creada, se llama Fecha. Ahora conéctala con la tabla de hechos Ventas: quiero que la relación activa vaya por la columna [Fecha de Venta], y relaciones inactivas por [Fecha Entrega], [Fecha Envio] y [Fecha Factura]. Muéstrame el TMDL de las relaciones, todavía no lo apliques.",
+      "expected_output": "El skill debe llamar a scripts/render_relationships.py con exactamente 4 relaciones: Ventas.[Fecha de Venta] -> Fecha.Date marcada activa, y las otras tres (Fecha Entrega, Fecha Envio, Fecha Factura) marcadas isActive: false. Debe mostrar el TMDL resultante en modo show sin aplicarlo. No debe regenerar la tabla de fechas (ya existe según el usuario).",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Oye, ¿puedes montarme ya la dimensión de tiempo casi perfecta en mi semantic model de Fabric? Es el workspace 'Analytics Ventas', dataset 'ModeloComercial'.",
+      "expected_output": "La petición no da nombre de tabla, rango de años, calendario fiscal, ni confirma modo aplicar/mostrar de forma inequívoca (dice 'montarme ya' lo que podría sonar a apply, pero faltan los demás parámetros). El skill debe preguntar los parámetros que faltan (al menos table_name, start_year/end_year, y confirmar si aplicar de verdad contra ese workspace/dataset o solo mostrar el TMDL) en vez de generar y aplicar algo con valores inventados sin confirmación.",
+      "files": []
+    }
+  ]
+}

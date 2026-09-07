@@ -1,0 +1,397 @@
+createOrReplace
+
+	table Fecha
+		dataCategory: Time
+
+		measure Fecha_selection =
+				VAR _min = MIN('Fecha'[Date])
+				VAR _max = MAX('Fecha'[Date])
+				VAR _todos = SUMMARIZE('Fecha','Fecha'[Date],'Fecha'[DayOffset],"sig",'Fecha'[DayOffset]+1,"ant",'Fecha'[DayOffset]-1)
+				VAR _txt1 = CONCATENATEX(_todos,'Fecha'[Date] & " | " & 'Fecha'[DayOffset] & " | " & [sig] & " | " & [ant],",")
+				VAR _enri = ADDCOLUMNS(_todos,"tieneAnterior",COUNTX(VAR _an=[ant] RETURN FILTER(_todos,'Fecha'[DayOffset]=_an),1),"tienesiguiente",COUNTX(VAR _an=[sig] RETURN FILTER(_todos,'Fecha'[DayOffset]=_an),1))
+				VAR _enri2 = ADDCOLUMNS(_enri,"concatenar",IF(ISBLANK([tieneanterior]) && NOT ISBLANK([tienesiguiente]),"-",IF(ISBLANK([tienesiguiente]),",")))
+				VAR _devolver = CONCATENATEX(FILTER(_enri2,NOT ISBLANK([concatenar])),'Fecha'[Date] & [concatenar],"",'Fecha'[Date])
+				VAR _txt2 = CONCATENATEX(_enri2,'Fecha'[Date] & " | " & [concatenar],",",'Fecha'[Date])
+				RETURN
+				    _devolver
+
+		column Date
+			dataType: dateTime
+			isHidden
+			isKey
+			formatString: General Date
+			summarizeBy: none
+			sourceColumn: Date
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalDate
+			dataType: dateTime
+			formatString: General Date
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: FiscalDate
+
+			annotation SummarizationSetBy = Automatic
+
+		column Year
+			dataType: int64
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column Month
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Month
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Month Name'
+			dataType: string
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Month Name
+			sortByColumn: Month
+
+			annotation SummarizationSetBy = Automatic
+
+		column MonthKey
+			dataType: int64
+			displayFolder: Claves
+			summarizeBy: none
+			sourceColumn: MonthKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Month Name Short'
+			dataType: string
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Month Name Short
+			sortByColumn: Month
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Month Name Complete'
+			dataType: string
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Month Name Complete
+			sortByColumn: MonthKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Month Name Short Complete'
+			dataType: string
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Month Name Short Complete
+			sortByColumn: MonthKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column Quarter
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Quarter
+
+			annotation SummarizationSetBy = Automatic
+
+		column QuarterCode
+			dataType: int64
+			displayFolder: Claves
+			summarizeBy: none
+			sourceColumn: QuarterCode
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Week of Year'
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Week of Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column Day
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Day
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Day of Week'
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Day of Week
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Day of Year'
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Day of Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Day Name'
+			dataType: string
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: Day Name
+			sortByColumn: 'Day of Week'
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Fiscal Week of Year'
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: Fiscal Week of Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalYear
+			dataType: int64
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: FiscalYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalQuarter
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: FiscalQuarter
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalQuarterCode
+			dataType: int64
+			displayFolder: Claves
+			summarizeBy: none
+			sourceColumn: FiscalQuarterCode
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Year'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Month'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Month
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Week'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Week
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Day'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Day
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Fiscal Year'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Fiscal Year
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Fiscal Month'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Fiscal Month
+
+			annotation SummarizationSetBy = Automatic
+
+		column 'Current Fiscal Week'
+			dataType: string
+			displayFolder: Posiciones relativas\Estado
+			summarizeBy: none
+			sourceColumn: Current Fiscal Week
+
+			annotation SummarizationSetBy = Automatic
+
+		column IsoYear
+			dataType: int64
+			displayFolder: Atributos descriptivos
+			summarizeBy: none
+			sourceColumn: IsoYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column IsoWeek
+			dataType: int64
+			displayFolder: Ordinales
+			summarizeBy: none
+			sourceColumn: IsoWeek
+
+			annotation SummarizationSetBy = Automatic
+
+		column DayOffset
+			dataType: int64
+			displayFolder: Posiciones relativas\Offsets
+			summarizeBy: none
+			sourceColumn: DayOffset
+
+			annotation SummarizationSetBy = Automatic
+
+		column MonthOffset
+			dataType: int64
+			displayFolder: Posiciones relativas\Offsets
+			summarizeBy: none
+			sourceColumn: MonthOffset
+
+			annotation SummarizationSetBy = Automatic
+
+		column YearOffset
+			dataType: int64
+			displayFolder: Posiciones relativas\Offsets
+			summarizeBy: none
+			sourceColumn: YearOffset
+
+			annotation SummarizationSetBy = Automatic
+
+		column QuarterOffset
+			dataType: int64
+			displayFolder: Posiciones relativas\Offsets
+			summarizeBy: none
+			sourceColumn: QuarterOffset
+
+			annotation SummarizationSetBy = Automatic
+
+		column idFecha
+			dataType: int64
+			displayFolder: Claves
+			summarizeBy: none
+			sourceColumn: idFecha
+
+			annotation SummarizationSetBy = Automatic
+
+		column IsWorkingDay
+			dataType: boolean
+			displayFolder: Días laborables
+			summarizeBy: none
+			sourceColumn: IsWorkingDay
+
+			annotation SummarizationSetBy = Automatic
+
+		column WorkingDayNumber
+			dataType: int64
+			displayFolder: Días laborables
+			summarizeBy: none
+			sourceColumn: WorkingDayNumber
+
+			annotation SummarizationSetBy = Automatic
+
+		hierarchy ' Calendar'
+
+			level Year
+				column: Year
+
+			level Month
+				column: 'Month Name'
+
+			level Date
+				column: Date
+
+		hierarchy ' Fiscal'
+
+			level Year
+				column: FiscalYear
+
+			level Month
+				column: 'Month Name'
+
+			level Date
+				column: Date
+
+		hierarchy ' Calendar Week'
+
+			level Year
+				column: Year
+
+			level 'Week of Year'
+				column: 'Week of Year'
+
+			level Date
+				column: Date
+
+		hierarchy ' Fiscal Week'
+
+			level 'Fiscal Year'
+				column: FiscalYear
+
+			level 'Fiscal Week of Year'
+				column: 'Fiscal Week of Year'
+
+			level Date
+				column: Date
+
+		hierarchy ' Iso Week'
+
+			level 'Iso Year'
+				column: IsoYear
+
+			level IsoWeek
+				column: IsoWeek
+
+			level Date
+				column: Date
+
+		partition Fecha = m
+			mode: import
+			source =
+					let
+					    Source = Lakehouse.Contents([]),
+					    Workspace = Source{[workspaceId=_WorkspaceId]}[Data],
+					    LakehouseNav = Workspace{[lakehouseId=_LakehouseId]}[Data],
+					    DimFecha = LakehouseNav{[Id="DimFecha",ItemKind="Table"]}[Data]
+					in
+					    DimFecha
+
+		annotation PBI_ResultType = Table
+
+		annotation PBI_NavigationStepName = Navigation
+
+
+	expression _WorkspaceId = "<WORKSPACE_GUID>" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Text
+
+
+
+	expression _LakehouseId = "<LAKEHOUSE_GUID>" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Text
