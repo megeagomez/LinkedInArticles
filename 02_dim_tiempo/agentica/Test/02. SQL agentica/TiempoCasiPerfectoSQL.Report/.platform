@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "TiempoCasiPerfectoSQL"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cd8f2c7c-7898-4f64-882e-03a32776214f"
+  }
+}

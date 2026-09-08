@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "277a82470c6560d3ec10",
+  "position": { "x": 1576, "y": 16, "z": 1000, "height": 80, "width": 320, "tabOrder": 1 },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Fecha Pedido" } },
+              "queryRef": "Ventas.Fecha Pedido",
+              "nativeQueryRef": "Fecha Pedido"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [{ "properties": { "mode": { "expr": { "Literal": { "Value": "'Between'" } } } } }],
+      "header": [{ "properties": {
+        "show": { "expr": { "Literal": { "Value": "true" } } },
+        "text": { "expr": { "Literal": { "Value": "'Fecha Pedido'" } } }
+      }}]
+    },
+    "visualContainerObjects": {
+      "padding": [{ "properties": {
+        "top":    { "expr": { "Literal": { "Value": "8D" } } },
+        "bottom": { "expr": { "Literal": { "Value": "8D" } } },
+        "left":   { "expr": { "Literal": { "Value": "8D" } } },
+        "right":  { "expr": { "Literal": { "Value": "8D" } } }
+      }}]
+    }
+  }
+}

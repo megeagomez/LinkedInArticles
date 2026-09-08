@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "d2876bd827c1c27a575c",
+  "position": { "x": 24, "y": 496, "z": 1000, "height": 140, "width": 1872, "tabOrder": 6 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Total Ventas (ly)" } },
+              "queryRef": "Ventas.Total Ventas (ly)",
+              "nativeQueryRef": "Total Ventas (ly)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Unidades Vendidas (ly)" } },
+              "queryRef": "Ventas.Unidades Vendidas (ly)",
+              "nativeQueryRef": "Unidades Vendidas (ly)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Margen (ly)" } },
+              "queryRef": "Ventas.Margen (ly)",
+              "nativeQueryRef": "Margen (ly)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "# Pedidos (ly)" } },
+              "queryRef": "Ventas.# Pedidos (ly)",
+              "nativeQueryRef": "# Pedidos (ly)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "outline": [{
+        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
+        "selector": { "id": "default" }
+      }]
+    }
+  }
+}

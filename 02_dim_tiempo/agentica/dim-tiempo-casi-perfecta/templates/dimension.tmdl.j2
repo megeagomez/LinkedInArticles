@@ -25,15 +25,6 @@ createOrReplace
 
 			annotation SummarizationSetBy = Automatic
 
-		column FiscalDate
-			dataType: dateTime
-			formatString: General Date
-			displayFolder: Atributos descriptivos
-			summarizeBy: none
-			sourceColumn: FiscalDate
-
-			annotation SummarizationSetBy = Automatic
-
 		column Year
 			dataType: int64
 			displayFolder: Atributos descriptivos
@@ -151,14 +142,6 @@ createOrReplace
 
 			annotation SummarizationSetBy = Automatic
 
-		column 'Fiscal Week of Year'
-			dataType: int64
-			displayFolder: Ordinales
-			summarizeBy: none
-			sourceColumn: Fiscal Week of Year
-
-			annotation SummarizationSetBy = Automatic
-
 		column FiscalYear
 			dataType: int64
 			displayFolder: Atributos descriptivos
@@ -167,19 +150,20 @@ createOrReplace
 
 			annotation SummarizationSetBy = Automatic
 
-		column FiscalQuarter
+		column FiscalMonthNumber
 			dataType: int64
 			displayFolder: Ordinales
 			summarizeBy: none
-			sourceColumn: FiscalQuarter
+			sourceColumn: FiscalMonthNumber
 
 			annotation SummarizationSetBy = Automatic
 
-		column FiscalQuarterCode
-			dataType: int64
-			displayFolder: Claves
+		column 'Fiscal Month Name'
+			dataType: string
+			displayFolder: Atributos descriptivos
 			summarizeBy: none
-			sourceColumn: FiscalQuarterCode
+			sourceColumn: Fiscal Month Name
+			sortByColumn: FiscalMonthNumber
 
 			annotation SummarizationSetBy = Automatic
 
@@ -220,22 +204,6 @@ createOrReplace
 			displayFolder: Posiciones relativas\Estado
 			summarizeBy: none
 			sourceColumn: Current Fiscal Year
-
-			annotation SummarizationSetBy = Automatic
-
-		column 'Current Fiscal Month'
-			dataType: string
-			displayFolder: Posiciones relativas\Estado
-			summarizeBy: none
-			sourceColumn: Current Fiscal Month
-
-			annotation SummarizationSetBy = Automatic
-
-		column 'Current Fiscal Week'
-			dataType: string
-			displayFolder: Posiciones relativas\Estado
-			summarizeBy: none
-			sourceColumn: Current Fiscal Week
 
 			annotation SummarizationSetBy = Automatic
 
@@ -328,7 +296,7 @@ createOrReplace
 				column: FiscalYear
 
 			level Month
-				column: 'Month Name'
+				column: 'Fiscal Month Name'
 
 			level Date
 				column: Date
@@ -340,17 +308,6 @@ createOrReplace
 
 			level 'Week of Year'
 				column: 'Week of Year'
-
-			level Date
-				column: Date
-
-		hierarchy ' Fiscal Week'
-
-			level 'Fiscal Year'
-				column: FiscalYear
-
-			level 'Fiscal Week of Year'
-				column: 'Fiscal Week of Year'
 
 			level Date
 				column: Date
@@ -396,15 +353,29 @@ createOrReplace
 					    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom5",{{'{'}}{"QuarterCode", Int64.Type}{{'}'}}),
 					    #"Inserted Day of Year" = Table.AddColumn(#"Changed Type5", "Day of Year", each Date.DayOfYear([Date]), Int64.Type),
 					    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Year", "Day Name", each Date.DayOfWeekName([Date]), type text),
-					    #"Added Custom" = Table.AddColumn(#"Inserted Day Name", "FiscalDate", each Date.AddMonths([Date],-1*_FiscalStartMonth)),
-					    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{'{'}}{"FiscalDate", type datetime}{{'}'}}),
-					    #"Fiscal week of Year" = Table.AddColumn(#"Changed Type1", "Fiscal Week of Year", each Date.WeekOfYear([FiscalDate]), Int64.Type),
-
-					    #"FiscalYearStart" = Table.AddColumn(#"Fiscal week of Year", "FiscalYearStart", each if [Month] >= _FiscalStartMonth then [Year] else [Year] - 1, Int64.Type),
+					    // El único concepto fiscal que hace falta: a qué año fiscal
+					    // pertenece la fecha. FiscalYear=2026 (basis Start, arranque en
+					    // junio) es 1 junio 2026 -> 31 mayo 2027 — un año fiscal es un año
+					    // natural desplazado, nada más; no hace falta mes/semana/trimestre
+					    // fiscal como conceptos aparte del natural.
+					    #"FiscalYearStart" = Table.AddColumn(#"Inserted Day Name", "FiscalYearStart", each if [Month] >= _FiscalStartMonth then [Year] else [Year] - 1, Int64.Type),
 					    #"FiscalYear" = Table.AddColumn(#"FiscalYearStart", "FiscalYear", each if _FiscalYearBasis = "End" then [FiscalYearStart] + 1 else [FiscalYearStart], Int64.Type),
-					    #"FiscalQuarter" = Table.AddColumn(#"FiscalYear", "FiscalQuarter", each Number.IntegerDivide(Number.Mod([Month] - _FiscalStartMonth, 12), 3) + 1, Int64.Type),
-					    #"FiscalQuarterCode" = Table.AddColumn(#"FiscalQuarter", "FiscalQuarterCode", each [FiscalYear]*100 + [FiscalQuarter], Int64.Type),
-					    #"RemovedFiscalYearStart" = Table.RemoveColumns(#"FiscalQuarterCode", {{'{'}}"FiscalYearStart"{{'}'}}),
+
+					    // Orden cronológico dentro del año fiscal (1 = mes de arranque
+					    // fiscal, 12 = el mes justo anterior). 'Month Name' no sirve para
+					    // esto: su sortByColumn es "Month" (natural, Ene=1..Dic=12), así
+					    // que la jerarquía ' Fiscal' necesita su propia columna de mes con
+					    // su propio sortByColumn, o hereda el orden natural Ene->Dic en vez
+					    // del orden fiscal Jun->May.
+					    // +12 antes del Number.Mod es necesario: Number.Mod da el resto con
+					    // el signo del DIVIDENDO (como en .NET), no el de un módulo
+					    // matemático siempre-positivo. Sin el +12, meses anteriores al de
+					    // arranque fiscal (p.ej. Enero con arranque en junio: 1-6=-5) dan
+					    // Number.Mod(-5,12)=-5, no 7 — [Month]-_FiscalStartMonth siempre
+					    // está en [-11,11], así que +12 lo deja en [1,23], sin signo negativo.
+					    #"FiscalMonthNumber" = Table.AddColumn(#"FiscalYear", "FiscalMonthNumber", each Number.Mod(([Month] - _FiscalStartMonth) + 12, 12) + 1, Int64.Type),
+					    #"FiscalMonthName" = Table.AddColumn(#"FiscalMonthNumber", "Fiscal Month Name", each [Month Name], type text),
+					    #"RemovedFiscalYearStart" = Table.RemoveColumns(#"FiscalMonthName", {{'{'}}"FiscalYearStart"{{'}'}}),
 
 					    #"CurrentYear" = Table.AddColumn(#"RemovedFiscalYearStart", "Current Year", each if [Year]=Date.Year(DateTime.LocalNow()) then "Current" else if [Year]>Date.Year(DateTime.LocalNow()) then "Future Year" else "Past Year"),
 					    #"CurrentMonth" = Table.AddColumn(CurrentYear, "Current Month", each if [Year]*100+[Month] = Date.Year(DateTime.LocalNow()) *100+ Date.Month(DateTime.LocalNow())   then "Current" else if  [Year]*100+[Month] > Date.Year(DateTime.LocalNow()) *100+ Date.Month(DateTime.LocalNow())  then "Future Month" else "Past Month"),
@@ -422,8 +393,6 @@ createOrReplace
 					            else if [FiscalYear] > todayFiscalYear then "Future Year"
 					            else "Past Year"
 					    ),
-					    #"CurrentFiscalMonth" = Table.AddColumn(CurrentFiscalYear, "Current Fiscal Month", each [Current Month]),
-					    #"CurrentFiscalWeek" = Table.AddColumn(CurrentFiscalMonth, "Current Fiscal Week", each [Current Week]),
 					       ObtenIsoWeek= (Fecha as date) => let
 					                    #"Removed Other Columns" = Table.FromRows({{'{'}}{Fecha}{{'}'}},{{'{'}}"FullDateAlternateKey"{{'}'}}),
 					                    #"Added Custom" = Table.AddColumn(#"Removed Other Columns", "PrimerDiaAño", each Date.AddDays( #date(Date.Year([FullDateAlternateKey]),1,4) ,-1* Date.DayOfWeek(  #date(Date.Year([FullDateAlternateKey]),1,4),Day.Monday))),
@@ -440,7 +409,7 @@ createOrReplace
 
 					                    in
 					                        #"Removed Other Columns1" ,
-					    #"AniadirIsoWeek"=Table.AddColumn( #"CurrentFiscalWeek","DatosIso",each ObtenIsoWeek( Date.From( [Date]))),
+					    #"AniadirIsoWeek"=Table.AddColumn( CurrentFiscalYear,"DatosIso",each ObtenIsoWeek( Date.From( [Date]))),
 					    #"Expanded DatosIso" = Table.ExpandTableColumn(AniadirIsoWeek, "DatosIso", {{'{'}}"IsoYear", "IsoWeek"{{'}'}}, {{'{'}}"IsoYear", "IsoWeek"{{'}'}}),
 					   #"Added Custom1" = Table.AddColumn(#"Expanded DatosIso", "DayOffset", each Duration.Days(Date.From([Date])-Date.From(DateTime.LocalNow()))),
 					    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "YearOffset", each [Year]- Date.Year(DateTime.LocalNow())),
@@ -469,7 +438,7 @@ createOrReplace
 					        in
 					            combined,
 
-					    #"Changed Type2" = Table.TransformColumnTypes(#"Added WorkingDayNumber",{{'{'}}{"DayOffset", Int64.Type}, {"IsoWeek", Int64.Type}, {"IsoYear", Int64.Type}, {"YearOffset", Int64.Type},{"QuarterOffset", Int64.Type},  {"MonthOffset", Int64.Type}, {"Current Year", type text}, {"Current Month", type text}, {"Current Week", type text}, {"Current Day", type text}, {"Current Fiscal Year", type text}, {"Current Fiscal Month", type text}, {"Current Fiscal Week", type text}, {"IsWorkingDay", type logical}, {"WorkingDayNumber", Int64.Type}{{'}'}})
+					    #"Changed Type2" = Table.TransformColumnTypes(#"Added WorkingDayNumber",{{'{'}}{"DayOffset", Int64.Type}, {"IsoWeek", Int64.Type}, {"IsoYear", Int64.Type}, {"YearOffset", Int64.Type},{"QuarterOffset", Int64.Type},  {"MonthOffset", Int64.Type}, {"Current Year", type text}, {"Current Month", type text}, {"Current Week", type text}, {"Current Day", type text}, {"Current Fiscal Year", type text}, {"IsWorkingDay", type logical}, {"WorkingDayNumber", Int64.Type}{{'}'}})
 
 					in
 					   #"Changed Type2"

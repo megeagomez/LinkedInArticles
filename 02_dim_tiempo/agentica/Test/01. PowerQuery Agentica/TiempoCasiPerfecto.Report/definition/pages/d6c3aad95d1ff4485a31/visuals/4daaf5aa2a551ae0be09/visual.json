@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "4daaf5aa2a551ae0be09",
+  "position": { "x": 24, "y": 148, "z": 1000, "height": 140, "width": 1872, "tabOrder": 3 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Total Ventas" } },
+              "queryRef": "Ventas.Total Ventas",
+              "nativeQueryRef": "Total Ventas"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Unidades Vendidas" } },
+              "queryRef": "Ventas.Unidades Vendidas",
+              "nativeQueryRef": "Unidades Vendidas"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "# Pedidos" } },
+              "queryRef": "Ventas.# Pedidos",
+              "nativeQueryRef": "# Pedidos"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "# Líneas de Venta" } },
+              "queryRef": "Ventas.# Líneas de Venta",
+              "nativeQueryRef": "# Líneas de Venta"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Coste Total" } },
+              "queryRef": "Ventas.Coste Total",
+              "nativeQueryRef": "Coste Total"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "outline": [{
+        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
+        "selector": { "id": "default" }
+      }]
+    }
+  }
+}

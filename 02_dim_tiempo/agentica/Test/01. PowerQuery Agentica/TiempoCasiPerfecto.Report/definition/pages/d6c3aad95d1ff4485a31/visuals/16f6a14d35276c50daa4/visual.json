@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "16f6a14d35276c50daa4",
+  "position": { "x": 24, "y": 688, "z": 1000, "height": 140, "width": 1872, "tabOrder": 8 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Total Ventas (var vs ly)" } },
+              "queryRef": "Ventas.Total Ventas (var vs ly)",
+              "nativeQueryRef": "Total Ventas (var vs ly)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Total Ventas (var vs ly %)" } },
+              "queryRef": "Ventas.Total Ventas (var vs ly %)",
+              "nativeQueryRef": "Total Ventas (var vs ly %)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Margen (var vs ly)" } },
+              "queryRef": "Ventas.Margen (var vs ly)",
+              "nativeQueryRef": "Margen (var vs ly)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Margen (var vs ly %)" } },
+              "queryRef": "Ventas.Margen (var vs ly %)",
+              "nativeQueryRef": "Margen (var vs ly %)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "outline": [{
+        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
+        "selector": { "id": "default" }
+      }]
+    }
+  }
+}

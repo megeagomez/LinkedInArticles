@@ -18,6 +18,24 @@
       "prompt": "Oye, ¿puedes montarme ya la dimensión de tiempo casi perfecta en mi semantic model de Fabric? Es el workspace 'Analytics Ventas', dataset 'ModeloComercial'.",
       "expected_output": "La petición no da nombre de tabla, rango de años, calendario fiscal, ni confirma modo aplicar/mostrar de forma inequívoca (dice 'montarme ya' lo que podría sonar a apply, pero faltan los demás parámetros). El skill debe preguntar los parámetros que faltan (al menos table_name, start_year/end_year, y confirmar si aplicar de verdad contra ese workspace/dataset o solo mostrar el TMDL) en vez de generar y aplicar algo con valores inventados sin confirmación.",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Necesito una tabla de fechas de 2019 a 2026, año fiscal desde octubre.",
+      "expected_output": "La petición no dice en qué formato/origen la necesita (no menciona TMDL, Power Query, SQL, PySpark, Warehouse, notebook, ni modelo semántico). El skill debe preguntar explícitamente qué origen quiere (M, SQL, Fabric o PySpark) antes de renderizar nada, en vez de asumir uno por defecto. Solo después de esa respuesta debe seguir con las preguntas específicas del origen elegido (p. ej. table_name/schema_name para SQL, o mode para Fabric).",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Dame el T-SQL de la dimensión de tiempo para nuestro Fabric Warehouse, esquema stg, tabla DimCalendario, de 2015 a 2030, año fiscal natural. Solo quiero el código, no lo ejecutes contra nada todavía.",
+      "expected_output": "El skill debe reconocer el origen SQL sin preguntarlo (ya está dado explícitamente por 'T-SQL' y 'Fabric Warehouse'), llamar a scripts/render_tsql.py con schema_name=stg, table_name=DimCalendario, start_year=2015, end_year=2030, fiscal_start_month=1, y pasar el resultado por scripts/validate_syntax.py --origin sql (validación estática, siempre, sin preguntar). No debe preguntar por un destino real ni ofrecerse a ejecutar nada contra un Warehouse, porque el usuario dijo explícitamente que no lo pruebe todavía — debe limitarse a entregar el código validado y, como mucho, mencionar de pasada las consultas de sanity check ya comentadas en la plantilla para cuando el usuario lo ejecute él mismo.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Necesito el PySpark de la dimensión de tiempo para pegar en un notebook de Fabric, tabla DimFecha en mi lakehouse, 2021 a 2028, año fiscal desde abril terminando en el año de cierre. Y si puedes, pruébalo de verdad contra mi lakehouse 'LH_Ventas' en el workspace 'Analytics Ventas' antes de dármelo por bueno.",
+      "expected_output": "El skill debe reconocer el origen PySpark sin preguntarlo (ya está dado por 'PySpark' y 'notebook de Fabric'), confirmar fiscal_year_basis=End ('terminando en el año de cierre'), renderizar con scripts/render_pyspark.py y validar con scripts/validate_syntax.py --origin pyspark (ast.parse real). Como el usuario pidió explícitamente el test real contra un destino que ya dio (workspace 'Analytics Ventas', lakehouse 'LH_Ventas'), el skill debe confirmar esos datos y, antes de ejecutar nada, pedir confirmación explícita de que se va a escribir de verdad una tabla Delta ahí (acción con efectos reales), luego delegar en spark-consumption-cli (sesión Livy) para ejecutarlo y mostrar el resultado del sanity check (conteo de filas y rango de fechas).",
+      "files": []
     }
   ]
 }

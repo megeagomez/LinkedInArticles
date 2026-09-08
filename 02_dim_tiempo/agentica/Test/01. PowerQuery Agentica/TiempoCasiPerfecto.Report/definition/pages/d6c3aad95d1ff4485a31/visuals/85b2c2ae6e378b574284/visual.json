@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "85b2c2ae6e378b574284",
+  "position": { "x": 24, "y": 304, "z": 1000, "height": 140, "width": 1872, "tabOrder": 4 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Margen" } },
+              "queryRef": "Ventas.Margen",
+              "nativeQueryRef": "Margen"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Margen (%)" } },
+              "queryRef": "Ventas.Margen (%)",
+              "nativeQueryRef": "Margen (%)"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Precio Medio por Unidad" } },
+              "queryRef": "Ventas.Precio Medio por Unidad",
+              "nativeQueryRef": "Precio Medio por Unidad"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Ventas" } }, "Property": "Valor Medio de Pedido" } },
+              "queryRef": "Ventas.Valor Medio de Pedido",
+              "nativeQueryRef": "Valor Medio de Pedido"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "outline": [{
+        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
+        "selector": { "id": "default" }
+      }]
+    }
+  }
+}
