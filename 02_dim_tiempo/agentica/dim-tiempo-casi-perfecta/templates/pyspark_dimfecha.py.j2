@@ -22,6 +22,12 @@ start_year = {{ start_year }}
 end_year = {{ end_year }}
 fiscal_start_month = {{ fiscal_start_month }}      # el año fiscal arranca en este mes
 fiscal_year_basis = "{{ fiscal_year_basis }}"   # "Start" o "End" — ver cabecera
+# Nombres de mes/día explícitos (idioma parametrizable), no F.date_format(...,
+# "MMMM"/"EEEE"): así el resultado no depende del locale de la JVM del
+# cluster (ver scripts/i18n.py). month_names[0] = enero, day_names[0] = domingo.
+month_names = {{ months }}
+day_names = {{ days }}
+table_name = "{{ table_name }}"      # admite "schema.tabla"
 
 # CELL 2 — imports y generación del rango de fechas
 from datetime import date
@@ -42,7 +48,7 @@ df = (
     .withColumn("FiscalDate", F.add_months(F.col("Date"), -fiscal_start_month))
     .withColumn("Year", F.year("Date"))
     .withColumn("Month", F.month("Date"))
-    .withColumn("Month Name", F.date_format("Date", "MMMM"))
+    .withColumn("Month Name", F.element_at(F.array(*[F.lit(m) for m in month_names]), F.col("Month")))
     .withColumn("Month Name Short", F.substring(F.col("Month Name"), 1, 3))
     .withColumn("Month Name Complete", F.concat_ws(" ", F.col("Month Name"), F.col("Year")))
     .withColumn(
@@ -54,7 +60,7 @@ df = (
     .withColumn("Day", F.dayofmonth("Date"))
     .withColumn("Day of Week", F.dayofweek("Date") - 1)  # 0 = domingo, como Date.DayOfWeek en M
     .withColumn("Day of Year", F.dayofyear("Date"))
-    .withColumn("Day Name", F.date_format("Date", "EEEE"))
+    .withColumn("Day Name", F.element_at(F.array(*[F.lit(d) for d in day_names]), F.col("Day of Week") + 1))
     .withColumn("IsoWeek", F.weekofyear("Date"))
     .withColumn(
         "IsoYear",
@@ -166,7 +172,7 @@ df = df.withColumn(
       .format("delta")
       .mode("overwrite")
       .option("overwriteSchema", "true")
-      .saveAsTable("{{ table_name }}")
+      .saveAsTable(table_name)
 )
 
 # CELL 9 — sanity checks rápidos

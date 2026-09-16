@@ -61,11 +61,27 @@ requiere guardar nada.
 
 ### PySpark (notebook de Fabric)
 
-Pide el workspace y el Lakehouse de destino. Usa `spark-consumption-cli`
-para abrir una sesión Livy y ejecutar el script celda a celda (o el bloque
-completo) contra ese Lakehouse. La verificación de sanity son las mismas
-líneas que ya vienen comentadas al final de la plantilla (CELL 9): conteo de
-filas, rango de fechas, y una fila de "hoy" con sus banderas `Current *`.
+Hay dos formas de probarlo de verdad, según lo que el usuario pidió:
+
+- **Ad hoc, sin desplegar nada**: pide el workspace y el Lakehouse de
+  destino. Usa `spark-consumption-cli` para abrir una sesión Livy y ejecutar
+  el script celda a celda (o el bloque completo) contra ese Lakehouse. La
+  verificación de sanity son las mismas líneas que ya vienen comentadas al
+  final de la plantilla (CELL 9): conteo de filas, rango de fechas, y una
+  fila de "hoy" con sus banderas `Current *`.
+- **Como ítem Notebook desplegado** (si el usuario generó el `.ipynb` con
+  `scripts/render_notebook.py`, paso 1bis de la skill, y quiere que quede
+  creado en un workspace, no solo probado): usa `spark-authoring-cli` para
+  crear/actualizar el ítem Notebook con esa definición en el workspace
+  indicado, con el lakehouse de destino como lakehouse por defecto.
+  Ejecutarlo (con o sin sobrescribir la celda `"parameters"`) materializa la
+  tabla Delta exactamente igual que el CTAS de SQL Server materializa
+  `DimFecha` — es el paso que de verdad "crea los datos". Verifica después
+  con la misma consulta de sanity check de la sección SQL de arriba
+  (`SELECT COUNT(*) AS Filas, MIN([Date])..., MAX([Date])...`) contra el SQL
+  endpoint del Lakehouse, vía `sqldw-consumption-cli` — un Lakehouse expone
+  ese endpoint igual que un Warehouse, así que la misma consulta sirve para
+  los dos.
 
 ## Si el usuario no quiere test real
 

@@ -55,13 +55,17 @@ Base AS (
         DATEADD(MONTH, -@FiscalStartMonth, d.[Date])                          AS FiscalDate,
         YEAR(d.[Date])                                                        AS [Year],
         MONTH(d.[Date])                                                       AS [Month],
-        DATENAME(MONTH, d.[Date])                                             AS [Month Name],
+        CASE MONTH(d.[Date])
+{% for m in months %}            WHEN {{ loop.index }} THEN N'{{ m }}'
+{% endfor %}        END                                                                   AS [Month Name],
         DATEPART(QUARTER, d.[Date])                                           AS Quarter,
         DATEPART(WEEK, d.[Date])                                              AS [Week of Year],
         DAY(d.[Date])                                                         AS [Day],
         DATEPART(WEEKDAY, d.[Date]) - 1                                       AS [Day of Week], -- 0 = domingo
         DATEPART(DAYOFYEAR, d.[Date])                                         AS [Day of Year],
-        DATENAME(WEEKDAY, d.[Date])                                           AS [Day Name],
+        CASE (DATEPART(WEEKDAY, d.[Date]) - 1)
+{% for d in days %}            WHEN {{ loop.index0 }} THEN N'{{ d }}'
+{% endfor %}        END                                                                   AS [Day Name],
         DATEPART(ISO_WEEK, d.[Date])                                          AS IsoWeek,
         CASE
             WHEN DATEPART(ISO_WEEK, d.[Date]) >= 52 AND MONTH(d.[Date]) = 1  THEN YEAR(d.[Date]) - 1

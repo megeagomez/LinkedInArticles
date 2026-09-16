@@ -36,6 +36,18 @@
       "prompt": "Necesito el PySpark de la dimensión de tiempo para pegar en un notebook de Fabric, tabla DimFecha en mi lakehouse, 2021 a 2028, año fiscal desde abril terminando en el año de cierre. Y si puedes, pruébalo de verdad contra mi lakehouse 'LH_Ventas' en el workspace 'Analytics Ventas' antes de dármelo por bueno.",
       "expected_output": "El skill debe reconocer el origen PySpark sin preguntarlo (ya está dado por 'PySpark' y 'notebook de Fabric'), confirmar fiscal_year_basis=End ('terminando en el año de cierre'), renderizar con scripts/render_pyspark.py y validar con scripts/validate_syntax.py --origin pyspark (ast.parse real). Como el usuario pidió explícitamente el test real contra un destino que ya dio (workspace 'Analytics Ventas', lakehouse 'LH_Ventas'), el skill debe confirmar esos datos y, antes de ejecutar nada, pedir confirmación explícita de que se va a escribir de verdad una tabla Delta ahí (acción con efectos reales), luego delegar en spark-consumption-cli (sesión Livy) para ejecutarlo y mostrar el resultado del sanity check (conteo de filas y rango de fechas).",
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Necesito la dimensión de tiempo en T-SQL para el Warehouse, tabla DimFecha, 2020 a 2027, año fiscal natural. Los nombres de mes y día quiero que salgan en catalán.",
+      "expected_output": "El skill debe reconocer origen SQL y language=ca, ambos dados explícitamente, sin preguntarlos. Debe llamar a scripts/render_tsql.py con --language ca (además de schema_name/table_name a confirmar) y validar con scripts/validate_syntax.py --origin sql. Debe poder explicar, si se le pregunta, que los nombres de mes/día en catalán salen de scripts/i18n.py con un CASE explícito, no de DATENAME/SET LANGUAGE (SQL Server no trae catalán como locale de servidor).",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Móntame la dimensión de tiempo en PySpark para un notebook de Fabric, tabla DimFecha, 2022 a 2027, año fiscal natural, en euskera. Quiero el notebook de verdad, no solo el script para pegar en celdas, para poder desplegarlo luego en el workspace 'Analytics Ventas' contra el lakehouse 'LH_Ventas'.",
+      "expected_output": "El skill debe reconocer origen PySpark y language=eu explícitos. Tras renderizar y validar el .py (scripts/render_pyspark.py + validate_syntax.py --origin pyspark), como el usuario pidió el notebook real (no el script para pegar), debe usar scripts/render_notebook.py con --workspace-name 'Analytics Ventas' --lakehouse-name LH_Ventas para generar el .ipynb con la celda de parámetros etiquetada 'parameters'. No debe asumir que 'para poder desplegarlo luego' significa desplegar ya — debe preguntar explícitamente si además quiere el despliegue real ahora (paso 6, PySpark como notebook desplegado) o solo el .ipynb para desplegarlo él mismo más adelante.",
+      "files": []
     }
   ]
 }

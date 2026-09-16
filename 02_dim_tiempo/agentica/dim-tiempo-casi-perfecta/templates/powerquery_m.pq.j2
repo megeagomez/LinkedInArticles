@@ -18,6 +18,11 @@ let
     _EndYear = {{ end_year }},
     _FiscalStartMonth = {{ fiscal_start_month }},
     _FiscalYearBasis = "{{ fiscal_year_basis }}",
+    // Nombres de mes/dia explicitos (idioma parametrizable), no
+    // Date.MonthName/Date.DayOfWeekName: asi el resultado no depende del
+    // locale del motor M de destino (ver scripts/i18n.py).
+    MonthNames = {{'{'}}"{{ months | join('", "') }}"{{'}'}},
+    DayNames = {{'{'}}"{{ days | join('", "') }}"{{'}'}},
 
     Source = List.Dates(#date(_StartYear,1,1), Duration.Days(#date(_EndYear+1,1,1) - #date(_StartYear,1,1)), #duration(1,0,0,0)),
     #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
@@ -26,7 +31,7 @@ let
     #"Renamed Columns" = Table.RenameColumns(#"Sorted Rows",{{'{'}}{"Column1", "Date"}{{'}'}}),
     #"Inserted Year" = Table.AddColumn(#"Renamed Columns", "Year", each Date.Year([Date]), Int64.Type),
     #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([Date]), Int64.Type),
-    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each Date.MonthName([Date]), type text),
+    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each MonthNames{{'{'}}[Month]-1{{'}'}}, type text),
     #"Inserted Month Name Short" = Table.AddColumn(#"Inserted Month Name", "Month Name Short", each Text.Start([Month Name],3)),
     #"Inserted Mont Name Complete" = Table.AddColumn(#"Inserted Month Name Short", "Month Name Complete", each [Month Name] & " " & Text.From([Year])),
     #"Inserted Month Name Short Complete" = Table.AddColumn(#"Inserted Mont Name Complete", "Month Name Short Complete", each [Month Name Short] & " " & Text.End(Text.From([Year]),2)),
@@ -44,7 +49,7 @@ let
     #"Added Custom5" = Table.AddColumn(#"Changed Type4", "QuarterCode", each [Year]*100 + (if [Month] <=3 then 1 else if [Month]<=6 then 2 else if [Month]<=9 then 3 else 4)),
     #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom5",{{'{'}}{"QuarterCode", Int64.Type}{{'}'}}),
     #"Inserted Day of Year" = Table.AddColumn(#"Changed Type5", "Day of Year", each Date.DayOfYear([Date]), Int64.Type),
-    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Year", "Day Name", each Date.DayOfWeekName([Date]), type text),
+    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Year", "Day Name", each DayNames{{'{'}}[Day of Week]{{'}'}}, type text),
     #"Added Custom" = Table.AddColumn(#"Inserted Day Name", "FiscalDate", each Date.AddMonths([Date],-1*_FiscalStartMonth)),
     #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{'{'}}{"FiscalDate", type datetime}{{'}'}}),
     #"Fiscal week of Year" = Table.AddColumn(#"Changed Type1", "Fiscal Week of Year", each Date.WeekOfYear([FiscalDate]), Int64.Type),

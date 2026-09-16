@@ -21,6 +21,8 @@ import sys
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
+from i18n import DEFAULT_LANGUAGE, LANGUAGES, get_language
+
 TEMPLATE_DIR = pathlib.Path(__file__).resolve().parent.parent / "templates"
 # saveAsTable() accepts a bare name or a dotted schema.table (Fabric Lakehouse
 # default schema is dbo); keep it to safe identifier characters so the
@@ -29,7 +31,8 @@ _TABLE_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)*
 
 
 def render(table_name: str, start_year: int, end_year: int,
-           fiscal_start_month: int, fiscal_year_basis: str) -> str:
+           fiscal_start_month: int, fiscal_year_basis: str,
+           language: str = DEFAULT_LANGUAGE) -> str:
     if fiscal_year_basis not in ("Start", "End"):
         raise ValueError('fiscal_year_basis must be "Start" or "End"')
     if not (1 <= fiscal_start_month <= 12):
@@ -41,6 +44,7 @@ def render(table_name: str, start_year: int, end_year: int,
             f"table_name={table_name!r} is not a plain identifier or dotted schema.table "
             "(letters/digits/underscore, not starting with a digit)"
         )
+    lang = get_language(language)
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATE_DIR)),
@@ -54,6 +58,8 @@ def render(table_name: str, start_year: int, end_year: int,
         end_year=end_year,
         fiscal_start_month=fiscal_start_month,
         fiscal_year_basis=fiscal_year_basis,
+        months=lang["months"],
+        days=lang["days"],
     )
 
 
@@ -64,6 +70,8 @@ def main() -> None:
     parser.add_argument("--end-year", type=int, default=2028)
     parser.add_argument("--fiscal-start-month", type=int, default=6)
     parser.add_argument("--fiscal-year-basis", choices=["Start", "End"], default="End")
+    parser.add_argument("--language", choices=sorted(LANGUAGES), default=DEFAULT_LANGUAGE,
+                         help="idioma de 'Month Name'/'Day Name'/'Fiscal Month Name'")
     args = parser.parse_args()
 
     try:
@@ -73,6 +81,7 @@ def main() -> None:
             end_year=args.end_year,
             fiscal_start_month=args.fiscal_start_month,
             fiscal_year_basis=args.fiscal_year_basis,
+            language=args.language,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)

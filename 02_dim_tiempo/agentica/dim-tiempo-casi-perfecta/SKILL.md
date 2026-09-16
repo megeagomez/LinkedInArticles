@@ -1,6 +1,6 @@
 ---
 name: dim-tiempo-casi-perfecta
-description: Genera la "dimensión de tiempo casi perfecta" (36 columnas, 5 jerarquías, calendario fiscal, días laborables) en 4 orígenes — TMDL de modelo semántico Power BI/Fabric, Power Query M suelto, T-SQL para Warehouse/Lakehouse, o PySpark para notebook Fabric — desde plantillas Jinja2, con validación estática siempre y test real opcional contra un destino que indique el usuario. En Fabric/TMDL además crea relaciones "role-playing" (una activa + varias inactivas) hacia columnas de fecha de una tabla de hechos en lenguaje natural. Úsala siempre que pidan crear o completar una tabla/dimensión de fechas o calendario, en cualquiera de esos 4 formatos, aunque no mencionen "TMDL" ni el origen exacto — p. ej. "tabla de fechas para este modelo", "Power Query de la dimensión de tiempo", "T-SQL de la tabla de fechas para el Warehouse", "dimensión de tiempo en PySpark", "conecta la dimensión de tiempo con Ventas por Fecha de Venta".
+description: Genera la "dimensión de tiempo casi perfecta" (36 columnas, 5 jerarquías, calendario fiscal, días laborables) en 4 orígenes — TMDL de modelo semántico Power BI/Fabric, Power Query M suelto, T-SQL para Warehouse/Lakehouse, o PySpark para notebook Fabric — desde plantillas Jinja2, con validación estática siempre y test real opcional contra un destino que indique el usuario. Los nombres de mes/día salen en el idioma que confirme el usuario (español, portugués, català, euskera, galego, inglés o francés). El origen PySpark además se puede empaquetar como notebook de Fabric real (.ipynb, con celda de parámetros) listo para desplegar en un workspace contra un lakehouse. En Fabric/TMDL además crea relaciones "role-playing" (una activa + varias inactivas) hacia columnas de fecha de una tabla de hechos en lenguaje natural. Úsala siempre que pidan crear o completar una tabla/dimensión de fechas o calendario, en cualquiera de esos 4 formatos, aunque no mencionen "TMDL" ni el origen exacto — p. ej. "tabla de fechas para este modelo", "Power Query de la dimensión de tiempo", "T-SQL de la tabla de fechas para el Warehouse", "dimensión de tiempo en PySpark", "notebook de Fabric para la dimensión de tiempo", "conecta la dimensión de tiempo con Ventas por Fecha de Venta".
 ---
 
 # dim-tiempo-casi-perfecta
@@ -29,7 +29,7 @@ el T-SQL", "esto es para un notebook PySpark"):
 | **Fabric** | `createOrReplace` TMDL de una tabla de modelo semántico (Power BI / Fabric), con jerarquías y medida de selección | `scripts/render_dimension.py` | `templates/dimension.tmdl.j2` |
 | **M** | Power Query M autocontenido (Advanced Editor / Dataflow Gen2) | `scripts/render_powerquery.py` | `templates/powerquery_m.pq.j2` |
 | **SQL** | T-SQL `CREATE TABLE ... AS SELECT` para Fabric Warehouse (o lectura desde Lakehouse SQL endpoint) | `scripts/render_tsql.py` | `templates/tsql_dimfecha.sql.j2` |
-| **PySpark** | Notebook de Fabric, celda a celda, que escribe una tabla Delta en un Lakehouse | `scripts/render_pyspark.py` | `templates/pyspark_dimfecha.py.j2` |
+| **PySpark** | Notebook de Fabric, celda a celda, que escribe una tabla Delta en un Lakehouse (opcionalmente empaquetado como `.ipynb` real, desplegable) | `scripts/render_pyspark.py` (+ `scripts/render_notebook.py` para el `.ipynb`) | `templates/pyspark_dimfecha.py.j2` |
 
 Si el usuario pide más de un origen a la vez ("dame el TMDL y también el
 T-SQL por si acaso"), trátalo como varias pasadas del flujo completo, una
@@ -44,6 +44,7 @@ Todos los orígenes comparten estos parámetros de calendario:
 |---|---|---|
 | `start_year` / `end_year` | Rango de años de la tabla | Pregunta, o propone un rango razonable (p.ej. año actual -5 a año actual +2) y pide confirmación |
 | `fiscal_start_month` / `fiscal_year_basis` | Calendario fiscal | Si el usuario no menciona un año fiscal distinto del natural, pregunta si lo necesita antes de asumir que no |
+| `language` | Idioma de `Month Name`/`Day Name`/`Fiscal Month Name`/`Month Name Complete`/`Month Name Short Complete` | Pregúntalo siempre — el valor por defecto es español (`es`), pero no lo asumas sin confirmación. Soportados: `es` (Español), `pt` (Português), `ca` (Català), `eu` (Euskara), `gl` (Galego), `en` (English), `fr` (Français). Los nombres salen de una tabla fija en `scripts/i18n.py`, no del locale del motor de destino — por eso funcionan igual en TMDL/M, T-SQL y PySpark, y por eso euskera/català/galego funcionan aunque el motor (SQL Server, un cluster Spark) no los traiga como locale nativo |
 
 Y cada origen añade lo suyo:
 
@@ -74,25 +75,57 @@ parámetros confirmados. Ejemplos:
 python scripts/render_dimension.py \
     --table-name "Fecha" \
     --start-year 2019 --end-year 2028 \
-    --fiscal-start-month 6 --fiscal-year-basis End
+    --fiscal-start-month 6 --fiscal-year-basis End \
+    --language es
 
 # M
 python scripts/render_powerquery.py \
     --start-year 2019 --end-year 2028 \
-    --fiscal-start-month 6 --fiscal-year-basis End
+    --fiscal-start-month 6 --fiscal-year-basis End \
+    --language es
 
 # SQL
 python scripts/render_tsql.py \
     --schema-name dbo --table-name DimFecha \
     --start-year 2019 --end-year 2028 \
-    --fiscal-start-month 6 --fiscal-year-basis End
+    --fiscal-start-month 6 --fiscal-year-basis End \
+    --language es
 
 # PySpark
 python scripts/render_pyspark.py \
     --table-name DimFecha \
     --start-year 2019 --end-year 2028 \
-    --fiscal-start-month 6 --fiscal-year-basis End
+    --fiscal-start-month 6 --fiscal-year-basis End \
+    --language es
 ```
+
+`--language` acepta `es|pt|ca|eu|gl|en|fr` en los 4 orígenes (por defecto
+`es` si no lo confirmas explícitamente — pero pregúntalo siempre, ver Paso 0).
+
+### 1bis. PySpark: empaquetarlo como notebook de Fabric real (opcional)
+
+Si el usuario quiere el resultado como un ítem Notebook desplegable (no solo
+el script para pegar en celdas), llama a `scripts/render_notebook.py` con los
+mismos parámetros — internamente reutiliza `render_pyspark.py`, así que el
+contenido de las celdas es idéntico, solo cambia el empaquetado en `.ipynb`
+(una celda por bloque `# CELL n`, la de parámetros con la etiqueta
+`"parameters"` para que un pipeline o un "Run" de Fabric pueda sobrescribir
+`start_year`/`end_year`/`table_name`/etc. sin tocar el notebook, igual que un
+job de SQL Server sobrescribe variables al ejecutar):
+
+```bash
+python scripts/render_notebook.py \
+    --table-name DimFecha \
+    --start-year 2019 --end-year 2028 \
+    --fiscal-start-month 6 --fiscal-year-basis End \
+    --language es \
+    --workspace-name "Analytics Ventas" --lakehouse-name LH_Ventas
+```
+
+`--workspace-name`/`--lakehouse-name` son opcionales y solo anotan qué
+lakehouse por defecto debería tener el notebook al desplegarlo — este script
+no llama a la API de Fabric ni resuelve nada real, solo genera el JSON. Ver
+el paso 6 para el despliegue real.
 
 Cada uno imprime el código completo listo para ejecutar o mostrar. No edites
 el resultado a mano: si necesitas un cambio estructural (una columna más,
@@ -120,7 +153,10 @@ llaves más comprobación de palabras clave — un heurístico, no un parser rea
 (ver docstring del script y `references/testing.md` para el detalle). Si
 falla, no se lo enseñes al usuario como si fuera válido: dile qué encontró
 mal y vuelve a renderizar si el problema es un parámetro, o revisa la
-plantilla si el problema es estructural.
+plantilla si el problema es estructural. Si además generaste el `.ipynb` con
+`render_notebook.py`, valida el `.py` de `render_pyspark.py` (paso 1), no el
+JSON del notebook — el `.ipynb` solo reempaqueta ese mismo código validado en
+celdas, `ast.parse` sobre el JSON completo no tiene sentido.
 
 ### 3. Relaciones (solo origen Fabric, si el usuario las pidió)
 
@@ -186,6 +222,21 @@ comentadas en cada plantilla para cuando lo procese por su cuenta.
   pegue donde corresponda (Advanced Editor / script de Warehouse / celda de
   notebook). Solo lo ejecutas tú si el usuario pidió el test real del paso 5
   y confirmó el destino.
+- **PySpark, como notebook de Fabric desplegado** (si el usuario pidió el
+  `.ipynb` del paso 1bis y además quiere desplegarlo, no solo el fichero):
+  pide workspace y lakehouse de destino si no los dio, confirma
+  explícitamente (crear/actualizar un ítem en un workspace real y,
+  opcionalmente, ejecutarlo son acciones con efecto real) y usa
+  `spark-authoring-cli` para crear o actualizar el ítem Notebook con la
+  definición `.ipynb` de `render_notebook.py` en ese workspace, con el
+  lakehouse indicado como lakehouse por defecto. Si además el usuario quiere
+  que la tabla quede creada ya (el equivalente a ejecutar el CTAS de SQL
+  Server), ejecuta el notebook con los parámetros confirmados sobrescribiendo
+  la celda `"parameters"` (mismo mecanismo que un pipeline de Fabric usa para
+  parametrizar un notebook en cada ejecución) y verifica con la misma
+  consulta de sanity check que en SQL (`SELECT COUNT(*)...`) contra el SQL
+  endpoint del lakehouse, vía `sqldw-consumption-cli` — ver
+  `references/testing.md`.
 
 ## Ejemplo completo (origen Fabric)
 
@@ -198,7 +249,8 @@ comentadas en cada plantilla para cuando lo procese por su cuenta.
 2. Parámetros: `table_name` no está — pregúntalo ("Fecha" por defecto,
    confirmar). `start_year`/`end_year` no están — pregúntalos.
    `fiscal_start_month=6`, `fiscal_year_basis` no está — pregúntalo (Start o
-   End). `mode=apply` — dado explícitamente, pero confirma antes de
+   End). `language` no está — pregúntalo (español por defecto, confirmar).
+   `mode=apply` — dado explícitamente, pero confirma antes de
    ejecutar.
 3. Render de la tabla (paso 1) y validación estática (paso 2).
 4. Render de las relaciones (paso 3), con `Fecha de Venta` como activa según
@@ -221,7 +273,7 @@ comentadas en cada plantilla para cuando lo procese por su cuenta.
    dados. "Año fiscal natural" = sin desplazamiento — confirma
    `fiscal_start_month=1`, pregunta `fiscal_year_basis` si hace falta
    distinguir (con mes 1 da igual Start o End, dilo así en vez de preguntar
-   algo irrelevante).
+   algo irrelevante). `language` no está — pregúntalo también.
 3. Render (paso 1) y validación estática (paso 2) — sin pasos 3/4 (son solo
    de Fabric).
 4. El usuario ya pidió el test real contra `WarehouseVentas` (paso 5):
@@ -243,6 +295,13 @@ comentadas en cada plantilla para cuando lo procese por su cuenta.
   `scripts/render_pyspark.py` — únicos puntos de entrada para generar cada
   origen; requieren `jinja2` (`pip install jinja2` si no está disponible en
   el entorno).
+- `scripts/render_notebook.py` — empaqueta la salida de `render_pyspark.py`
+  como un notebook de Fabric (`.ipynb`) real y desplegable, con celda de
+  parámetros etiquetada (paso 1bis).
+- `scripts/i18n.py` — tabla fija de nombres de mes/día por idioma (`es`,
+  `pt`, `ca`, `eu`, `gl`, `en`, `fr`); la usan los 4 `render_*.py` vía
+  `--language`, no la edites salvo para añadir un idioma nuevo completo (los
+  12 meses + los 7 días).
 - `scripts/validate_syntax.py` — validación estática obligatoria del paso 2,
   para los 4 orígenes.
 - `references/relationship-tmdl.md` — patrón role-playing y sintaxis de

@@ -26,12 +26,15 @@ import sys
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
+from i18n import DEFAULT_LANGUAGE, LANGUAGES, get_language
+
 TEMPLATE_DIR = pathlib.Path(__file__).resolve().parent.parent / "templates"
 _IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 def render(schema_name: str, table_name: str, start_year: int, end_year: int,
-           fiscal_start_month: int, fiscal_year_basis: str, target: str = "fabric") -> str:
+           fiscal_start_month: int, fiscal_year_basis: str, target: str = "fabric",
+           language: str = DEFAULT_LANGUAGE) -> str:
     if target not in ("fabric", "sqlserver"):
         raise ValueError('target must be "fabric" or "sqlserver"')
     if fiscal_year_basis not in ("Start", "End"):
@@ -47,6 +50,7 @@ def render(schema_name: str, table_name: str, start_year: int, end_year: int,
                 "not starting with a digit) — use [brackets] yourself in the target script if "
                 "you need something fancier, this generator won't build injectable SQL for you"
             )
+    lang = get_language(language)
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATE_DIR)),
@@ -62,6 +66,8 @@ def render(schema_name: str, table_name: str, start_year: int, end_year: int,
         fiscal_start_month=fiscal_start_month,
         fiscal_year_basis=fiscal_year_basis,
         target=target,
+        months=lang["months"],
+        days=lang["days"],
     )
 
 
@@ -74,6 +80,8 @@ def main() -> None:
     parser.add_argument("--fiscal-start-month", type=int, default=6)
     parser.add_argument("--fiscal-year-basis", choices=["Start", "End"], default="End")
     parser.add_argument("--target", choices=["fabric", "sqlserver"], default="fabric")
+    parser.add_argument("--language", choices=sorted(LANGUAGES), default=DEFAULT_LANGUAGE,
+                         help="idioma de 'Month Name'/'Day Name'/'Fiscal Month Name'")
     args = parser.parse_args()
 
     try:
@@ -85,6 +93,7 @@ def main() -> None:
             fiscal_start_month=args.fiscal_start_month,
             fiscal_year_basis=args.fiscal_year_basis,
             target=args.target,
+            language=args.language,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
